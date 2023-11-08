@@ -25,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout=findViewById(R.id.drawerlayout);
+        drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         nav = findViewById(R.id.nav);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        frg_trangchu frgTrangchu= new frg_trangchu();
-        replaceFrg(frgTrangchu);
+        frg_trangchu frgtrangchu = new frg_trangchu();
+        replaceFrg(frgtrangchu);
         nav.setItemIconTintList(null);
 
 
