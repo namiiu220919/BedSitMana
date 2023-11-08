@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_profileUser"
+        android:title="Thông tin tài khoản" />
+    <item
+        android:id="@+id/nav_AddUser"
+        android:title="Tạo tài khoản"/>
+    <item
+        android:id="@+id/nav_ChangePass"
+        android:title="Đổi mật khẩu"/>
+    <item
+        android:id="@+id/nav_Loguot"
+        android:title="Đăng xuất"/>
+
+</menu>
