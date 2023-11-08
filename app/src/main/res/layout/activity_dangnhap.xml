@@ -15,7 +15,6 @@
     android:layout_marginTop="70dp"
     android:layout_marginBottom="20dp"
     android:layout_gravity="center"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,26 +23,103 @@
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"/>
-    <EditText
-        android:id="@+id/edtUser_dn"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/khungedt"
-        android:textColorHint="@color/white"
-        android:padding="10dp"
+        android:text="Tài khoản"
+        android:textColor="@color/white"
         android:layout_marginTop="40dp"
-        android:hint="Username"/>
+        android:layout_marginLeft="5dp"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:textColorHint="@color/white"
+
+        app:startIconDrawable="@drawable/baseline_person_24"
+        app:startIconTint="#F88E4B"
+
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="#F88E4B"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtUser"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@drawable/khungedt"
+            android:textColor="@color/white"
+            />
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mật khẩu"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
+        app:startIconDrawable="@drawable/baseline_lock_24"
+        app:startIconTint="#F88E4B"
+
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="#F88E4B"
+
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/white"
+
+
+
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/khungedt"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+<CheckBox
+    android:id="@+id/chkLuu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:buttonTint="@color/orange"
+    android:layout_marginLeft="-4dp"
+    android:textColor="@color/white"
+    android:textSize="12dp"
+    android:layout_marginTop="10dp"
+    android:text="Lưu mật khẩu"/>
+    <Button
+        android:id="@+id/btnDangNhap"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/khung_login"
+        android:layout_gravity="center"
+        android:text="Đăng nhập"
+        android:textColor="@color/orange"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quên mật khẩu?"
+        android:textColor="#B8A9A0"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:textStyle="italic"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng kí với tư cách adminn"
+        android:textColor="#B8A9A0"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:textStyle="italic"/>
 
 
 </LinearLayout>
