@@ -9,10 +9,8 @@
     tools:context=".Activity.coSo_Activity">
     <include layout="@layout/toolbar"/>
     <ListView
-        android:id="@+id/lstpban"
+        android:id="@+id/lstCoSo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/black"
-        android:dividerHeight="1dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

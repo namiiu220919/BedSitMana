@@ -45,8 +45,8 @@ public class frg_trangchu extends Fragment {
         btnCoso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                frg_coso frgcoso = new frg_coso();
-                replaceFrg(frgcoso);
+//                frg_coso frgcoso = new frg_coso();
+//                replaceFrg(frgcoso);
 
             }
         });
