@@ -25,7 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "trangThai INTEGER NOT NULL," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
                 "maNguoiThue INTEGER REFERENCES NguoiThue(maNguoiThue)," +
-                "maKeToan INTEGER REFERENCES KeToan(maKeToan)";
+                "maKeToan INTEGER REFERENCES KeToan(maKeToan))";
         sqLiteDatabase.execSQL(createTableHoaDon);
         //Tạo bảng NguoiThue
         String createTableNguoiThue ="create table NguoiThue(" +
