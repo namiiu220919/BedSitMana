@@ -11,6 +11,7 @@
         android:background="@drawable/khungitem"
         android:alpha="0.4"/>
         <LinearLayout
+            android:id="@+id/hehe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
