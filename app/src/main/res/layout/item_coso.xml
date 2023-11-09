@@ -46,10 +46,10 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/txtTienDien"
+            android:id="@+id/txtGiaDien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tiền điện: 3.500đ/số"
+            android:text="Giá điện: 3.500đ/số"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -58,10 +58,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/txtTienNuoc"
+                android:id="@+id/txtGiaNuoc"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:text="Tiền nước: 100.000đ/người"
+                android:text="Giá nước: 100.000đ/người"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
             <ImageView

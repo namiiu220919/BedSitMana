@@ -17,6 +17,33 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        //Tạo bảng KeToan
+        String createTableKeToan="create table KeToan(" +
+                "maKeToan TEXT PRIMARY KEY," +
+                "tenKeToan TEXT NOT NULL," +
+                "matKhauKT TEXT NOT NULL)";
+        sqLiteDatabase.execSQL(createTableKeToan);
+
+        //Tạo bảng CoSo
+        String createTableCoSo="create table CoSo(" +
+                "maCS INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenCS TEXT NOT NULL," +
+                "diaChi TEXT NOT NULL," +
+                "phiDichVu INTEGER NOT NULL," +
+                "giaDien INTEGER NOT NULL," +
+                "giaNuoc INTEGER NOT NULL)";
+        sqLiteDatabase.execSQL(createTableCoSo);
+
+        //Tạo bảng PhongTro
+        String createTablePhongTro = "create table PhongTro(" +
+                "maPhong INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "maCS INTEGER REFERENCES CoSo(maCS)," +
+                "tenPhong TEXT NOT NULL," +
+                "tienNghi TEXT NOT NULL," +
+                "trangThai INTEGER NOT NULL)";
+        sqLiteDatabase.execSQL(createTablePhongTro);
+
+        //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
             "maHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "soDien INTEGER NOT NULL," +
@@ -27,12 +54,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maNguoiThue INTEGER REFERENCES NguoiThue(maNguoiThue)," +
                 "maKeToan INTEGER REFERENCES KeToan(maKeToan))";
         sqLiteDatabase.execSQL(createTableHoaDon);
+
         //Tạo bảng NguoiThue
         String createTableNguoiThue ="create table NguoiThue(" +
-                "maNguoiThue INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "maNguoiThue TEXT PRIMARY KEY," +
                 "matKhauNT TEXT NOT NULL," +
                 "tenNguoiThue TEXT NOT NULL," +
-                "diaChi TEXT NOT NULL," +
+                "thuongTru TEXT NOT NULL," +
                 "sdt TEXT NOT NULL," +
                 "CCCD INTEGER NOT NULL," +
                 "namSinh INTEGER NOT NULL," +
@@ -46,7 +74,19 @@ public class DbHelper extends SQLiteOpenHelper {
                 "thoiHan INTEGER NOT NULL," +
                 "soNguoi INTEGER NOT NULL," +
                 "soXe INTEGER NOT NULL," +
-                "";
+                "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
+                "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue))";
+        sqLiteDatabase.execSQL(createTableHopDong);
+
+        //Tạo bảng SuCo
+        String createTableSuCo = "create table SuCo(" +
+                "maSuCo INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenSuCo TEXT NOT NULL," +
+                "noiDung TEXT NOT NULL," +
+                "trangThai INTEGER NOT NULL," +
+                "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
+                "maNguoiThue INTEGER REFERENCES NguoiThue(maNguoiThue))";
+        sqLiteDatabase.execSQL(createTableSuCo);
     }
 
     @Override
