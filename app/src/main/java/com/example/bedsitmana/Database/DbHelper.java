@@ -18,6 +18,25 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
+        //Tạo bảng NguoiThue
+        String createTableNguoiThue ="create table NguoiThue(" +
+                "maNguoiThue INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenNguoiThue TEXT NOT NULL," +
+                "diaChi TEXT NOT NULL," +
+                "sdt TEXT NOT NULL," +
+                "CCCD INTEGER NOT NULL," +
+                "namSinh INTEGER NOT NULL," +
+                "gioiTinh TEXT NOT NULL)";
+        sqLiteDatabase.execSQL(createTableNguoiThue);
+
+        //Tạo bảng HopDong
+        String createTableHopDong = "create table HopDong(" +
+                "maHopDong INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "giaTien INTEGER NOT NULL," +
+                "thoiHan INTEGER NOT NULL," +
+                "soNguoi INTEGER NOT NULL," +
+                "soXe INTEGER NOT NULL," +
+                "";
     }
 
     @Override
