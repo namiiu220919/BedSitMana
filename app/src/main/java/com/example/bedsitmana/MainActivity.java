@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
+import com.example.bedsitmana.Fragment.frg_coso;
 import com.example.bedsitmana.Fragment.frg_trangchu;
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView nav;
     View mHeader;
+    Button btnCoso,btnPhong,btnNguoiThue,btnThongKe,btnHoaDon,btnSuCo;
 
 
     @Override
@@ -32,8 +35,23 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        frg_trangchu frgtrangchu = new frg_trangchu();
-        replaceFrg(frgtrangchu);
+//        btnCoso=findViewById(R.id.btnCoso);
+//        btnHoaDon=findViewById(R.id.btnHoaDon);
+//        btnPhong=findViewById(R.id.btnPhong);
+//        btnNguoiThue=findViewById(R.id.btnNguoiThue);
+//        btnThongKe=findViewById(R.id.btnThongKe);
+//        btnHoaDon=findViewById(R.id.btnHoaDon);
+        frg_trangchu frgTrangchu = new frg_trangchu();
+        replaceFrg(frgTrangchu);
+//        btnCoso.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                frg_coso frgcoso = new frg_coso();
+//                replaceFrg(frgcoso);
+//                setTitle("Cơ sở");
+//
+//            }
+//        });
         nav.setItemIconTintList(null);
 
 
