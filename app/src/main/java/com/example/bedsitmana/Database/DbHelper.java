@@ -17,7 +17,16 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        String createTableHoaDon="create table HoaDon("+
+            "maHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "soDien INTEGER NOT NULL," +
+                "soNuoc INTEGER NOT NULL," +
+                "phiDichVu INTEGER NOT NULL," +
+                "trangThai INTEGER NOT NULL," +
+                "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
+                "maNguoiThue INTEGER REFERENCES NguoiThue(maNguoiThue)," +
+                "maKeToan INTEGER REFERENCES KeToan(maKeToan)";
+        sqLiteDatabase.execSQL(createTableHoaDon);
         //Tạo bảng NguoiThue
         String createTableNguoiThue ="create table NguoiThue(" +
                 "maNguoiThue INTEGER PRIMARY KEY AUTOINCREMENT," +

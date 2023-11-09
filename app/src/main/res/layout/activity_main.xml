@@ -19,7 +19,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#4C4C4C"
+                android:background="@color/black"
                 android:minHeight="?attr/actionBarSize"/>
 
         </com.google.android.material.appbar.AppBarLayout>
