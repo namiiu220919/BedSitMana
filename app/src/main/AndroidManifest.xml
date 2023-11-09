@@ -13,6 +13,24 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.suCo_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.phong_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.nguoiThue_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.hopDong_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.coSo_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.hoaDon_Activity"
+            android:exported="false" />
+        <activity
             android:name=".dangnhap"
             android:exported="false" />
         <activity

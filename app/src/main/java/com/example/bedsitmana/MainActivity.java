@@ -7,12 +7,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.bedsitmana.Fragment.frg_coso;
-import com.example.bedsitmana.Fragment.frg_trangchu;
+import com.example.bedsitmana.Activity.coSo_Activity;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,23 +35,22 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-//        btnCoso=findViewById(R.id.btnCoso);
-//        btnHoaDon=findViewById(R.id.btnHoaDon);
-//        btnPhong=findViewById(R.id.btnPhong);
-//        btnNguoiThue=findViewById(R.id.btnNguoiThue);
-//        btnThongKe=findViewById(R.id.btnThongKe);
-//        btnHoaDon=findViewById(R.id.btnHoaDon);
-        frg_trangchu frgTrangchu = new frg_trangchu();
-        replaceFrg(frgTrangchu);
-//        btnCoso.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                frg_coso frgcoso = new frg_coso();
-//                replaceFrg(frgcoso);
-//                setTitle("Cơ sở");
-//
-//            }
-//        });
+        btnCoso=findViewById(R.id.btnCoso);
+        btnHoaDon=findViewById(R.id.btnHoaDon);
+        btnPhong=findViewById(R.id.btnPhong);
+        btnNguoiThue=findViewById(R.id.btnNguoiThue);
+        btnThongKe=findViewById(R.id.btnThongKe);
+        btnHoaDon=findViewById(R.id.btnHoaDon);
+//        frg_trangchu frgTrangchu = new frg_trangchu();
+//        replaceFrg(frgTrangchu);
+        btnCoso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, coSo_Activity.class);
+                startActivity(intent);
+
+            }
+        });
         nav.setItemIconTintList(null);
 
 
