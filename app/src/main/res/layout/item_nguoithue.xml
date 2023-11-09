@@ -3,17 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
         <LinearLayout
-            android:layout_width="350dp"
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:background="@drawable/khungitem"
+        android:alpha="0.4"/>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
             <TextView
                 android:id="@+id/txtHoTen"
                 android:text="Họ tên: Nguyễn Phương Nam"
@@ -22,6 +23,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="#F88E4B"
                 android:textSize="18sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="3dp"
+                android:background="@color/white"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,15 +37,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Giới tính: Nam"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
                 <TextView
                     android:id="@+id/txtNamSinh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Năm sinh: 2004"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="90dp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="100dp"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -48,29 +54,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sđt: 0123456789"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtThuongTru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/black"
+                android:text="Thường trú: Hà Nội"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="bottom">
-            <ImageView
-                android:id="@+id/btnDeleteS"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/delete"
-                app:tint="#9C4C06" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtCCCD"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:text="CCCD: 123456789123"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <ImageView
+                    android:id="@+id/btnDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/delete" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 </androidx.cardview.widget.CardView>
