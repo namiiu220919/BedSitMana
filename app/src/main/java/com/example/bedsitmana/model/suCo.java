@@ -3,7 +3,7 @@ package com.example.bedsitmana.model;
 public class suCo {
     private int maSuCo;
     private String tenSuCo,noiDung;
-    private int maPhong,maNguoiThue;
+    private int trangThai,maPhong,maNguoiThue;
 
 
     public int getMaSuCo() {
@@ -30,6 +30,14 @@ public class suCo {
         this.noiDung = noiDung;
     }
 
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public int getMaPhong() {
         return maPhong;
     }
@@ -46,10 +54,11 @@ public class suCo {
         this.maNguoiThue = maNguoiThue;
     }
 
-    public suCo(int maSuCo, String tenSuCo, String noiDung, int maPhong, int maNguoiThue) {
+    public suCo(int maSuCo, String tenSuCo, String noiDung, int trangThai, int maPhong, int maNguoiThue) {
         this.maSuCo = maSuCo;
         this.tenSuCo = tenSuCo;
         this.noiDung = noiDung;
+        this.trangThai = trangThai;
         this.maPhong = maPhong;
         this.maNguoiThue = maNguoiThue;
     }

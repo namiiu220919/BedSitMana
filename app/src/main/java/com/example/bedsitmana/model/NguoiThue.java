@@ -1,7 +1,7 @@
 package com.example.bedsitmana.model;
 
 public class NguoiThue {
-    private String maNguoithue,matKhauNT,tenNguoiThue,sdt;
+    private String maNguoithue,matKhauNT,tenNguoiThue,thuongTru,sdt;
     private int cCCD,namSinh;
     private String gioiTinh;
 
@@ -27,6 +27,14 @@ public class NguoiThue {
 
     public void setTenNguoiThue(String tenNguoiThue) {
         this.tenNguoiThue = tenNguoiThue;
+    }
+
+    public String getThuongTru() {
+        return thuongTru;
+    }
+
+    public void setThuongTru(String thuongTru) {
+        this.thuongTru = thuongTru;
     }
 
     public String getSdt() {
@@ -61,10 +69,11 @@ public class NguoiThue {
         this.gioiTinh = gioiTinh;
     }
 
-    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String sdt, int cCCD, int namSinh, String gioiTinh) {
+    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, int cCCD, int namSinh, String gioiTinh) {
         this.maNguoithue = maNguoithue;
         this.matKhauNT = matKhauNT;
         this.tenNguoiThue = tenNguoiThue;
+        this.thuongTru = thuongTru;
         this.sdt = sdt;
         this.cCCD = cCCD;
         this.namSinh = namSinh;
