@@ -1,6 +1,7 @@
 package com.example.bedsitmana.Dao;
 
+import android.database.sqlite.SQLiteDatabase;
+
 public class nguoiThueDao {
-  String quynh;
-  String ok;
+    private SQLiteDatabase db;
 }
