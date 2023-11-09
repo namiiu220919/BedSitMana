@@ -30,6 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
         //Tạo bảng NguoiThue
         String createTableNguoiThue ="create table NguoiThue(" +
                 "maNguoiThue INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "matKhauNT TEXT NOT NULL," +
                 "tenNguoiThue TEXT NOT NULL," +
                 "diaChi TEXT NOT NULL," +
                 "sdt TEXT NOT NULL," +
