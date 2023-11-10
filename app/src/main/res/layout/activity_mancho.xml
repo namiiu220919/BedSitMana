@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@drawable/background"
     tools:context=".mancho">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -15,12 +15,13 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/animation1" />
-
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/anm"
         android:layout_width="wrap_content"
-        android:layout_height="194dp"
-        android:layout_marginTop="470dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
         app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/animation2" />
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation7" />
 
 </FrameLayout>
