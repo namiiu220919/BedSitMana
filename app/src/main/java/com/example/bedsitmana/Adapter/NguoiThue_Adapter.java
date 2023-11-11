@@ -52,11 +52,11 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
             txtCCCD=v.findViewById(R.id.txtCCCD);
 
             txtHoTen.setText("Họ tên: "+nguoiThue.getTenNguoiThue());
-            txtGioiTinh.setText("Giới tính "+nguoiThue.getGioiTinh());
+            txtGioiTinh.setText("Giới tính: "+nguoiThue.getGioiTinh());
             txtNamSinh.setText("Năm sinh: "+String.valueOf(nguoiThue.getNamSinh()));
             txtThuongTru.setText("Thường trú: "+nguoiThue.getThuongTru());
             txtSdt.setText("SĐT: "+nguoiThue.getSdt());
-            txtCCCD.setText("CCCS: "+String.valueOf(nguoiThue.getcCCD()));
+            txtCCCD.setText("CCCD: "+String.valueOf(nguoiThue.getcCCD()));
 
 
         }
