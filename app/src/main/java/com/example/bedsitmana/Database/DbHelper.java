@@ -67,6 +67,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "gioiTinh TEXT NOT NULL)";
         sqLiteDatabase.execSQL(createTableNguoiThue);
 
+        sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,'Nam')");
+
         //Tạo bảng HopDong
         String createTableHopDong = "create table HopDong(" +
                 "maHopDong INTEGER PRIMARY KEY AUTOINCREMENT," +
