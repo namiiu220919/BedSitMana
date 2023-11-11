@@ -13,6 +13,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.bedsitmana.Activity.coSo_Activity;
+import com.example.bedsitmana.Activity.hoaDon_Activity;
+import com.example.bedsitmana.Activity.nguoiThue_Activity;
+import com.example.bedsitmana.Activity.phong_Activity;
+import com.example.bedsitmana.Activity.suCo_Activity;
+import com.example.bedsitmana.Activity.thongKe_Activity;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,17 +45,45 @@ public class MainActivity extends AppCompatActivity {
         btnPhong=findViewById(R.id.btnPhong);
         btnNguoiThue=findViewById(R.id.btnNguoiThue);
         btnThongKe=findViewById(R.id.btnThongKe);
-        btnHoaDon=findViewById(R.id.btnHoaDon);
-//        frg_trangchu frgTrangchu = new frg_trangchu();
-//        replaceFrg(frgTrangchu);
+        btnSuCo=findViewById(R.id.btnSuCo);
         btnCoso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, coSo_Activity.class);
-                startActivity(intent);
+                IntentClass(coSo_Activity.class);
 
             }
         });
+        btnHoaDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentClass(hoaDon_Activity.class);
+            }
+        });
+        btnPhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentClass(phong_Activity.class);
+            }
+        });
+        btnNguoiThue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentClass(nguoiThue_Activity.class);
+            }
+        });
+        btnThongKe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentClass(thongKe_Activity.class);
+            }
+        });
+        btnSuCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentClass(suCo_Activity.class);
+            }
+        });
+
         nav.setItemIconTintList(null);
 
 
@@ -58,5 +91,9 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFrg(Fragment frg){
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.frmnav,frg).commit();
+    }
+    public void IntentClass(Class target){
+        Intent intent=new Intent(MainActivity.this, target);
+        startActivity(intent);
     }
 }

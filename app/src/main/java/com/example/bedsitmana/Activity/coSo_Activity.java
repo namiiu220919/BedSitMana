@@ -21,7 +21,6 @@ public class coSo_Activity extends AppCompatActivity {
         getSupportActionBar().setTitle("Cơ sở");
 
         Drawable upArrow = getResources().getDrawable(R.drawable.ic_back);
-//        upArrow.setColorFilter(getResources().getColor(R.color.your_color), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -29,8 +28,6 @@ public class coSo_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-
-
             }
         });
     }

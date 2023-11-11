@@ -9,16 +9,16 @@ import android.view.View;
 
 import com.example.bedsitmana.R;
 
-public class phong_Activity extends AppCompatActivity {
+public class thongKe_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phong);
+        setContentView(R.layout.activity_thong_ke);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Phòng Trọ");
+        getSupportActionBar().setTitle("Thống kê");
 
         Drawable upArrow = getResources().getDrawable(R.drawable.ic_back);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
