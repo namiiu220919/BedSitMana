@@ -1,8 +1,8 @@
 package com.example.bedsitmana.model;
 
 public class PhongTro {
-    private int maPhong,maCS;
-    private String tenPhong,tienNghi;
+    private int maPhong;
+    private String tenCS,tenPhong,tienNghi;
     private int trangThai;
 
     public int getMaPhong() {
@@ -13,12 +13,12 @@ public class PhongTro {
         this.maPhong = maPhong;
     }
 
-    public int getMaCS() {
-        return maCS;
+    public String getTenCS() {
+        return tenCS;
     }
 
-    public void setMaCS(int maCS) {
-        this.maCS = maCS;
+    public void setTenCS(String tenCS) {
+        this.tenCS = tenCS;
     }
 
     public String getTenPhong() {
@@ -45,9 +45,9 @@ public class PhongTro {
         this.trangThai = trangThai;
     }
 
-    public PhongTro(int maPhong, int maCS, String tenPhong, String tienNghi, int trangThai) {
+    public PhongTro(int maPhong, String tenCS, String tenPhong, String tienNghi, int trangThai) {
         this.maPhong = maPhong;
-        this.maCS = maCS;
+        this.tenCS = tenCS;
         this.tenPhong = tenPhong;
         this.tienNghi = tienNghi;
         this.trangThai = trangThai;

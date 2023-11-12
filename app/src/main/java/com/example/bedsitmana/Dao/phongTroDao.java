@@ -24,7 +24,7 @@ public class phongTroDao {
     public long insert(PhongTro obj) {
         ContentValues values = new ContentValues();
         values.put("maPhong", obj.getMaPhong());
-        values.put("maCS", obj.getMaCS());
+        values.put("tenCS", obj.getTenCS());
         values.put("tenPhong", obj.getTenPhong());
         values.put("tienNghi", obj.getTienNghi());
         values.put("trangThai", obj.getTrangThai());
@@ -34,7 +34,7 @@ public class phongTroDao {
     public int update(PhongTro obj) {
         ContentValues values = new ContentValues();
         values.put("maPhong", obj.getMaPhong());
-        values.put("maCS", obj.getMaCS());
+        values.put("tenCS", obj.getTenCS());
         values.put("tenPhong", obj.getTenPhong());
         values.put("tienNghi", obj.getTienNghi());
         values.put("trangThai", obj.getTrangThai());
@@ -62,7 +62,7 @@ public class phongTroDao {
         while (c.moveToNext()){
             PhongTro obj = new PhongTro();
             obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
-            obj.setMaCS(Integer.parseInt(c.getString(c.getColumnIndex("maCS"))));
+            obj.setTenCS(c.getString(c.getColumnIndex("tenCS")));
             obj.setTenPhong(c.getString(c.getColumnIndex("tenPhong")));
             obj.setTienNghi(c.getString(c.getColumnIndex("tienNghi")));
             obj.setTrangThai(Integer.parseInt(c.getString(c.getColumnIndex("trangThai"))));

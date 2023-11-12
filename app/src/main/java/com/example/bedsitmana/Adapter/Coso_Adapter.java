@@ -1,4 +1,4 @@
 package com.example.bedsitmana.Adapter;
 
-public class Coso_Adapter {
+public class Coso_Adapter  {
 }

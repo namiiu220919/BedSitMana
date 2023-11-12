@@ -6,10 +6,21 @@ import androidx.appcompat.widget.Toolbar;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
+import com.example.bedsitmana.Adapter.Phong_Adapter;
+import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
+import com.example.bedsitmana.model.PhongTro;
+
+import java.util.ArrayList;
 
 public class phong_Activity extends AppCompatActivity {
+    ListView lstPhong;
+    ArrayList<PhongTro> list;
+    Phong_Adapter phongAdapter;
+    PhongTro phongTro;
+    phongTroDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +41,11 @@ public class phong_Activity extends AppCompatActivity {
                 finish();
             }
         });
+
+        lstPhong = findViewById(R.id.lstPhongTro);
+        dao = new phongTroDao(phong_Activity.this);
+        list = (ArrayList<PhongTro>) dao.getAll();
+        phongAdapter = new Phong_Adapter(phong_Activity.this,this,list);
+        lstPhong.setAdapter(phongAdapter);
     }
 }

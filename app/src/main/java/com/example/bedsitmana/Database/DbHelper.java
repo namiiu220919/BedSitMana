@@ -33,15 +33,23 @@ public class DbHelper extends SQLiteOpenHelper {
                 "giaDien INTEGER NOT NULL," +
                 "giaNuoc INTEGER NOT NULL)";
         sqLiteDatabase.execSQL(createTableCoSo);
+        //Thêm dữ liệu bảng CoSo
+        sqLiteDatabase.execSQL("insert into CoSo(tenCS,diaChi,phiDichVu,giaDien,giaNuoc) values" +
+                "('Trịnh Văn Bô','Số 1 Đường Trịnh Văn Bô',100000,3500,100000)");
 
         //Tạo bảng PhongTro
         String createTablePhongTro = "create table PhongTro(" +
                 "maPhong INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "maCS INTEGER REFERENCES CoSo(maCS)," +
+                "tenCS INTEGER REFERENCES CoSo(tenCS)," +
                 "tenPhong TEXT NOT NULL," +
                 "tienNghi TEXT NOT NULL," +
                 "trangThai INTEGER NOT NULL)";
         sqLiteDatabase.execSQL(createTablePhongTro);
+
+        //Thêm dữ liệu bảng PhongTro
+        sqLiteDatabase.execSQL("insert into PhongTro(tenCS,tenPhong,tienNghi,trangThai) values" +
+                "('Trịnh Văn Bô','P102','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',1)," +
+                "('Trịnh Văn Bô','P202','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',0)");
 
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
