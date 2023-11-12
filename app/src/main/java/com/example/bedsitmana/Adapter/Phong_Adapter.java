@@ -50,7 +50,7 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
             txtTinhTrang = v.findViewById(R.id.txtTinhTrang);
 
             txtPhong.setText("Phòng: " + phongTro.getTenPhong());
-            txtGia.setText("Giá: ");
+            txtGia.setText("Giá: "+ "đ");
             txtTienNghi.setText("Tiện nghi: " + phongTro.getTienNghi());
             txtCoSo_Phong.setText("Cơ sở: " + phongTro.getTenCS());
             if(phongTro.getTrangThai() == 1){
