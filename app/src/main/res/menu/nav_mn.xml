@@ -4,12 +4,8 @@
         android:title="Thông tin tài khoản"
         android:icon="@drawable/ic_user" />
     <item
-        android:id="@+id/nav_AddUser_TK"
-        android:title="Tạo tài khoản (Thư ký)"
-        android:icon="@drawable/person_add"/>
-    <item
-        android:id="@+id/nav_AddUser_NT"
-        android:title="Tạo tài khoản (Người thuê)"
+        android:id="@+id/nav_AddUser"
+        android:title="Tạo tài khoản"
         android:icon="@drawable/person_add"/>
     <item
         android:id="@+id/nav_ChangePass"

@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.bedsitmana.Activity.coSo_Activity;
+import com.example.bedsitmana.Activity.loaiPhong_Activity;
 import com.example.bedsitmana.Activity.hoaDon_Activity;
 import com.example.bedsitmana.Activity.nguoiThue_Activity;
 import com.example.bedsitmana.Activity.phong_Activity;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btnCoso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentClass(coSo_Activity.class);
+                IntentClass(loaiPhong_Activity.class);
 
             }
         });

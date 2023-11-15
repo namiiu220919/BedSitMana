@@ -31,7 +31,7 @@
             android:name=".Activity.hopDong_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.coSo_Activity"
+            android:name=".Activity.loaiPhong_Activity"
             android:exported="false" />
         <activity
             android:name=".Activity.hoaDon_Activity"

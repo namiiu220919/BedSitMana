@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.bedsitmana.Activity.coSo_Activity;
+import com.example.bedsitmana.Activity.loaiPhong_Activity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.Coso;
 
@@ -24,10 +23,10 @@ public class Coso_Adapter extends ArrayAdapter<Coso> {
     Button btnXoa;
 private  Context context;
 private  ArrayList<Coso> list;
-coSo_Activity coSo_activity;
+loaiPhong_Activity coSo_activity;
 
 
-    public Coso_Adapter(@NonNull Context context,ArrayList<Coso> list, coSo_Activity coSo_activity) {
+    public Coso_Adapter(@NonNull Context context,ArrayList<Coso> list, loaiPhong_Activity coSo_activity) {
         super(context,0 ,list);
         this.context = context;
         this.list = list;
