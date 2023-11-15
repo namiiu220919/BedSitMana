@@ -25,17 +25,16 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableKeToan);
 
         //Tạo bảng CoSo
-        String createTableCoSo="create table CoSo(" +
-                "maCS INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "tenCS TEXT NOT NULL," +
-                "diaChi TEXT NOT NULL," +
+        String createTableLoaiPhong="create table LoaiPhong(" +
+                "maLoai INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenLoai TEXT NOT NULL," +
                 "phiDichVu INTEGER NOT NULL," +
                 "giaDien INTEGER NOT NULL," +
                 "giaNuoc INTEGER NOT NULL)";
-        sqLiteDatabase.execSQL(createTableCoSo);
+        sqLiteDatabase.execSQL(createTableLoaiPhong);
         //Thêm dữ liệu bảng CoSo
-        sqLiteDatabase.execSQL("insert into CoSo(tenCS,diaChi,phiDichVu,giaDien,giaNuoc) values" +
-                "('Trịnh Văn Bô','Số 1 Đường Trịnh Văn Bô',100000,3500,100000)");
+        sqLiteDatabase.execSQL("insert into LoaiPhong(tenLoai,phiDichVu,giaDien,giaNuoc) values" +
+                "('Full option',100000,3500,100000)");
 
         //Tạo bảng PhongTro
         String createTablePhongTro = "create table PhongTro(" +

@@ -7,50 +7,46 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bedsitmana.Database.DbHelper;
-import com.example.bedsitmana.model.Coso;
-import com.example.bedsitmana.model.KeToan;
+import com.example.bedsitmana.model.LoaiPhong;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class coSoDao {
+public class LoaiPhongDao {
     private SQLiteDatabase db;
 
-    public coSoDao(Context context){
+    public LoaiPhongDao(Context context){
         DbHelper dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
     }
-    public  long insert(Coso obj){
+    public  long insert(LoaiPhong obj){
         ContentValues values=new ContentValues();
-        values.put("tenCS", obj.getTenCoso());
-        values.put("diaChi", obj.getDiaChi());
+        values.put("tenLoai", obj.getTenLoaiPhong());
         values.put("phiDichVu", obj.getPhiDichVu());
         values.put("giaDien", obj.getGiaDien());
         values.put("giaNuoc", obj.getGiaNuoc());
-        return db.insert("CoSo",null,values);
+        return db.insert("LoaiPhong",null,values);
     }
-    public int update(Coso obj){
+    public int update(LoaiPhong obj){
         ContentValues values=new ContentValues();
-        values.put("tenCS", obj.getTenCoso());
-        values.put("diaChi", obj.getDiaChi());
+        values.put("tenLoai", obj.getTenLoaiPhong());
         values.put("phiDichVu", obj.getPhiDichVu());
         values.put("giaDien", obj.getGiaDien());
         values.put("giaNuoc", obj.getGiaNuoc());
-        return db.update("CoSo",values,"maCS=?",new String[]{String.valueOf(obj.getMaCoso())});
+        return db.update("LoaiPhong",values,"maLoai=?",new String[]{String.valueOf(obj.getMaLoaiPhong())});
     }
     public int delete(String id){
-        return db.delete("CoSo","maCS=?",new String[]{id});
+        return db.delete("LoaiPhong","maLoai=?",new String[]{id});
     }
 
     @SuppressLint("Range")
-    private List<Coso> getDaTa(String sql, String...selectionArgs){
-        List<Coso> list = new ArrayList<>();
+    private List<LoaiPhong> getDaTa(String sql, String...selectionArgs){
+        List<LoaiPhong> list = new ArrayList<>();
         Cursor c=db.rawQuery(sql, selectionArgs);
         while (c.moveToNext()){
-            Coso obj = new Coso();
-            obj.setMaCoso(Integer.parseInt(c.getString(c.getColumnIndex("maCS"))));
-            obj.setTenCoso(c.getString(c.getColumnIndex("tenCS")));
-            obj.setDiaChi(c.getString(c.getColumnIndex("diaChi")));
+            LoaiPhong obj = new LoaiPhong();
+            obj.setMaLoaiPhong(Integer.parseInt(c.getString(c.getColumnIndex("maLoai"))));
+            obj.setTenLoaiPhong(c.getString(c.getColumnIndex("tenLoai")));
             obj.setPhiDichVu(Integer.parseInt(c.getString(c.getColumnIndex("phiDichVu"))));
             obj.setGiaDien(Integer.parseInt(c.getString(c.getColumnIndex("giaDien"))));
             obj.setGiaNuoc(Integer.parseInt(c.getString(c.getColumnIndex("giaNuoc"))));
@@ -60,15 +56,15 @@ public class coSoDao {
         return list;
     }
     //get all
-    public List<Coso> getAll(){
-        String sql = "SELECT * FROM CoSo";
+    public List<LoaiPhong> getAll(){
+        String sql = "SELECT * FROM LoaiPhong";
         return getDaTa(sql);
     }
 
     //get id
-    public Coso getID(String id){
-        String sql = "SELECT *FROM CoSo WHERE maCS=?";
-        List<Coso> list = getDaTa(sql,id);
+    public LoaiPhong getID(String id){
+        String sql = "SELECT *FROM LoaiPhong WHERE maLoai=?";
+        List<LoaiPhong> list = getDaTa(sql,id);
         return list.get(0);
     }
 }

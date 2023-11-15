@@ -8,19 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import com.example.bedsitmana.Adapter.Coso_Adapter;
-import com.example.bedsitmana.Dao.coSoDao;
+import com.example.bedsitmana.Adapter.LoaiPhong_Adapter;
+import com.example.bedsitmana.Dao.LoaiPhongDao;
 import com.example.bedsitmana.R;
-import com.example.bedsitmana.model.Coso;
+import com.example.bedsitmana.model.LoaiPhong;
 
 import java.util.ArrayList;
 
 public class loaiPhong_Activity extends AppCompatActivity {
     ListView lstLoaiPhong;
-    ArrayList<Coso> list;
-    Coso_Adapter cosoAdapter;
-    Coso coso;
-    coSoDao dao;
+    ArrayList<LoaiPhong> list;
+    LoaiPhong_Adapter cosoAdapter;
+    LoaiPhong coso;
+    LoaiPhongDao dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +41,9 @@ public class loaiPhong_Activity extends AppCompatActivity {
             }
         });
         lstLoaiPhong = findViewById(R.id.lstLoaiPhong);
-        dao = new coSoDao(loaiPhong_Activity.this);
-        list = (ArrayList<Coso>) dao.getAll();
-        cosoAdapter = new Coso_Adapter(loaiPhong_Activity.this,list,this);
+        dao = new LoaiPhongDao(loaiPhong_Activity.this);
+        list = (ArrayList<LoaiPhong>) dao.getAll();
+        cosoAdapter = new LoaiPhong_Adapter(loaiPhong_Activity.this,list,this);
         lstLoaiPhong.setAdapter(cosoAdapter);
     }
 }

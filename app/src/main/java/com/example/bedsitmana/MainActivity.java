@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView nav;
     View mHeader;
-    Button btnCoso,btnPhong,btnNguoiThue,btnThongKe,btnHoaDon,btnSuCo;
+    Button btnLoaiPhong,btnPhong,btnNguoiThue,btnThongKe,btnHoaDon,btnSuCo;
 
 
     @Override
@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        btnCoso=findViewById(R.id.btnCoso);
+        btnLoaiPhong=findViewById(R.id.btnLoaiPhong);
         btnHoaDon=findViewById(R.id.btnHoaDon);
         btnPhong=findViewById(R.id.btnPhong);
         btnNguoiThue=findViewById(R.id.btnNguoiThue);
         btnThongKe=findViewById(R.id.btnThongKe);
         btnSuCo=findViewById(R.id.btnSuCo);
-        btnCoso.setOnClickListener(new View.OnClickListener() {
+        btnLoaiPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 IntentClass(loaiPhong_Activity.class);

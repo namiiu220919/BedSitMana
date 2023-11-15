@@ -13,7 +13,7 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
-            android:name=".mancho"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.thongKe_Activity"
@@ -40,10 +40,10 @@
             android:name=".dangnhap"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.demoSpinner"
             android:exported="false" />
         <activity
-            android:name=".Activity.demoSpinner"
+            android:name=".mancho"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

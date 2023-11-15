@@ -8,7 +8,7 @@
     android:paddingRight="10dp">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="125dp"
         android:background="@drawable/khungitem"
         android:alpha="0.4"/>
     <LinearLayout
@@ -17,8 +17,8 @@
         android:orientation="vertical"
         android:padding="10dp">
         <TextView
-            android:id="@+id/txtCoSo"
-            android:text="Cở sở: Trịnh Văn Bô"
+            android:id="@+id/txtLoaiPhong"
+            android:text="Loại phòng: "
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,13 +30,6 @@
             android:layout_margin="3dp"
             android:background="@color/white"/>
 
-        <TextView
-            android:id="@+id/txtDiaChi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Địa chỉ: Số 1 Đường Trịnh Văn Bô"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtPhiDichVu"
