@@ -40,6 +40,8 @@
 
         app:boxBackgroundMode="outline"
         app:boxBackgroundColor="#F88E4B"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtUser"
