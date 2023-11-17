@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/edtMaLoaiPhong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Mã loại phòng"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtTenLoaiPhong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Tên loại phòng"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Giới tính: "
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/rdoNam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:text="Nam"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rdoNu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="@color/orange"
+            android:text="Nữ"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rdoKhac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="@color/orange"
+            android:text="Khác"
+            android:textColor="@color/white" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/edtNamSinh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Năm sinh"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtSDT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Số điện thoại"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtThuongTru"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Thường trú"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtCCCD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="CCCD/CMND"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnXacNhan"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/khung_login"
+            android:text="Xác nhận"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/btnHuy"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/khung_login"
+            android:text="Hủy"
+            android:textColor="@color/orange" />
+    </LinearLayout>
+
+
+</LinearLayout>

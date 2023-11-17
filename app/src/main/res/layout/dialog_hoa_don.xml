@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/edtMaHoaDon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Mã hóa đơn"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtPhong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Phòng"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtSoDien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Số điện"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <CheckBox
+        android:layout_gravity="start"
+        android:id="@+id/chkDaThanhToan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/orange"
+        android:layout_marginLeft="-4dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Đã thanh toán"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnXacNhan"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/khung_login"
+            android:text="Xác nhận"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/btnHuy"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/khung_login"
+            android:text="Hủy"
+            android:textColor="@color/orange" />
+    </LinearLayout>
+
+
+</LinearLayout>
