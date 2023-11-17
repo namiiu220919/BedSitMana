@@ -34,21 +34,23 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableLoaiPhong);
         //Thêm dữ liệu bảng CoSo
         sqLiteDatabase.execSQL("insert into LoaiPhong(tenLoai,phiDichVu,giaDien,giaNuoc) values" +
-                "('Full option',100000,3500,100000)");
+                "('Full option',100000,3500,100000)," +
+                "('Đồ cơ bản',100000,3500,100000)");
 
         //Tạo bảng PhongTro
         String createTablePhongTro = "create table PhongTro(" +
                 "maPhong INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "tenCS INTEGER REFERENCES CoSo(tenCS)," +
+                "maLoai INTEGER REFERENCES LoaiPhong(maLoai)," +
                 "tenPhong TEXT NOT NULL," +
+                "giaTien INTEGER NOT NULL," +
                 "tienNghi TEXT NOT NULL," +
                 "trangThai INTEGER NOT NULL)";
         sqLiteDatabase.execSQL(createTablePhongTro);
 
         //Thêm dữ liệu bảng PhongTro
-        sqLiteDatabase.execSQL("insert into PhongTro(tenCS,tenPhong,tienNghi,trangThai) values" +
-                "('Trịnh Văn Bô','P102','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',1)," +
-                "('Trịnh Văn Bô','P202','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',0)");
+        sqLiteDatabase.execSQL("insert into PhongTro(maLoai,tenPhong,giaTien,tienNghi,trangThai) values" +
+                "(1,'P102','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',3500000,1)," +
+                "(1,'P202','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',3200000,0)");
 
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
@@ -80,12 +82,20 @@ public class DbHelper extends SQLiteOpenHelper {
         //Tạo bảng HopDong
         String createTableHopDong = "create table HopDong(" +
                 "maHopDong INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "giaTien INTEGER NOT NULL," +
+                "tenNguoiThue TEXT REFERENCES NguoiThue(tenNguoiThue)," +
+                "sdt TEXT REFERENCES NguoiThue(sdt)," +
+                "CCCD INTEGER REFERENCES NguoiThue(CCCD)," +
+                "thuongTru TEXT REFERENCES NguoiThue(thuongTru)," +
+                "ngayKy DATE NOT NULL," +
+                "thoiHan INTEGER NOT NULL," +
+                "tenLoai INTEGER REFERENCES LoaiPhong(tenLoai)," +
+                "tenPhong INTEGER REFERENCES PhongTro(tenPhong)," +
+                "tienCoc INTEGER NOT NULL," +
+                "giaTien INTEGER REFERENCES PhongTro(giaTien)," +
                 "thoiHan INTEGER NOT NULL," +
                 "soNguoi INTEGER NOT NULL," +
                 "soXe INTEGER NOT NULL," +
-                "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
-                "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue))";
+                "ghiChu TEXT NOT NULL)";
         sqLiteDatabase.execSQL(createTableHopDong);
 
         //Tạo bảng SuCo

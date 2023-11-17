@@ -12,7 +12,7 @@ import com.example.bedsitmana.model.LoaiPhong;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoaiPhongDao {
+public class    LoaiPhongDao {
     private SQLiteDatabase db;
 
     public LoaiPhongDao(Context context){
