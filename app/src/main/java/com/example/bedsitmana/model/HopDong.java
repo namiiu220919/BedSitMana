@@ -1,25 +1,47 @@
 package com.example.bedsitmana.model;
 
+import java.util.Date;
+
 public class HopDong {
     private int maHopDong;
-    private int giaTien;
+    private String tenNguoiThue;
+    private String sdt;
+    private int CCCD;
+    private String thuongTru;
+    private Date ngayKy;
     private int thoiHan;
+    private String tenLoai;
+    private String tenPhong;
+    private int tienCoc;
+    private int giaTien;
     private int soNguoi;
     private int soXe;
-    private int maPhong;
+    private String ghiChu;
     private String maNguoiThue;
+    private int maPhong;
+
+
 
     public HopDong() {
     }
 
-    public HopDong(int maHopDong, int giaTien, int thoiHan, int soNguoi, int soXe, int maPhong, String maNguoiThue) {
+    public HopDong(int maHopDong, String tenNguoiThue, String sdt, int CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenLoai, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong) {
         this.maHopDong = maHopDong;
-        this.giaTien = giaTien;
+        this.tenNguoiThue = tenNguoiThue;
+        this.sdt = sdt;
+        this.CCCD = CCCD;
+        this.thuongTru = thuongTru;
+        this.ngayKy = ngayKy;
         this.thoiHan = thoiHan;
+        this.tenLoai = tenLoai;
+        this.tenPhong = tenPhong;
+        this.tienCoc = tienCoc;
+        this.giaTien = giaTien;
         this.soNguoi = soNguoi;
         this.soXe = soXe;
-        this.maPhong = maPhong;
+        this.ghiChu = ghiChu;
         this.maNguoiThue = maNguoiThue;
+        this.maPhong = maPhong;
     }
 
     public int getMaHopDong() {
@@ -30,12 +52,44 @@ public class HopDong {
         this.maHopDong = maHopDong;
     }
 
-    public int getGiaTien() {
-        return giaTien;
+    public String getTenNguoiThue() {
+        return tenNguoiThue;
     }
 
-    public void setGiaTien(int giaTien) {
-        this.giaTien = giaTien;
+    public void setTenNguoiThue(String tenNguoiThue) {
+        this.tenNguoiThue = tenNguoiThue;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public int getCCCD() {
+        return CCCD;
+    }
+
+    public void setCCCD(int CCCD) {
+        this.CCCD = CCCD;
+    }
+
+    public String getThuongTru() {
+        return thuongTru;
+    }
+
+    public void setThuongTru(String thuongTru) {
+        this.thuongTru = thuongTru;
+    }
+
+    public Date getNgayKy() {
+        return ngayKy;
+    }
+
+    public void setNgayKy(Date ngayKy) {
+        this.ngayKy = ngayKy;
     }
 
     public int getThoiHan() {
@@ -44,6 +98,38 @@ public class HopDong {
 
     public void setThoiHan(int thoiHan) {
         this.thoiHan = thoiHan;
+    }
+
+    public String getTenLoai() {
+        return tenLoai;
+    }
+
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
+    }
+
+    public String getTenPhong() {
+        return tenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.tenPhong = tenPhong;
+    }
+
+    public int getTienCoc() {
+        return tienCoc;
+    }
+
+    public void setTienCoc(int tienCoc) {
+        this.tienCoc = tienCoc;
+    }
+
+    public int getGiaTien() {
+        return giaTien;
+    }
+
+    public void setGiaTien(int giaTien) {
+        this.giaTien = giaTien;
     }
 
     public int getSoNguoi() {
@@ -62,12 +148,12 @@ public class HopDong {
         this.soXe = soXe;
     }
 
-    public int getMaPhong() {
-        return maPhong;
+    public String getGhiChu() {
+        return ghiChu;
     }
 
-    public void setMaPhong(int maPhong) {
-        this.maPhong = maPhong;
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
     }
 
     public String getMaNguoiThue() {
@@ -76,5 +162,13 @@ public class HopDong {
 
     public void setMaNguoiThue(String maNguoiThue) {
         this.maNguoiThue = maNguoiThue;
+    }
+
+    public int getMaPhong() {
+        return maPhong;
+    }
+
+    public void setMaPhong(int maPhong) {
+        this.maPhong = maPhong;
     }
 }

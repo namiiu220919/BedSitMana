@@ -82,20 +82,21 @@ public class DbHelper extends SQLiteOpenHelper {
         //Tạo bảng HopDong
         String createTableHopDong = "create table HopDong(" +
                 "maHopDong INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "tenNguoiThue TEXT REFERENCES NguoiThue(tenNguoiThue)," +
-                "sdt TEXT REFERENCES NguoiThue(sdt)," +
-                "CCCD INTEGER REFERENCES NguoiThue(CCCD)," +
-                "thuongTru TEXT REFERENCES NguoiThue(thuongTru)," +
+                "tenNguoiThue TEXT NOT NULL," +
+                "sdt TEXT NOT NULL," +
+                "CCCD INTEGER NOT NULL," +
+                "thuongTru TEXT NOT NULL," +
                 "ngayKy DATE NOT NULL," +
                 "thoiHan INTEGER NOT NULL," +
-                "tenLoai INTEGER REFERENCES LoaiPhong(tenLoai)," +
-                "tenPhong INTEGER REFERENCES PhongTro(tenPhong)," +
+                "tenLoai TEXT NOT NULL," +
+                "tenPhong TEXT NOT NULL," +
                 "tienCoc INTEGER NOT NULL," +
-                "giaTien INTEGER REFERENCES PhongTro(giaTien)," +
-                "thoiHan INTEGER NOT NULL," +
+                "giaTien INTEGER NOT NULL," +
                 "soNguoi INTEGER NOT NULL," +
                 "soXe INTEGER NOT NULL," +
-                "ghiChu TEXT NOT NULL)";
+                "ghiChu TEXT NOT NULL," +
+                "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
+                "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableHopDong);
 
         //Tạo bảng SuCo

@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         nav.setItemIconTintList(null);
+        drawerLayout.closeDrawers();
 
 
     }

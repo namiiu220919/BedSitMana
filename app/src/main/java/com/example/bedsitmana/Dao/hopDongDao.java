@@ -10,11 +10,14 @@ import com.example.bedsitmana.Database.DbHelper;
 import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.HopDong;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class hopDongDao {
     private SQLiteDatabase db;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public hopDongDao(Context context){
         DbHelper dbHelper = new DbHelper(context);
@@ -23,23 +26,37 @@ public class hopDongDao {
 
     public  long insert(HopDong hopDong){
         ContentValues values=new ContentValues();
-        values.put("giaTien", hopDong.getGiaTien());
+        values.put("tenNguoiThue", hopDong.getTenNguoiThue());
+        values.put("sdt", hopDong.getSdt());
+        values.put("CCCD", hopDong.getCCCD());
+        values.put("thuongTru", hopDong.getThuongTru());
+        values.put("ngayKy", sdf.format(hopDong.getNgayKy()));
         values.put("thoiHan", hopDong.getThoiHan());
+        values.put("tenLoai", hopDong.getTenLoai());
+        values.put("tenPhong", hopDong.getTenPhong());
+        values.put("tienCoc", hopDong.getTienCoc());
+        values.put("giaTien", hopDong.getGiaTien());
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
-        values.put("maPhong", hopDong.getMaPhong());
-        values.put("maNguoiThue", hopDong.getMaNguoiThue());
+        values.put("ghiChu", hopDong.getGhiChu());
         return db.insert("HoaDon",null,values);
     }
 
     public int update(HopDong hopDong){
         ContentValues values=new ContentValues();
-        values.put("giaTien", hopDong.getGiaTien());
+        values.put("tenNguoiThue", hopDong.getTenNguoiThue());
+        values.put("sdt", hopDong.getSdt());
+        values.put("CCCD", hopDong.getCCCD());
+        values.put("thuongTru", hopDong.getThuongTru());
+        values.put("ngayKy", sdf.format(hopDong.getNgayKy()));
         values.put("thoiHan", hopDong.getThoiHan());
+        values.put("tenLoai", hopDong.getTenLoai());
+        values.put("tenPhong", hopDong.getTenPhong());
+        values.put("tienCoc", hopDong.getTienCoc());
+        values.put("giaTien", hopDong.getGiaTien());
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
-        values.put("maPhong", hopDong.getMaPhong());
-        values.put("maNguoiThue", hopDong.getMaNguoiThue());
+        values.put("ghiChu", hopDong.getGhiChu());
         return db.update("HopDong", values,"maHopDong=?", new String[]{String.valueOf(hopDong.getMaHopDong())});
     }
     public int delete(String id){
@@ -53,12 +70,26 @@ public class hopDongDao {
         while (c.moveToNext()){
             HopDong hopDong = new HopDong();
             hopDong.setMaHopDong(Integer.parseInt(c.getString(c.getColumnIndex("maHopDong"))));
-            hopDong.setGiaTien(Integer.parseInt(c.getString(c.getColumnIndex("giaTien"))));
+            hopDong.setTenNguoiThue(c.getString(c.getColumnIndex("tenNguoiThue")));
+            hopDong.setSdt(c.getString(c.getColumnIndex("sdt")));
+            hopDong.setCCCD(Integer.parseInt(c.getString(c.getColumnIndex("CCCD"))));
+            hopDong.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
+            try {
+                hopDong.setNgayKy(sdf.parse(c.getString(c.getColumnIndex("ngayKy"))));
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+
             hopDong.setThoiHan(Integer.parseInt(c.getString(c.getColumnIndex("thoiHan"))));
+            hopDong.setTenLoai(c.getString(c.getColumnIndex("tenLoai")));
+            hopDong.setTenPhong(c.getString(c.getColumnIndex("tenPhong")));
+            hopDong.setTienCoc(Integer.parseInt(c.getString(c.getColumnIndex("tienCoc"))));
+            hopDong.setGiaTien(Integer.parseInt(c.getString(c.getColumnIndex("giaTien"))));
             hopDong.setSoNguoi(Integer.parseInt(c.getString(c.getColumnIndex("soNguoi"))));
             hopDong.setSoXe(Integer.parseInt(c.getString(c.getColumnIndex("soXe"))));
-            hopDong.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
+            hopDong.setGhiChu(c.getString(c.getColumnIndex("ghiChu")));
             hopDong.setMaNguoiThue(c.getString(c.getColumnIndex("maNguoiThue")));
+            hopDong.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
 
             list.add(hopDong);
         }
