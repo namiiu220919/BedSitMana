@@ -7,10 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.sql.SQLDataException;
+import java.text.SimpleDateFormat;
 
 public class DbHelper extends SQLiteOpenHelper {
     static final String dbName="BEDSIT";
     static final int dbVersion=1;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVersion);
     }
@@ -49,8 +51,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
         //Thêm dữ liệu bảng PhongTro
         sqLiteDatabase.execSQL("insert into PhongTro(maLoai,tenPhong,giaTien,tienNghi,trangThai) values" +
-                "(1,'P102','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',3500000,1)," +
-                "(1,'P202','Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',3200000,0)");
+                "(1,'P102',3500000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',1)," +
+                "(1,'P202',3200000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',0)");
 
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
@@ -98,6 +100,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableHopDong);
+        //Thêm dữ liệu bảng HopDong
+        sqLiteDatabase.execSQL("insert into HopDong(tenNguoiThue,sdt,CCCD,thuongTru,ngayKy,thoiHan,tenLoai,tenPhong,tienCoc,giaTien,soNguoi,soXe,ghiChu,maNguoiThue,maPhong) values" +
+                "('Quỳnh','847837487',847837487,'Bắc Giang','2023/11/17',6,'Full option','P102',2000000,3000000,3,3,'non','quynh01',1)");
 
         //Tạo bảng SuCo
         String createTableSuCo = "create table SuCo(" +

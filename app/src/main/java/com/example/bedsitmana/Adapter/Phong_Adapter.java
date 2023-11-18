@@ -36,12 +36,13 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = convertView;
-        if (v==null){
+        if (v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v=inflater.inflate(R.layout.item_phong,null);
+            v = inflater.inflate(R.layout.item_phong, null);
         }
+
         final PhongTro phongTro = list.get(position);
-        if( phongTro != null){
+        if (phongTro != null) {
             txtPhong = v.findViewById(R.id.txtPhong);
             txtXemHopDong = v.findViewById(R.id.txtXemHopDong);
             txtGia = v.findViewById(R.id.txtGia);
@@ -50,13 +51,13 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
             txtTinhTrang = v.findViewById(R.id.txtTinhTrang);
 
             txtPhong.setText("Phòng: " + phongTro.getTenPhong());
-            txtGia.setText("Giá: "+ "đ");
+            txtGia.setText("Giá: " + phongTro.getGia());
             txtTienNghi.setText("Tiện nghi: " + phongTro.getTienNghi());
             txtCoSo_Phong.setText("Cơ sở: " + phongTro.getTenCS());
-            if(phongTro.getTrangThai() == 1){
+            if (phongTro.getTrangThai() == 1) {
                 txtTinhTrang.setText("Đã cho thuê");
                 txtTinhTrang.setTextColor(Color.GREEN);
-            }else{
+            } else {
                 txtTinhTrang.setText("Đang trống");
                 txtTinhTrang.setTextColor(Color.RED);
             }

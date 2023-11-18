@@ -50,7 +50,6 @@ public class    LoaiPhongDao {
             obj.setPhiDichVu(Integer.parseInt(c.getString(c.getColumnIndex("phiDichVu"))));
             obj.setGiaDien(Integer.parseInt(c.getString(c.getColumnIndex("giaDien"))));
             obj.setGiaNuoc(Integer.parseInt(c.getString(c.getColumnIndex("giaNuoc"))));
-
             list.add(obj);
         }
         return list;

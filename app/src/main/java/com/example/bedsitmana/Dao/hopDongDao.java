@@ -39,7 +39,7 @@ public class hopDongDao {
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
         values.put("ghiChu", hopDong.getGhiChu());
-        return db.insert("HoaDon",null,values);
+        return db.insert("HopDong",null,values);
     }
 
     public int update(HopDong hopDong){
@@ -103,7 +103,7 @@ public class hopDongDao {
 
     //get id
     public HopDong getID(String id){
-        String sql = "SELECT *FROM HopDong WHERE maHopDong=?";
+        String sql = "SELECT * FROM HopDong WHERE maHopDong=?";
         List<HopDong> list = getDaTa(sql,id);
         return list.get(0);
     }
