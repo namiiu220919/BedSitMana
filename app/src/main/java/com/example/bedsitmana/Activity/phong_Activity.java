@@ -5,9 +5,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +31,7 @@ public class phong_Activity extends AppCompatActivity {
     PhongTro phongTro;
     phongTroDao dao;
     Dialog dialog;
-    TextView mm;
+    TextView txtXemHopDong;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     EditText edtmahd_hd, edtTenkh_hd, edtSdt_hd,edtCCCD_hd,edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtLoaiPhong_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd,edtSoxe_hd, edtGhiChu_hd;
 
@@ -58,6 +60,19 @@ public class phong_Activity extends AppCompatActivity {
         list = (ArrayList<PhongTro>) dao.getAll();
         phongAdapter = new Phong_Adapter(phong_Activity.this,this,list);
         lstPhong.setAdapter(phongAdapter);
+        lstPhong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                PhongTro pp = list.get(i);
+                String maPhong = String.valueOf(pp.getMaPhong());
+
+                Intent intent = new Intent(phong_Activity.this, hopDong_Activity.class);
+                intent.putExtra("maphong",maPhong);
+                startActivity(intent);
+            }
+        });
+
+
     }
 //    protected void openDialog_hd(final Context context){
 //        dialog=new Dialog(context);
