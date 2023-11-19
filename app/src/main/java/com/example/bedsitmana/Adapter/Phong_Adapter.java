@@ -1,6 +1,7 @@
 package com.example.bedsitmana.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.bedsitmana.Activity.loaiPhong_Activity;
 import com.example.bedsitmana.Activity.phong_Activity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.PhongTro;
@@ -23,7 +25,7 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
     phong_Activity phong_activity;
     private ArrayList<PhongTro> list;
     TextView txtPhong, txtXemHopDong, txtGia, txtTienNghi,txtCoSo_Phong,txtTinhTrang,txtma;
-    ImageView btnDelete;
+    ImageView btnXoa;
 
     public Phong_Adapter(@NonNull Context context, phong_Activity phong_activity, ArrayList<PhongTro> list) {
         super(context, 0,list);
@@ -43,15 +45,18 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
 
         final PhongTro phongTro = list.get(position);
         if (phongTro != null) {
-            txtma = v.findViewById(R.id.txtma);
             txtPhong = v.findViewById(R.id.txtPhong);
-            txtXemHopDong = v.findViewById(R.id.txtXemHopDong);
             txtGia = v.findViewById(R.id.txtGia);
             txtTienNghi = v.findViewById(R.id.txtTienNghi);
             txtCoSo_Phong = v.findViewById(R.id.txtLoaiPhong_Phong);
             txtTinhTrang = v.findViewById(R.id.txtTinhTrang);
+            btnXoa = v.findViewById(R.id.btnDeletePhong);
+            btnXoa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            txtma.setText("Mã phòng: "+phongTro.getMaPhong());
+                }
+            });
             txtPhong.setText("Phòng: " + phongTro.getTenPhong());
             txtGia.setText("Giá: " + phongTro.getGia());
             txtTienNghi.setText("Tiện nghi: " + phongTro.getTienNghi());
