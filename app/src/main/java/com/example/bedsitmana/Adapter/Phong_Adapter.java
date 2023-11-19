@@ -45,6 +45,7 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
         if (phongTro != null) {
 
             txtPhong = v.findViewById(R.id.txtPhong);
+            btnDelete=v.findViewById(R.id.btnDelete);
 
             txtGia = v.findViewById(R.id.txtGia);
             txtTienNghi = v.findViewById(R.id.txtTienNghi);
