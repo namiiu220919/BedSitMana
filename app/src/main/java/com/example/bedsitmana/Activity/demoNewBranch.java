@@ -1,6 +1,5 @@
 package com.example.bedsitmana.Activity;
 
-import android.widget.Toast;
 
 public class demoNewBranch {
 
