@@ -64,7 +64,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtSdt_hd.setText(hd.getSdt());
             edtCCCD_hd.setText(hd.getCCCD()+"");
             edtDiaChi_hd.setText(hd.getThuongTru());
-//            edtNgayki_hd.setText(sdf.format(hd.getNgayKy()));
+            edtNgayki_hd.setText(sdf.format(hd.getNgayKy()));
             edtSothang_hd.setText(hd.getThoiHan()+"");
             edtLoaiPhong_hd.setText(hd.getTenLoai());
             edtSoPhong_hd.setText(hd.getTenPhong());

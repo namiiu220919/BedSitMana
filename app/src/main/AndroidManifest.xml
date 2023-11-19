@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.HD_DEMO"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
