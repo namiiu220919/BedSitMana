@@ -43,15 +43,15 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
 
         final PhongTro phongTro = list.get(position);
         if (phongTro != null) {
-            txtma = v.findViewById(R.id.txtma);
+
             txtPhong = v.findViewById(R.id.txtPhong);
-            txtXemHopDong = v.findViewById(R.id.txtXemHopDong);
+
             txtGia = v.findViewById(R.id.txtGia);
             txtTienNghi = v.findViewById(R.id.txtTienNghi);
             txtCoSo_Phong = v.findViewById(R.id.txtLoaiPhong_Phong);
             txtTinhTrang = v.findViewById(R.id.txtTinhTrang);
 
-            txtma.setText("Mã phòng: "+phongTro.getMaPhong());
+
             txtPhong.setText("Phòng: " + phongTro.getTenPhong());
             txtGia.setText("Giá: " + phongTro.getGia());
             txtTienNghi.setText("Tiện nghi: " + phongTro.getTienNghi());
