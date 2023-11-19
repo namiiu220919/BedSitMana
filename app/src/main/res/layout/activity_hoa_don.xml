@@ -8,9 +8,10 @@
     android:background="@drawable/background"
     tools:context=".Activity.loaiPhong_Activity">
     <include layout="@layout/toolbar"/>
+
     <ListView
         android:id="@+id/lstHoaDon"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

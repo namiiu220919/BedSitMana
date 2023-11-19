@@ -39,6 +39,8 @@ public class hopDongDao {
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
         values.put("ghiChu", hopDong.getGhiChu());
+        values.put("maPhong", hopDong.getMaPhong());
+
         return db.insert("HopDong",null,values);
     }
 
@@ -57,6 +59,7 @@ public class hopDongDao {
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
         values.put("ghiChu", hopDong.getGhiChu());
+        values.put("maPhong", hopDong.getMaPhong());
         return db.update("HopDong", values,"maHopDong=?", new String[]{String.valueOf(hopDong.getMaHopDong())});
     }
     public int delete(String id){
@@ -107,4 +110,42 @@ public class hopDongDao {
         List<HopDong> list = getDaTa(sql,id);
         return list.get(0);
     }
+    @SuppressLint("Range")
+    public ArrayList<HopDong> getHopDongByMaPhong(int maPhong) {
+        ArrayList<HopDong> danhSachHopDong = new ArrayList<>();
+
+        String sql = "SELECT * FROM HopDong WHERE maPhong=?";
+        Cursor c = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+
+        while (c.moveToNext()) {
+            HopDong hopDong = new HopDong();
+            hopDong.setMaHopDong(c.getInt(c.getColumnIndex("maHopDong")));
+            hopDong.setTenNguoiThue(c.getString(c.getColumnIndex("tenNguoiThue")));
+            hopDong.setSdt(c.getString(c.getColumnIndex("sdt")));
+            hopDong.setCCCD(c.getInt(c.getColumnIndex("CCCD")));
+            hopDong.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
+            try {
+                hopDong.setNgayKy(sdf.parse(c.getString(c.getColumnIndex("ngayKy"))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            hopDong.setThoiHan(c.getInt(c.getColumnIndex("thoiHan")));
+            hopDong.setTenLoai(c.getString(c.getColumnIndex("tenLoai")));
+            hopDong.setTenPhong(c.getString(c.getColumnIndex("tenPhong")));
+            hopDong.setTienCoc(c.getInt(c.getColumnIndex("tienCoc")));
+            hopDong.setGiaTien(c.getInt(c.getColumnIndex("giaTien")));
+            hopDong.setSoNguoi(c.getInt(c.getColumnIndex("soNguoi")));
+            hopDong.setSoXe(c.getInt(c.getColumnIndex("soXe")));
+            hopDong.setGhiChu(c.getString(c.getColumnIndex("ghiChu")));
+            hopDong.setMaPhong(c.getInt(c.getColumnIndex("maPhong")));
+
+            danhSachHopDong.add(hopDong);
+        }
+
+        c.close();
+
+        return danhSachHopDong;
+    }
+
+//    }
 }

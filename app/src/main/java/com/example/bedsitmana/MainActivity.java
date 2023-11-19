@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.bedsitmana.Activity.hopDong_Activity;
 import com.example.bedsitmana.Activity.loaiPhong_Activity;
 import com.example.bedsitmana.Activity.hoaDon_Activity;
 import com.example.bedsitmana.Activity.nguoiThue_Activity;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView nav;
     View mHeader;
-    Button btnLoaiPhong,btnPhong,btnNguoiThue,btnThongKe,btnHoaDon,btnSuCo;
+    Button btnLoaiPhong, btnPhong, btnNguoiThue, btnThongKe, btnHoaDon, btnSuCo;
 
 
     @Override
@@ -37,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         nav = findViewById(R.id.nav);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        btnLoaiPhong=findViewById(R.id.btnLoaiPhong);
-        btnHoaDon=findViewById(R.id.btnHoaDon);
-        btnPhong=findViewById(R.id.btnPhong);
-        btnNguoiThue=findViewById(R.id.btnNguoiThue);
-        btnThongKe=findViewById(R.id.btnThongKe);
-        btnSuCo=findViewById(R.id.btnSuCo);
+        btnLoaiPhong = findViewById(R.id.btnLoaiPhong);
+        btnHoaDon = findViewById(R.id.btnHoaDon);
+        btnPhong = findViewById(R.id.btnPhong);
+        btnNguoiThue = findViewById(R.id.btnNguoiThue);
+        btnThongKe = findViewById(R.id.btnThongKe);
+        btnSuCo = findViewById(R.id.btnSuCo);
         btnLoaiPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,12 +90,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void replaceFrg(Fragment frg){
+
+    public void replaceFrg(Fragment frg) {
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.frmnav,frg).commit();
+        fm.beginTransaction().replace(R.id.frmnav, frg).commit();
     }
-    public void IntentClass(Class target){
-        Intent intent=new Intent(MainActivity.this, target);
+
+    public void IntentClass(Class target) {
+        Intent intent = new Intent(MainActivity.this, target);
         startActivity(intent);
     }
 }

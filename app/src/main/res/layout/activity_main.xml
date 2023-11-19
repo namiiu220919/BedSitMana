@@ -127,8 +127,6 @@
                         android:text="Sự cố"/>
 
                 </LinearLayout>
-
-
             </LinearLayout>
         </FrameLayout>
 

@@ -79,6 +79,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableNguoiThue);
 
         sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,'Nam')," +
+                "('huy','huy','Huy','Hải Dương','123456789',123456789,2004,'Nam'),"+
                 "('quynh02','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,'Nam')");
 
         //Tạo bảng HopDong
@@ -102,7 +103,8 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableHopDong);
         //Thêm dữ liệu bảng HopDong
         sqLiteDatabase.execSQL("insert into HopDong(tenNguoiThue,sdt,CCCD,thuongTru,ngayKy,thoiHan,tenLoai,tenPhong,tienCoc,giaTien,soNguoi,soXe,ghiChu,maNguoiThue,maPhong) values" +
-                "('Quỳnh','847837487',847837487,'Bắc Giang','2023/11/17',6,'Full option','P102',2000000,3000000,3,3,'non','quynh01',1)");
+                "('Quỳnh','847837487',847837487,'Bắc Giang','2023/11/17',6,'Full option','P102',2000000,3000000,3,3,'non','quynh01',1),"+
+        "('Huy','123456789',123456789,'Hải Dương','2023/11/17',6,'Full option','P202',2000000,3000000,3,3,'non','huy',2)");
 
         //Tạo bảng SuCo
         String createTableSuCo = "create table SuCo(" +
