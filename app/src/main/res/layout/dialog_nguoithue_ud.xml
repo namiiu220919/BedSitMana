@@ -8,41 +8,6 @@
     android:background="@drawable/background"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/edtUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/khungedt"
-        android:hint="Nhập tên đăng nhập"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
-
-    <EditText
-        android:id="@+id/edtPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/khungedt"
-        android:hint="Nhập mật khẩu"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
-
-    <EditText
-        android:id="@+id/edtNhapLaiPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/khungedt"
-        android:hint="Nhập lại mật khẩu"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
 
     <EditText
         android:id="@+id/edtHoTen"

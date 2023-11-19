@@ -64,6 +64,11 @@ public class    LoaiPhongDao {
     public LoaiPhong getID(String id){
         String sql = "SELECT *FROM LoaiPhong WHERE maLoai=?";
         List<LoaiPhong> list = getDaTa(sql,id);
-        return list.get(0);
+        if (!list.isEmpty()) {
+            return list.get(0);
+        } else {
+            // Trả về null hoặc thực hiện các xử lý khác tùy vào yêu cầu của bạn
+            return null;
+        }
     }
 }

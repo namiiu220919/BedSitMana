@@ -52,7 +52,7 @@ public class DbHelper extends SQLiteOpenHelper {
         //Thêm dữ liệu bảng PhongTro
         sqLiteDatabase.execSQL("insert into PhongTro(maLoai,tenPhong,giaTien,tienNghi,trangThai) values" +
                 "(1,'P102',3500000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',1)," +
-                "(1,'P202',3200000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',0)");
+                "(2,'P202',3200000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',0)");
 
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
@@ -75,12 +75,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 "sdt TEXT NOT NULL," +
                 "CCCD INTEGER NOT NULL," +
                 "namSinh INTEGER NOT NULL," +
-                "gioiTinh TEXT NOT NULL)";
+                "gioiTinh INTEGER NOT NULL," +
+                "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableNguoiThue);
 
-        sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,'Nam')," +
-                "('huy','huy','Huy','Hải Dương','123456789',123456789,2004,'Nam'),"+
-                "('quynh02','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,'Nam')");
+        sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,0,1)," +
+                "('huy','huy','Huy','Hải Dương','123456789',123456789,2004,1,1),"+
+                "('quynh02','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,1,2)");
 
         //Tạo bảng HopDong
         String createTableHopDong = "create table HopDong(" +

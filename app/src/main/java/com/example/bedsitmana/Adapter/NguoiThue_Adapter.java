@@ -14,8 +14,10 @@ import androidx.annotation.Nullable;
 
 import com.example.bedsitmana.Activity.nguoiThue_Activity;
 import com.example.bedsitmana.Dao.nguoiThueDao;
+import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.NguoiThue;
+import com.example.bedsitmana.model.PhongTro;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,8 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
     private Context context;
     nguoiThue_Activity nguoiThue_activity;
     private ArrayList<NguoiThue> list;
-    TextView txtHoTen,txtGioiTinh,txtNamSinh,txtSdt,txtThuongTru,txtCCCD;
+    phongTroDao ptDao;
+    TextView txtHoTen,txtGioiTinh,txtNamSinh,txtSdt,txtThuongTru,txtCCCD,txtPhong;
     ImageView btnDelete;
 
     public NguoiThue_Adapter(@NonNull Context context, nguoiThue_Activity nguoiThue_activity, ArrayList<NguoiThue> list) {
@@ -50,12 +53,23 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
             txtThuongTru=v.findViewById(R.id.txtThuongTru);
             txtSdt=v.findViewById(R.id.txtSdt);
             txtCCCD=v.findViewById(R.id.txtCCCD);
+            txtPhong=v.findViewById(R.id.txtPhong);
 
             txtHoTen.setText("Họ tên: "+nguoiThue.getTenNguoiThue());
-            txtGioiTinh.setText("Giới tính: "+nguoiThue.getGioiTinh());
+
+            if (nguoiThue.getGioiTinh()==0){
+                txtGioiTinh.setText("Nam");
+            }else if (nguoiThue.getGioiTinh()==1){
+                txtGioiTinh.setText("Nữ");
+            }
+
             txtNamSinh.setText("Năm sinh: "+String.valueOf(nguoiThue.getNamSinh()));
             txtThuongTru.setText("Thường trú: "+nguoiThue.getThuongTru());
             txtSdt.setText("SĐT: "+nguoiThue.getSdt());
+            ptDao = new phongTroDao(context);
+            PhongTro phongTro = ptDao.getID(String.valueOf(nguoiThue.getMaPhong()));
+            txtPhong.setText("Phòng: "+phongTro.getTenPhong());
+
             txtCCCD.setText("CCCD: "+String.valueOf(nguoiThue.getcCCD()));
 
 

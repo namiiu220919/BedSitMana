@@ -3,7 +3,23 @@ package com.example.bedsitmana.model;
 public class NguoiThue {
     private String maNguoithue,matKhauNT,tenNguoiThue,thuongTru,sdt;
     private int cCCD,namSinh;
-    private String gioiTinh;
+    private int gioiTinh;
+    private int maPhong;
+
+    public NguoiThue() {
+    }
+
+    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, int cCCD, int namSinh, int gioiTinh, int maPhong) {
+        this.maNguoithue = maNguoithue;
+        this.matKhauNT = matKhauNT;
+        this.tenNguoiThue = tenNguoiThue;
+        this.thuongTru = thuongTru;
+        this.sdt = sdt;
+        this.cCCD = cCCD;
+        this.namSinh = namSinh;
+        this.gioiTinh = gioiTinh;
+        this.maPhong = maPhong;
+    }
 
     public String getMaNguoithue() {
         return maNguoithue;
@@ -61,25 +77,19 @@ public class NguoiThue {
         this.namSinh = namSinh;
     }
 
-    public String getGioiTinh() {
+    public int getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(int gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, int cCCD, int namSinh, String gioiTinh) {
-        this.maNguoithue = maNguoithue;
-        this.matKhauNT = matKhauNT;
-        this.tenNguoiThue = tenNguoiThue;
-        this.thuongTru = thuongTru;
-        this.sdt = sdt;
-        this.cCCD = cCCD;
-        this.namSinh = namSinh;
-        this.gioiTinh = gioiTinh;
+    public int getMaPhong() {
+        return maPhong;
     }
 
-    public NguoiThue() {
+    public void setMaPhong(int maPhong) {
+        this.maPhong = maPhong;
     }
 }

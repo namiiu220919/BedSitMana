@@ -8,7 +8,7 @@
     android:paddingRight="10dp">
         <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="175dp"
         android:background="@drawable/khungitem"
         android:alpha="0.4"/>
         <LinearLayout
@@ -64,6 +64,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thường trú: Hà Nội"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txtPhong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phòng: p333"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 

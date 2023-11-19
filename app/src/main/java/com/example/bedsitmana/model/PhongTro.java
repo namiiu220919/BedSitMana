@@ -1,9 +1,21 @@
 package com.example.bedsitmana.model;
 
 public class PhongTro {
-    private int maPhong,gia;
-    private String tenCS,tenPhong,tienNghi;
+    private int maPhong,maLoai,gia;
+    private String tenPhong,tienNghi;
     private int trangThai;
+
+    public PhongTro() {
+    }
+
+    public PhongTro(int maPhong, int maLoai, int gia, String tenPhong, String tienNghi, int trangThai) {
+        this.maPhong = maPhong;
+        this.maLoai = maLoai;
+        this.gia = gia;
+        this.tenPhong = tenPhong;
+        this.tienNghi = tienNghi;
+        this.trangThai = trangThai;
+    }
 
     public int getMaPhong() {
         return maPhong;
@@ -13,20 +25,20 @@ public class PhongTro {
         this.maPhong = maPhong;
     }
 
+    public int getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(int maLoai) {
+        this.maLoai = maLoai;
+    }
+
     public int getGia() {
         return gia;
     }
 
     public void setGia(int gia) {
         this.gia = gia;
-    }
-
-    public String getTenCS() {
-        return tenCS;
-    }
-
-    public void setTenCS(String tenCS) {
-        this.tenCS = tenCS;
     }
 
     public String getTenPhong() {
@@ -51,17 +63,5 @@ public class PhongTro {
 
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
-    }
-
-    public PhongTro(int maPhong, int gia, String tenCS, String tenPhong, String tienNghi, int trangThai) {
-        this.maPhong = maPhong;
-        this.gia = gia;
-        this.tenCS = tenCS;
-        this.tenPhong = tenPhong;
-        this.tienNghi = tienNghi;
-        this.trangThai = trangThai;
-    }
-
-    public PhongTro() {
     }
 }
