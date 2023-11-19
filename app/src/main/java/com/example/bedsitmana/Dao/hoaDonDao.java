@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class hoaDonDao {
-    private SQLiteDatabase db;
+    private SQLiteDatabase db   ;
 
     public hoaDonDao(Context context){
         DbHelper dbHelper = new DbHelper(context);
@@ -53,6 +53,7 @@ public class hoaDonDao {
         List<HoaDon> list = new ArrayList<>();
         Cursor c=db.rawQuery(sql, selectionArgs);
         while (c.moveToNext()){
+
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(Integer.parseInt(c.getString(c.getColumnIndex("maHoaDon"))));
             hd.setSoDien(Integer.parseInt(c.getString(c.getColumnIndex("soDien"))));

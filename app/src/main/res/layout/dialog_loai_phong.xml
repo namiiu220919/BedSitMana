@@ -33,92 +33,37 @@
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
 
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="Giới tính: "
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
-        <RadioButton
-            android:id="@+id/rdoNam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/orange"
-            android:text="Nam"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/rdoNu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:buttonTint="@color/orange"
-            android:text="Nữ"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/rdoKhac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:buttonTint="@color/orange"
-            android:text="Khác"
-            android:textColor="@color/white" />
-
-    </RadioGroup>
-
     <EditText
-        android:id="@+id/edtNamSinh"
+        android:id="@+id/edtPhiDichVu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Năm sinh"
+        android:hint="Phí dịch vu"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
 
     <EditText
-        android:id="@+id/edtSDT"
+        android:id="@+id/edtTienDien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Số điện thoại"
+        android:hint="Tiền Điện"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
 
     <EditText
-        android:id="@+id/edtThuongTru"
+        android:id="@+id/edtTienNuoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Thường trú"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
-
-    <EditText
-        android:id="@+id/edtCCCD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/khungedt"
-        android:hint="CCCD/CMND"
+        android:hint="Tiền nước"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
