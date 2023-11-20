@@ -5,4 +5,5 @@ public class demoNewBranch {
 
     public int x;
     public int y;
+    private int hehe;
 }
