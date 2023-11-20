@@ -81,7 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,0,1)," +
                 "('huy','huy','Huy','Hải Dương','123456789',123456789,2004,1,1),"+
-                "('quynh02','quynh','Quỳnh','Bắc Giang','3456789987',847837487,2004,1,2)");
+                "('nam','nam','Nam','Hà Nội','3456789987',847837487,2004,1,2)");
 
         //Tạo bảng HopDong
         String createTableHopDong = "create table HopDong(" +

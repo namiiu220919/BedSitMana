@@ -44,4 +44,22 @@ public class SPPhong_Adapter extends ArrayAdapter<PhongTro> {
         }
         return v;
     }
+
+    @Override
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View v = convertView;
+        if (v==null){
+            LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v=inflater.inflate(R.layout.item_sp_phong,null);
+        }
+        final PhongTro item=list.get(position);
+        if (item!=null){
+            txtMaPhong=v.findViewById(R.id.txtMaPhongSp);
+            txtTenPhong=v.findViewById(R.id.txtTenPhongSp);
+
+            txtMaPhong.setText(item.getMaPhong()+". ");
+            txtTenPhong.setText(item.getTenPhong());
+        }
+        return v;
+    }
 }

@@ -54,6 +54,7 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
             txtSdt=v.findViewById(R.id.txtSdt);
             txtCCCD=v.findViewById(R.id.txtCCCD);
             txtPhong=v.findViewById(R.id.txtPhong);
+            btnDelete=v.findViewById(R.id.btnDelete);
 
             txtHoTen.setText("Họ tên: "+nguoiThue.getTenNguoiThue());
 
@@ -72,6 +73,12 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
 
             txtCCCD.setText("CCCD: "+String.valueOf(nguoiThue.getcCCD()));
 
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nguoiThue_activity.xoa(nguoiThue.getMaNguoithue());
+                }
+            });
 
         }
         return v;
