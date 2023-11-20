@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875651460665",
+    "project_id": "bedsitmana",
+    "storage_bucket": "bedsitmana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875651460665:android:5f8c9ce8a75a51292ba7e8",
+        "android_client_info": {
+          "package_name": "com.example.bedsitmana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClzifXspXUtkT60WAt3iKUAPbmeCgR2_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
