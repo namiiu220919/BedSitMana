@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class LoaiPhong_Adapter extends ArrayAdapter<LoaiPhong> {
     TextView txtLoaiPhong,txtPhiDV,txtGiaDien,txtGiaNuoc;
-    Button btnXoa;
+    ImageView btnXoa;
 private  Context context;
 private  ArrayList<LoaiPhong> list;
 loaiPhong_Activity loaiphong_activity;
@@ -47,11 +48,18 @@ loaiPhong_Activity loaiphong_activity;
             txtPhiDV = v.findViewById(R.id.txtPhiDichVu);
             txtGiaDien = v.findViewById(R.id.txtGiaDien);
             txtGiaNuoc = v.findViewById(R.id.txtGiaNuoc);
+            btnXoa = v.findViewById(R.id.btnDelete);
 
             txtLoaiPhong.setText("Loại Phòng: "+lp.getTenLoaiPhong());
             txtPhiDV.setText("Phí dịch vụ: "+lp.getPhiDichVu()+"/người");
             txtGiaDien.setText("Giá điện: "+lp.getGiaDien()+"/số");
             txtGiaNuoc.setText("Giá nước: "+lp.getGiaNuoc()+"/người");
+            btnXoa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loaiphong_activity.xoa(String.valueOf(lp.getMaLoaiPhong()));
+                }
+            });
         }
         return v;
     }
