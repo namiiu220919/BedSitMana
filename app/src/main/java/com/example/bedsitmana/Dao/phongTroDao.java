@@ -23,8 +23,7 @@ public class phongTroDao {
 
     public long insert(PhongTro obj) {
         ContentValues values = new ContentValues();
-        values.put("maPhong", obj.getMaPhong());
-        values.put("maLoai", obj.getTenCS());
+        values.put("maLoai", obj.getMaLoai());
         values.put("tenPhong", obj.getTenPhong());
         values.put("giaTien", obj.getGia());
         values.put("tienNghi", obj.getTienNghi());
@@ -34,8 +33,7 @@ public class phongTroDao {
 
     public int update(PhongTro obj) {
         ContentValues values = new ContentValues();
-        values.put("maPhong", obj.getMaPhong());
-        values.put("maLoai", obj.getTenCS());
+        values.put("maLoai", obj.getMaLoai());
         values.put("tenPhong", obj.getTenPhong());
         values.put("giaTien", obj.getGia());
         values.put("tienNghi", obj.getTienNghi());
@@ -64,7 +62,7 @@ public class phongTroDao {
         while (c.moveToNext()){
             PhongTro obj = new PhongTro();
             obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
-            obj.setTenCS(c.getString(c.getColumnIndex("maLoai")));
+            obj.setMaLoai(Integer.parseInt(c.getString(c.getColumnIndex("maLoai"))));
             obj.setTenPhong(c.getString(c.getColumnIndex("tenPhong")));
             obj.setGia(Integer.parseInt(c.getString(c.getColumnIndex("giaTien"))));
             obj.setTienNghi(c.getString(c.getColumnIndex("tienNghi")));

@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.bedsitmana.Activity.phong_Activity;
+import com.example.bedsitmana.Dao.LoaiPhongDao;
 import com.example.bedsitmana.R;
+import com.example.bedsitmana.model.LoaiPhong;
 import com.example.bedsitmana.model.PhongTro;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
     private Context context;
     phong_Activity phong_activity;
     private ArrayList<PhongTro> list;
+    LoaiPhongDao loaiPhongDao;
     TextView txtPhong, txtXemHopDong, txtGia, txtTienNghi,txtCoSo_Phong,txtTinhTrang,txtma;
     ImageView btnDelete;
 
@@ -56,7 +59,10 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
             txtPhong.setText("Phòng: " + phongTro.getTenPhong());
             txtGia.setText("Giá: " + phongTro.getGia());
             txtTienNghi.setText("Tiện nghi: " + phongTro.getTienNghi());
-            txtCoSo_Phong.setText("Cơ sở: " + phongTro.getTenCS());
+
+            loaiPhongDao=new LoaiPhongDao(context);
+            LoaiPhong loaiPhong=loaiPhongDao.getID(String.valueOf(phongTro.getMaLoai()));
+            txtCoSo_Phong.setText("Loại phòng: " + loaiPhong.getTenLoaiPhong());
             if (phongTro.getTrangThai() == 1) {
                 txtTinhTrang.setText("Đã cho thuê");
                 txtTinhTrang.setTextColor(Color.GREEN);

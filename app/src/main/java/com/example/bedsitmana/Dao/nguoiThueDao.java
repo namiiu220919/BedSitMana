@@ -32,6 +32,7 @@ public class nguoiThueDao {
         values.put("CCCD", obj.getcCCD());
         values.put("namSinh", obj.getNamSinh());
         values.put("gioiTinh", obj.getGioiTinh());
+        values.put("maPhong", obj.getMaPhong());
         return db.insert("NguoiThue", null, values);
     }
 
@@ -45,6 +46,7 @@ public class nguoiThueDao {
         values.put("CCCD", obj.getcCCD());
         values.put("namSinh", obj.getNamSinh());
         values.put("gioiTinh", obj.getGioiTinh());
+        values.put("maPhong", obj.getMaPhong());
         return db.update("NguoiThue", values, "maNguoiThue=?", new String[]{obj.getMaNguoithue()});
     }
 
@@ -75,7 +77,8 @@ public class nguoiThueDao {
             obj.setSdt( c.getString(c.getColumnIndex("sdt")));
             obj.setcCCD(Integer.parseInt(c.getString(c.getColumnIndex("CCCD"))));
             obj.setNamSinh( Integer.parseInt(c.getString(c.getColumnIndex("namSinh"))));
-            obj.setGioiTinh(c.getString(c.getColumnIndex("gioiTinh")));
+            obj.setGioiTinh(Integer.parseInt(c.getString(c.getColumnIndex("gioiTinh"))));
+            obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
             list.add(obj);
         }
         return list;
