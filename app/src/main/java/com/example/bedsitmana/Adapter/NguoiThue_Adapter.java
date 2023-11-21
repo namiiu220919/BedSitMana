@@ -62,6 +62,8 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
                 txtGioiTinh.setText("Nam");
             }else if (nguoiThue.getGioiTinh()==1){
                 txtGioiTinh.setText("Nữ");
+            }else {
+                txtGioiTinh.setText("Khác");
             }
 
             txtNamSinh.setText("Năm sinh: "+String.valueOf(nguoiThue.getNamSinh()));

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -143,20 +144,55 @@ public class nguoiThue_Activity extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (TextUtils.isEmpty(edtUser.getText().toString())||TextUtils.isEmpty(edtPass.getText().toString())||TextUtils.isEmpty(edtThuongTru.getText().toString())||TextUtils.isEmpty(edtHoTen.getText().toString())||TextUtils.isEmpty(edtCCCD.getText().toString())||TextUtils.isEmpty(edtSDT.getText().toString())||TextUtils.isEmpty(edtNamSinh.getText().toString())){
+                    Toast.makeText(context, "Bạn phải nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 nguoiThue = new NguoiThue();
                 nguoiThue.setMaNguoithue(edtUser.getText().toString());
                 nguoiThue.setMatKhauNT(edtPass.getText().toString());
                 nguoiThue.setTenNguoiThue(edtHoTen.getText().toString());
                 nguoiThue.setThuongTru(edtThuongTru.getText().toString());
                 nguoiThue.setSdt(edtSDT.getText().toString());
-                nguoiThue.setcCCD(Integer.parseInt(edtCCCD.getText().toString()));
-                nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
+
+
+
+                try {
+                    nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
+                }catch (Exception e){
+                    Toast.makeText(context, "Năm sinh phải phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 nguoiThue.setMaPhong(maPhongTro);
                 if (rdoNam.isChecked()){
                     nguoiThue.setGioiTinh(0);
                 } else if (rdoNu.isChecked()) {
                     nguoiThue.setGioiTinh(1);
+                } else if (rdoKhac.isChecked()){
+                    nguoiThue.setGioiTinh(2);
                 }
+
+                if (!nguoiThue.getSdt().matches("^0\\d{9}$")){
+                    Toast.makeText(context, "Sđt sai định dạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    nguoiThue.setcCCD(Integer.parseInt(edtCCCD.getText().toString()));
+                }catch (Exception e){
+                    Toast.makeText(context, "CCCD Phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String pass=edtPass.getText().toString();
+                String repass=edtRePass.getText().toString();
+                if (pass.equals(repass)){
+                    Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(context, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
 
                 if (dao.insert(nguoiThue)>0){
 
@@ -257,6 +293,29 @@ public class nguoiThue_Activity extends AppCompatActivity {
                     nguoiThue.setGioiTinh(0);
                 } else if (rdoNu.isChecked()) {
                     nguoiThue.setGioiTinh(1);
+                }else if (rdoKhac.isChecked()){
+                    nguoiThue.setGioiTinh(2);
+                }
+                if (TextUtils.isEmpty(edtUser.getText().toString())||TextUtils.isEmpty(edtPass.getText().toString())||TextUtils.isEmpty(edtThuongTru.getText().toString())||TextUtils.isEmpty(edtHoTen.getText().toString())||TextUtils.isEmpty(edtCCCD.getText().toString())||TextUtils.isEmpty(edtSDT.getText().toString())||TextUtils.isEmpty(edtNamSinh.getText().toString())){
+                    Toast.makeText(context, "Bạn phải nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
+                }catch (Exception e){
+                    Toast.makeText(context, "Năm sinh phải phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!nguoiThue.getSdt().matches("^0\\d{9}$")){
+                    Toast.makeText(context, "Sđt sai định dạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    nguoiThue.setcCCD(Integer.parseInt(edtCCCD.getText().toString()));
+                }catch (Exception e){
+                    Toast.makeText(context, "CCCD Phải là số", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
 
