@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bedsitmana.Database.DbHelper;
+import com.example.bedsitmana.model.HopDong;
 import com.example.bedsitmana.model.NguoiThue;
 
 import java.text.ParseException;
@@ -89,6 +90,31 @@ public class nguoiThueDao {
         if (list.size()==0){
             return -1;
         }return 1;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<NguoiThue> getNguoiThueByUser(String user){
+        ArrayList<NguoiThue> danhSachNguoiThue = new ArrayList<>();
+
+        String sql = "SELECT * FROM NguoiThue WHERE maNguoiThue=?";
+        Cursor c = db.rawQuery(sql, new String[]{String.valueOf(user)});
+
+        while (c.moveToNext()){
+            NguoiThue obj = new NguoiThue();
+            obj.setMaNguoithue(c.getString(c.getColumnIndex("maNguoiThue")));
+            obj.setMatKhauNT(c.getString(c.getColumnIndex("matKhauNT")));
+            obj.setTenNguoiThue(c.getString(c.getColumnIndex("tenNguoiThue")));
+            obj.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
+            obj.setSdt( c.getString(c.getColumnIndex("sdt")));
+            obj.setcCCD(Integer.parseInt(c.getString(c.getColumnIndex("CCCD"))));
+            obj.setNamSinh( Integer.parseInt(c.getString(c.getColumnIndex("namSinh"))));
+            obj.setGioiTinh(Integer.parseInt(c.getString(c.getColumnIndex("gioiTinh"))));
+            obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
+            danhSachNguoiThue.add(obj);
+        }
+        c.close();
+
+        return danhSachNguoiThue;
     }
 
 }

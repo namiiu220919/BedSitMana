@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.bedsitmana.Dao.nguoiThueDao;
+import com.example.bedsitmana.Fragment.frg_thongtintaikhoan;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -63,7 +64,14 @@ public class dangnhap extends AppCompatActivity {
                 remember(strUser,strPass,chkluu.isChecked());
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 i.putExtra("user",strUser);
+                Bundle bundle = new Bundle();
+                bundle.putString("key", strUser);
+
+                // Tạo Fragment và gán Bundle vào Fragment
+                frg_thongtintaikhoan myFragment = new frg_thongtintaikhoan();
+                myFragment.setArguments(bundle);
                 startActivity(i);
+
                 finish();
 
             }else {

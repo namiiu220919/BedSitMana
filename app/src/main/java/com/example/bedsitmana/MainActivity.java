@@ -2,9 +2,11 @@ package com.example.bedsitmana;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +20,7 @@ import com.example.bedsitmana.Activity.nguoiThue_Activity;
 import com.example.bedsitmana.Activity.phong_Activity;
 import com.example.bedsitmana.Activity.suCo_Activity;
 import com.example.bedsitmana.Activity.thongKe_Activity;
+import com.example.bedsitmana.Fragment.frg_thongtintaikhoan;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
 
 
 
@@ -102,6 +106,17 @@ public class MainActivity extends AppCompatActivity {
 
         nav.setItemIconTintList(null);
         drawerLayout.closeDrawers();
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId()==R.id.nav_profileUser){
+                    setTitle("Thông tin tài khoản");
+                    frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
+                    replaceFrg(frgThongtintaikhoan);
+                }
+                return false;
+            }
+        });
 
 
     }
