@@ -107,32 +107,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
         btnKetThuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Cảnh báo");
-                builder.setIcon(R.drawable.baseline_warning_24);
-                builder.setMessage("Bạn có chắc chắn muốn xoá");
-                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dao.delete(String.valueOf(hd.getMaHopDong()));
-                        dialogInterface.cancel();
-                        Toast.makeText(context, "Kết thúc hợp đồng thành công ", Toast.LENGTH_SHORT).show();
-                        if (phongAdapter != null) {
-                            int maPhong = getItem(position).getMaPhong();
-                            phongAdapter.updateTrangThaiPhong(position, 0);
-                        }
-                        Intent intent = new Intent(context, phong_Activity.class);
-                        context.startActivity(intent);
-                    }
-                });
-                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                builder.show();
+                hopDong_activity.xoa(String.valueOf(hd.getMaHopDong()));
             }
         });
         return v;

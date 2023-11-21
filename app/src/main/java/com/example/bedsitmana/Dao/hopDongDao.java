@@ -144,6 +144,10 @@ public class hopDongDao {
 
         return danhSachHopDong;
     }
-
-//    }
+    public void updateTrangThaiPhong(int maphong, int trangthai) {
+        ContentValues values = new ContentValues();
+        values.put("trangthai", trangthai);
+        db.update("PhongTro", values, "maphong = ?", new String[]{String.valueOf(maphong)});
+        db.close();
+    }
 }

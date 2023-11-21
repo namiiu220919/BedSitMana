@@ -100,14 +100,4 @@ phong_activity.xemHD(position);
 
         return v;
     }
-    public void updateTrangThaiPhong(int maPhong, int trangThai) {
-        for (int i = 0; i < list.size(); i++) {
-            PhongTro phongTro = list.get(i);
-            if (phongTro.getMaPhong() == maPhong) {
-                phongTro.setTrangThai(trangThai);
-                notifyDataSetChanged();
-                break;
-            }
-        }
-    }
 }
