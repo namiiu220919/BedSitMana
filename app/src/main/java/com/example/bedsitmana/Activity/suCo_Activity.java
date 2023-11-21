@@ -28,17 +28,17 @@ import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.Dao.suCoDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.PhongTro;
-import com.example.bedsitmana.model.SuCo;
+import com.example.bedsitmana.model.suCo;
 
 import java.util.ArrayList;
 
 public class suCo_Activity extends AppCompatActivity {
 
     ListView lstSuCo;
-    ArrayList<SuCo> list;
+    ArrayList<suCo> list;
     ArrayList<PhongTro> list_phong;
     SuCo_Adapter adapter;
-    SuCo item;
+    suCo item;
     suCoDao dao;
     ImageView btnAdd;
     EditText edtMaSuCo, edtLoaiSuCo, edtMoTa;
@@ -165,7 +165,7 @@ public class suCo_Activity extends AppCompatActivity {
                     Toast.makeText(context, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                item = new SuCo();
+                item = new suCo();
                 item.setTenSuCo(edtLoaiSuCo.getText().toString());
                 item.setNoiDung(edtMoTa.getText().toString());
                 item.setMaPhong(maPhong);
@@ -197,8 +197,8 @@ public class suCo_Activity extends AppCompatActivity {
     }
     public void capnhatLv() {
 
-        list = (ArrayList<SuCo>) dao.getAll();
-        adapter = new SuCo_Adapter(suCo_Activity.this, this,list);
+        list = (ArrayList<suCo>) dao.getAll();
+        adapter = new SuCo_Adapter(suCo_Activity.this, this, list);
         lstSuCo.setAdapter(adapter);
     }
 }

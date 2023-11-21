@@ -15,20 +15,20 @@ import androidx.annotation.Nullable;
 import com.example.bedsitmana.Activity.suCo_Activity;
 import com.example.bedsitmana.Dao.suCoDao;
 import com.example.bedsitmana.R;
-import com.example.bedsitmana.model.SuCo;
+import com.example.bedsitmana.model.suCo;
 
 import java.util.ArrayList;
 
-public class SuCo_Adapter extends ArrayAdapter<SuCo> {
+public class SuCo_Adapter extends ArrayAdapter<suCo> {
     private Context context;
     suCo_Activity suCo_activity;
-    private ArrayList<SuCo> list;
+    private ArrayList<suCo> list;
     suCoDao sCDao;
 
     TextView txtSuCo, txtMoTa,txtPhong_SuCo, txtTinhTrang_SuCo;
 
 
-    public SuCo_Adapter(@NonNull Context context, suCo_Activity suCo_activity, ArrayList<SuCo> list) {
+    public SuCo_Adapter(@NonNull Context context, suCo_Activity suCo_activity, ArrayList<suCo> list) {
         super(context,0,list);
         this.context = context;
         this.suCo_activity = suCo_activity;
@@ -43,7 +43,7 @@ public class SuCo_Adapter extends ArrayAdapter<SuCo> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.item_suco, null);
         }
-        final SuCo suCo = list.get(position);
+        final suCo suCo = list.get(position);
         if(suCo != null){
             txtSuCo = v.findViewById(R.id.txtSuCo);
             txtMoTa = v.findViewById(R.id.txtMoTa);
