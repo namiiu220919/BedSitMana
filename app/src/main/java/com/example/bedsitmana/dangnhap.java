@@ -75,7 +75,7 @@ public class dangnhap extends AppCompatActivity {
                 finish();
 
             }else {
-                Toast.makeText(getApplicationContext(), "Username hoặc Password không đúng", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Username hoặc Password không đúng.", Toast.LENGTH_SHORT).show();
             }
 
         }
