@@ -52,7 +52,7 @@ public class DbHelper extends SQLiteOpenHelper {
         //Thêm dữ liệu bảng PhongTro
         sqLiteDatabase.execSQL("insert into PhongTro(maLoai,tenPhong,giaTien,tienNghi,trangThai) values" +
                 "(1,'P102',3500000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',1)," +
-                "(2,'P202',3200000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',0)");
+                "(2,'P202',3200000,'Điều hoà, Nóng lạnh, Tủ lạnh, Tủ quần áo',1)");
 
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
@@ -92,7 +92,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "thuongTru TEXT NOT NULL," +
                 "ngayKy DATE NOT NULL," +
                 "thoiHan INTEGER NOT NULL," +
-                "tenLoai TEXT NOT NULL," +
                 "tenPhong TEXT NOT NULL," +
                 "tienCoc INTEGER NOT NULL," +
                 "giaTien INTEGER NOT NULL," +
@@ -103,9 +102,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableHopDong);
         //Thêm dữ liệu bảng HopDong
-        sqLiteDatabase.execSQL("insert into HopDong(tenNguoiThue,sdt,CCCD,thuongTru,ngayKy,thoiHan,tenLoai,tenPhong,tienCoc,giaTien,soNguoi,soXe,ghiChu,maNguoiThue,maPhong) values" +
-                "('Quỳnh','847837487',847837487,'Bắc Giang','2023-11-17',6,'Full option','P102',2000000,3000000,3,3,'non','quynh01',1),"+
-        "('Huy','123456789',123456789,'Hải Dương','2023-11-17',6,'Full option','P202',2000000,3000000,3,3,'non','huy',2)");
+        sqLiteDatabase.execSQL("insert into HopDong(tenNguoiThue,sdt,CCCD,thuongTru,ngayKy,thoiHan,tenPhong,tienCoc,giaTien,soNguoi,soXe,ghiChu,maNguoiThue,maPhong) values" +
+                "('Quỳnh','847837487',847837487,'Bắc Giang','2023-11-17',6,'P102',2000000,3000000,3,3,'non','quynh01',1),"+
+        "('Huy','123456789',123456789,'Hải Dương','2023-11-17',6,'P202',2000000,3000000,3,3,'non','huy',2)");
 
         //Tạo bảng SuCo
         String createTableSuCo = "create table SuCo(" +

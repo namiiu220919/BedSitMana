@@ -1,36 +1,53 @@
 package com.example.bedsitmana.Adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
-import com.example.bedsitmana.Activity.hopDong_Activity;
+import com.example.bedsitmana.Activity.XemhopDong_Activity;
+import com.example.bedsitmana.Activity.loaiPhong_Activity;
+import com.example.bedsitmana.Activity.phong_Activity;
+import com.example.bedsitmana.Dao.hopDongDao;
+import com.example.bedsitmana.MainActivity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HopDong;
-import com.example.bedsitmana.model.LoaiPhong;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class HopDong_Adapter extends ArrayAdapter<HopDong> {
-    EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtLoaiPhong_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
+    EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Context context;
     private ArrayList<HopDong> list;
-    hopDong_Activity hopDong_activity;
+    XemhopDong_Activity hopDong_activity;
+    Button btnKetThuc,btnCapNhap;
+    hopDongDao dao;
+    private Phong_Adapter phongAdapter;
 
-    public HopDong_Adapter(@NonNull Context context, ArrayList<HopDong> list, hopDong_Activity hopDong_activity) {
+    public HopDong_Adapter(@NonNull Context context, ArrayList<HopDong> list, XemhopDong_Activity hopDong_activity) {
         super(context, 0,list);
         this.context = context;
         this.list = list;
         this.hopDong_activity = hopDong_activity;
+        dao = new hopDongDao(context);
+    }
+    public void setPhongAdapter(Phong_Adapter adapter) {
+        this.phongAdapter = adapter;
     }
 
     @NonNull
@@ -50,30 +67,74 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtDiaChi_hd =v.findViewById(R.id.edtDiaChi_hd);
             edtNgayki_hd = v.findViewById(R.id.edtNgayki_hd);
             edtSothang_hd = v.findViewById(R.id.edtSothang_hd);
-            edtLoaiPhong_hd = v.findViewById(R.id.edtLoaiPhong_hd);
             edtSoPhong_hd = v.findViewById(R.id.edtSoPhong_hd);
             edtTienCoc_hd = v.findViewById(R.id.edtTienCoc_hd);
             edtTienPhong_hd = v.findViewById(R.id.edtTienPhong_hd);
             edtSonguoi_hd = v.findViewById(R.id.edtSonguoi_hd);
             edtSoxe_hd = v.findViewById(R.id.edtSoxe_hd);
             edtGhiChu_hd = v.findViewById(R.id.edtGhiChu_hd);
-//            edtmahd_hd.setEnabled(false);
+            btnCapNhap=v.findViewById(R.id.btnCapNhat_hd);
+            btnKetThuc=v.findViewById(R.id.btnKetThuc_hd);
+            edtma_hd.setEnabled(false);
+            edtTenkh_hd.setEnabled(false);
+            edtSdt_hd.setEnabled(false);
+            edtCCCD_hd.setEnabled(false);
+            edtDiaChi_hd.setEnabled(false);
+            edtSoPhong_hd.setEnabled(false);
+            edtTienPhong_hd.setEnabled(false);
+            edtNgayki_hd.setEnabled(false);
 
-            edtma_hd.setText(hd.getMaPhong()+"");
+            edtma_hd.setText(hd.getMaHopDong()+"");
             edtTenkh_hd.setText(hd.getTenNguoiThue());
             edtSdt_hd.setText(hd.getSdt());
             edtCCCD_hd.setText(hd.getCCCD()+"");
             edtDiaChi_hd.setText(hd.getThuongTru());
             edtNgayki_hd.setText(sdf.format(hd.getNgayKy()));
             edtSothang_hd.setText(hd.getThoiHan()+"");
-            edtLoaiPhong_hd.setText(hd.getTenLoai());
             edtSoPhong_hd.setText(hd.getTenPhong());
             edtTienCoc_hd.setText(hd.getTienCoc()+"");
             edtTienPhong_hd.setText(hd.getGiaTien()+"");
             edtSonguoi_hd.setText(hd.getSoNguoi()+"");
             edtSoxe_hd.setText(hd.getSoXe()+"");
             edtGhiChu_hd.setText(hd.getGhiChu());
+            btnCapNhap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
+        btnKetThuc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Cảnh báo");
+                builder.setIcon(R.drawable.baseline_warning_24);
+                builder.setMessage("Bạn có chắc chắn muốn xoá");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dao.delete(String.valueOf(hd.getMaHopDong()));
+                        dialogInterface.cancel();
+                        Toast.makeText(context, "Kết thúc hợp đồng thành công ", Toast.LENGTH_SHORT).show();
+                        if (phongAdapter != null) {
+                            int maPhong = getItem(position).getMaPhong();
+                            phongAdapter.updateTrangThaiPhong(position, 0);
+                        }
+                        Intent intent = new Intent(context, phong_Activity.class);
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                builder.show();
+            }
+        });
         return v;
     }
 }

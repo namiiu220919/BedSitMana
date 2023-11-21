@@ -32,7 +32,6 @@ public class hopDongDao {
         values.put("thuongTru", hopDong.getThuongTru());
         values.put("ngayKy", sdf.format(hopDong.getNgayKy()));
         values.put("thoiHan", hopDong.getThoiHan());
-        values.put("tenLoai", hopDong.getTenLoai());
         values.put("tenPhong", hopDong.getTenPhong());
         values.put("tienCoc", hopDong.getTienCoc());
         values.put("giaTien", hopDong.getGiaTien());
@@ -52,7 +51,7 @@ public class hopDongDao {
         values.put("thuongTru", hopDong.getThuongTru());
         values.put("ngayKy", sdf.format(hopDong.getNgayKy()));
         values.put("thoiHan", hopDong.getThoiHan());
-        values.put("tenLoai", hopDong.getTenLoai());
+
         values.put("tenPhong", hopDong.getTenPhong());
         values.put("tienCoc", hopDong.getTienCoc());
         values.put("giaTien", hopDong.getGiaTien());
@@ -84,7 +83,7 @@ public class hopDongDao {
             }
 
             hopDong.setThoiHan(Integer.parseInt(c.getString(c.getColumnIndex("thoiHan"))));
-            hopDong.setTenLoai(c.getString(c.getColumnIndex("tenLoai")));
+
             hopDong.setTenPhong(c.getString(c.getColumnIndex("tenPhong")));
             hopDong.setTienCoc(Integer.parseInt(c.getString(c.getColumnIndex("tienCoc"))));
             hopDong.setGiaTien(Integer.parseInt(c.getString(c.getColumnIndex("giaTien"))));
@@ -130,7 +129,6 @@ public class hopDongDao {
                 e.printStackTrace();
             }
             hopDong.setThoiHan(c.getInt(c.getColumnIndex("thoiHan")));
-            hopDong.setTenLoai(c.getString(c.getColumnIndex("tenLoai")));
             hopDong.setTenPhong(c.getString(c.getColumnIndex("tenPhong")));
             hopDong.setTienCoc(c.getInt(c.getColumnIndex("tienCoc")));
             hopDong.setGiaTien(c.getInt(c.getColumnIndex("giaTien")));

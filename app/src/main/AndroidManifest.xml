@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.TaoHopDong_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.testQC"
             android:exported="false" />
 
@@ -39,7 +42,7 @@
             android:name=".Activity.nguoiThue_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.hopDong_Activity"
+            android:name=".Activity.XemhopDong_Activity"
             android:exported="false" />
         <activity
             android:name=".Activity.loaiPhong_Activity"

@@ -2,6 +2,7 @@ package com.example.bedsitmana.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,15 +46,17 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
         }
 
         final PhongTro phongTro = list.get(position);
+
         if (phongTro != null) {
 
             txtPhong = v.findViewById(R.id.txtPhong);
-            btnDelete=v.findViewById(R.id.btnDelete);
+            btnDelete=v.findViewById(R.id.btnDeletePhong);
 
             txtGia = v.findViewById(R.id.txtGia);
             txtTienNghi = v.findViewById(R.id.txtTienNghi);
             txtCoSo_Phong = v.findViewById(R.id.txtLoaiPhong_Phong);
             txtTinhTrang = v.findViewById(R.id.txtTinhTrang);
+            txtXemHopDong=v.findViewById(R.id.txtXemHopDong);
 
 
             txtPhong.setText("Phòng: " + phongTro.getTenPhong());
@@ -63,15 +66,48 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
             loaiPhongDao=new LoaiPhongDao(context);
             LoaiPhong loaiPhong=loaiPhongDao.getID(String.valueOf(phongTro.getMaLoai()));
             txtCoSo_Phong.setText("Loại phòng: " + loaiPhong.getTenLoaiPhong());
+            txtXemHopDong.setPaintFlags(txtXemHopDong.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             if (phongTro.getTrangThai() == 1) {
+                txtXemHopDong.setText("Xem hợp đồng");
+                txtXemHopDong.setTextColor(Color.GREEN);
                 txtTinhTrang.setText("Đã cho thuê");
                 txtTinhTrang.setTextColor(Color.GREEN);
+                txtXemHopDong.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+phong_activity.xemHD(position);
+                    }
+                });
             } else {
+                txtXemHopDong.setText("Tạo hợp đồng");
+                txtXemHopDong.setTextColor(Color.RED);
                 txtTinhTrang.setText("Đang trống");
                 txtTinhTrang.setTextColor(Color.RED);
+                txtXemHopDong.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    phong_activity.xoa(String.valueOf(phongTro.getMaPhong()));
+                }
+            });
         }
 
         return v;
+    }
+    public void updateTrangThaiPhong(int maPhong, int trangThai) {
+        for (int i = 0; i < list.size(); i++) {
+            PhongTro phongTro = list.get(i);
+            if (phongTro.getMaPhong() == maPhong) {
+                phongTro.setTrangThai(trangThai);
+                notifyDataSetChanged();
+                break;
+            }
+        }
     }
 }

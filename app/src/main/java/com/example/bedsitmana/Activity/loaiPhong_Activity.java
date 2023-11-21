@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ public class loaiPhong_Activity extends AppCompatActivity {
     LoaiPhongDao dao;
     ImageView btnAdd;
     EditText edtmaLoai, edttenLoai, edtPhidv, edtTienDien, edtTienNuoc;
+
     Button btnHuy, btnXacNhan;
 
     @Override
@@ -138,7 +140,7 @@ public class loaiPhong_Activity extends AppCompatActivity {
                     return;
                 }
                 item = new LoaiPhong();
-                item.setTenLoaiPhong(edtPhidv.getText().toString());
+                item.setTenLoaiPhong(edttenLoai.getText().toString());
                 item.setPhiDichVu(Integer.parseInt(edtPhidv.getText().toString()));
                 item.setGiaDien(Integer.parseInt(edtTienDien.getText().toString()));
                 item.setGiaNuoc(Integer.parseInt(edtTienNuoc.getText().toString()));
