@@ -6,7 +6,6 @@
     android:background="@drawable/background"
     android:gravity="center"
     android:orientation="vertical"
-
     android:padding="20dp">
 
     <EditText
@@ -16,20 +15,22 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
         android:hint="Mã sự cố"
+        android:inputType="none"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
-    <Spinner
-        android:id="@+id/spnLoaiSuCo"
+    <EditText
+        android:id="@+id/edtLoaiSuCo"
         android:layout_width="match_parent"
-        android:layout_height="33dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:popupBackground="@color/black"
+        android:hint="Loai sự cố"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
     <EditText
         android:id="@+id/edtMota"
         android:layout_width="match_parent"
@@ -40,6 +41,15 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+
+    <Spinner
+        android:id="@+id/spnPhong_SuCo"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:popupBackground="@color/black"
         android:textSize="17dp" />
 
     <CheckBox
