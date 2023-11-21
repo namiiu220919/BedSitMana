@@ -12,12 +12,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class dangnhap extends AppCompatActivity {
     TextInputEditText edtUser, edtPass;
     TextInputLayout tilPass;
+    nguoiThueDao dao;
     CheckBox chkluu;
     Button btnDN;
 
@@ -29,6 +31,7 @@ public class dangnhap extends AppCompatActivity {
         edtPass = findViewById(R.id.edtPass);
         chkluu = findViewById(R.id.chkLuu);
         btnDN = findViewById(R.id.btnDangNhap);
+        dao=new nguoiThueDao(dangnhap.this);
 
         SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
         edtUser.setText(sharedPreferences.getString("USERNAME", ""));
@@ -55,9 +58,18 @@ public class dangnhap extends AppCompatActivity {
                 i.putExtra("user",strUser);
                 startActivity(i);
                 finish();
+            }else if (dao.CheckLoginNT(strUser,strPass)>0){
+                Toast.makeText(this, "Đăng nhập thành công(Người thuê)", Toast.LENGTH_SHORT).show();
+                remember(strUser,strPass,chkluu.isChecked());
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                i.putExtra("user",strUser);
+                startActivity(i);
+                finish();
+
             }else {
                 Toast.makeText(getApplicationContext(), "Username hoặc Password không đúng", Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 
