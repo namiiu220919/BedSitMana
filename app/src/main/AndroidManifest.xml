@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
+            android:name=".Adapter.PhongSpinnerAdapter"
+            android:exported="false" />
+        <activity
             android:name=".Activity.TaoHopDong_Activity"
             android:exported="false" />
         <activity
