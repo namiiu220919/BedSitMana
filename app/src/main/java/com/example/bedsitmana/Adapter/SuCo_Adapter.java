@@ -51,7 +51,7 @@ public class SuCo_Adapter extends ArrayAdapter<suCo> {
             txtTinhTrang_SuCo = v.findViewById(R.id.txtTinhTrang_SuCo);
 
             txtSuCo.setText("Loại sự cố: " + suCo.getTenSuCo());
-            txtMoTa.setText("Mô tả" + suCo.getNoiDung());
+            txtMoTa.setText("Mô tả: " + suCo.getNoiDung());
             txtPhong_SuCo.setText("Phòng: " +suCo.getMaPhong());
             if(suCo.getTrangThai() == 0){
                 txtTinhTrang_SuCo.setText("Chưa sửa chữa");

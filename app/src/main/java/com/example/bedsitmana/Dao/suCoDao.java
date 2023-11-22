@@ -24,7 +24,6 @@ public class suCoDao {
 
     public long insert(suCo obj) {
         ContentValues values = new ContentValues();
-        values.put("maSuCo", obj.getMaSuCo());
         values.put("tenSuCo", obj.getTenSuCo());
         values.put("noiDung", obj.getNoiDung());
         values.put("trangThai", obj.getTrangThai());
@@ -35,7 +34,6 @@ public class suCoDao {
 
     public int update(suCo obj) {
         ContentValues values = new ContentValues();
-        values.put("maSuCo", obj.getMaSuCo());
         values.put("tenSuCo", obj.getTenSuCo());
         values.put("noiDung", obj.getNoiDung());
         values.put("trangThai", obj.getTrangThai());

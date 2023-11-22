@@ -94,6 +94,7 @@ public class suCo_Activity extends AppCompatActivity {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_su_co);
         edtMaSuCo = dialog.findViewById(R.id.edtMaSuCo);
+        edtMaSuCo.setVisibility(View.GONE);
         edtLoaiSuCo = dialog.findViewById(R.id.edtLoaiSuCo);
         edtMoTa = dialog.findViewById(R.id.edtMota);
         spinner = dialog.findViewById(R.id.spnPhong_SuCo);
