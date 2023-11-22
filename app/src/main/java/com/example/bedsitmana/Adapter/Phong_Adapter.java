@@ -72,24 +72,31 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
                 txtXemHopDong.setTextColor(Color.GREEN);
                 txtTinhTrang.setText("Đã cho thuê");
                 txtTinhTrang.setTextColor(Color.GREEN);
-                txtXemHopDong.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-phong_activity.xemHD(position);
-                    }
-                });
+//                txtXemHopDong.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//phong_activity.xemHD(position);
+//                    }
+//                });
             } else {
                 txtXemHopDong.setText("Tạo hợp đồng");
                 txtXemHopDong.setTextColor(Color.RED);
                 txtTinhTrang.setText("Đang trống");
                 txtTinhTrang.setTextColor(Color.RED);
-                txtXemHopDong.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
+//                txtXemHopDong.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent = new Intent(context, TaoHopDong_Activity.class);
+//                        context.startActivity(intent);
+//                    }
+//                });
             }
+            txtXemHopDong.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    phong_activity.xemHD(position);
+                }
+            });
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

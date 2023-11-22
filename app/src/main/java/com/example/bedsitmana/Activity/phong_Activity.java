@@ -122,7 +122,7 @@ public class phong_Activity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                maLoaiPhong = list_lp.get(position).getMaLoaiPhong();
+                 maLoaiPhong = list_lp.get(position).getMaLoaiPhong();
             }
 
             @Override
@@ -239,7 +239,7 @@ public class phong_Activity extends AppCompatActivity {
         PhongTro pp = list.get(i);
         int maPhong = pp.getMaPhong();
 
-        Intent intent = new Intent(phong_Activity.this, XemhopDong_Activity.class);
+        Intent intent = new Intent(phong_Activity.this, hopDong_Activity.class);
         intent.putExtra("maphong", maPhong);
         startActivity(intent);
     }

@@ -71,4 +71,27 @@ public class phongTroDao {
         }
         return list;
     }
+    @SuppressLint("Range")
+    public int getGiaPhongTheoMaPhong(int maPhong) {
+        String sql = "SELECT giaTien FROM PhongTro WHERE maPhong = ?";
+        int giaTien = 0;
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        if (cursor.moveToFirst()) {
+            giaTien = cursor.getInt(cursor.getColumnIndex("giaTien"));
+        }
+        cursor.close();
+        return giaTien;
+    }
+    @SuppressLint("Range")
+    public String getTenPhongTheoMaPhong(int maPhong) {
+        String sql = "SELECT tenPhong FROM PhongTro WHERE maPhong = ?";
+        String tenPhong = null;
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        if (cursor.moveToFirst()) {
+            tenPhong = cursor.getString(cursor.getColumnIndex("tenPhong"));
+        }
+
+        cursor.close();
+        return tenPhong;
+    }
 }

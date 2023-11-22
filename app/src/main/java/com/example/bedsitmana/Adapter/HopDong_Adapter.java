@@ -1,11 +1,7 @@
 package com.example.bedsitmana.Adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
-import com.example.bedsitmana.Activity.XemhopDong_Activity;
-import com.example.bedsitmana.Activity.loaiPhong_Activity;
-import com.example.bedsitmana.Activity.phong_Activity;
+import com.example.bedsitmana.Activity.hopDong_Activity;
 import com.example.bedsitmana.Dao.hopDongDao;
-import com.example.bedsitmana.MainActivity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HopDong;
 
@@ -30,16 +22,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class HopDong_Adapter extends ArrayAdapter<HopDong> {
-    EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
+        EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Context context;
     private ArrayList<HopDong> list;
-    XemhopDong_Activity hopDong_activity;
+    hopDong_Activity hopDong_activity;
     Button btnKetThuc,btnCapNhap;
     hopDongDao dao;
     private Phong_Adapter phongAdapter;
 
-    public HopDong_Adapter(@NonNull Context context, ArrayList<HopDong> list, XemhopDong_Activity hopDong_activity) {
+    public HopDong_Adapter(@NonNull Context context, ArrayList<HopDong> list, hopDong_Activity hopDong_activity) {
         super(context, 0,list);
         this.context = context;
         this.list = list;
@@ -56,7 +48,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
         View v = convertView;
         if(v==null){
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            v=inflater.inflate(R.layout.item_hopdong,null);
+            v=inflater.inflate(R.layout.item_xemhopdong,null);
         }
         final HopDong hd = list.get(position);
         if(hd!=null){
@@ -83,6 +75,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtSoPhong_hd.setEnabled(false);
             edtTienPhong_hd.setEnabled(false);
             edtNgayki_hd.setEnabled(false);
+            edtTienCoc_hd.setEnabled(false);
 
             edtma_hd.setText(hd.getMaHopDong()+"");
             edtTenkh_hd.setText(hd.getTenNguoiThue());
@@ -100,7 +93,13 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             btnCapNhap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    int soNguoi = Integer.parseInt(edtSonguoi_hd.getText().toString());
+                    int soXe = Integer.parseInt(edtSoxe_hd.getText().toString());
+                    hd.setSoNguoi(soNguoi);
+                    hd.setSoXe(soXe);
+                    dao.update(hd);
+                    notifyDataSetChanged();
+                    Toast.makeText(context, "Cập nhập hợp đồng thàng công", Toast.LENGTH_SHORT).show();
                 }
             });
         }

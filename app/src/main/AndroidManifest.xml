@@ -45,7 +45,7 @@
             android:name=".Activity.nguoiThue_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.XemhopDong_Activity"
+            android:name=".Activity.hopDong_Activity"
             android:exported="false" />
         <activity
             android:name=".Activity.loaiPhong_Activity"
