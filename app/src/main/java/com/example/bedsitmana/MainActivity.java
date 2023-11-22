@@ -106,12 +106,22 @@ public class MainActivity extends AppCompatActivity {
 
         nav.setItemIconTintList(null);
         drawerLayout.closeDrawers();
+
+        Intent i= getIntent();
+        String user = i.getStringExtra("user");
+
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId()==R.id.nav_profileUser){
                     setTitle("Thông tin tài khoản");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key", user);
+
+                    // Tạo Fragment và gán Bundle vào Fragment
+
                     frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
+                    frgThongtintaikhoan.setArguments(bundle);
                     replaceFrg(frgThongtintaikhoan);
                 }
                 return false;

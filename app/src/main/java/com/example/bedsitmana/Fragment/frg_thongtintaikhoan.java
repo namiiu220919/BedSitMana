@@ -52,7 +52,7 @@ public class frg_thongtintaikhoan extends Fragment {
         if (i!=null){
             String user=i.getString("key");
             list_nt = dao.getNguoiThueByUser(user);
-            thongTinTaiKhoan_adapter = new ThongTinTaiKhoan_Adapter(getActivity(),this,list);
+            thongTinTaiKhoan_adapter = new ThongTinTaiKhoan_Adapter(getActivity(),this,list_nt);
             lstThongTin.setAdapter(thongTinTaiKhoan_adapter);
         }
 
