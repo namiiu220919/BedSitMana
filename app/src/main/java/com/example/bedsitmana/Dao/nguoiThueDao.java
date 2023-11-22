@@ -63,7 +63,12 @@ public class nguoiThueDao {
     public NguoiThue getID(String id) {
         String sql = "SELECT * FROM NguoiThue WHERE maNguoiThue=?";
         List<NguoiThue> list = getData(sql, id);
-        return list.get(0);
+        if (!list.isEmpty()) {
+            return list.get(0);
+        } else {
+            // Trả về null hoặc thực hiện các xử lý khác tùy thuộc vào yêu cầu của bạn
+            return null;
+        }
     }
     @SuppressLint("Range")
     private List<NguoiThue> getData(String sql, String...selectionArgs){

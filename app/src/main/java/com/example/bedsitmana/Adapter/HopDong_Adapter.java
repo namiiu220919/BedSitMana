@@ -15,8 +15,10 @@ import androidx.annotation.Nullable;
 
 import com.example.bedsitmana.Activity.hopDong_Activity;
 import com.example.bedsitmana.Dao.hopDongDao;
+import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HopDong;
+import com.example.bedsitmana.model.NguoiThue;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
     hopDong_Activity hopDong_activity;
     Button btnKetThuc,btnCapNhap;
     hopDongDao dao;
+    nguoiThueDao ntDao;
     private Phong_Adapter phongAdapter;
 
     public HopDong_Adapter(@NonNull Context context, ArrayList<HopDong> list, hopDong_Activity hopDong_activity) {
@@ -78,7 +81,9 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtTienCoc_hd.setEnabled(false);
 
             edtma_hd.setText(hd.getMaHopDong()+"");
-            edtTenkh_hd.setText(hd.getTenNguoiThue());
+
+
+
             edtSdt_hd.setText(hd.getSdt());
             edtCCCD_hd.setText(hd.getCCCD()+"");
             edtDiaChi_hd.setText(hd.getThuongTru());
@@ -90,6 +95,11 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtSonguoi_hd.setText(hd.getSoNguoi()+"");
             edtSoxe_hd.setText(hd.getSoXe()+"");
             edtGhiChu_hd.setText(hd.getGhiChu());
+
+
+            ntDao = new nguoiThueDao(context);
+            NguoiThue nguoiThue= ntDao.getID(hd.getMaNguoiThue());
+            edtTenkh_hd.setText(String.valueOf(nguoiThue.getTenNguoiThue()));
             btnCapNhap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.bedsitmana.Activity.XemhopDong_Activity;
 import com.example.bedsitmana.Adapter.HopDong_Adapter;
 import com.example.bedsitmana.Adapter.ThongTinTaiKhoan_Adapter;
 import com.example.bedsitmana.Dao.hopDongDao;

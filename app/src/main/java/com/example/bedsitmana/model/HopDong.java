@@ -4,13 +4,11 @@ import java.util.Date;
 
 public class HopDong {
     private int maHopDong;
-    private String tenNguoiThue;
     private String sdt;
     private int CCCD;
     private String thuongTru;
     private Date ngayKy;
     private int thoiHan;
-    private String tenLoai;
     private String tenPhong;
     private int tienCoc;
     private int giaTien;
@@ -25,15 +23,13 @@ public class HopDong {
     public HopDong() {
     }
 
-    public HopDong(int maHopDong, String tenNguoiThue, String sdt, int CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenLoai, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong) {
+    public HopDong(int maHopDong, String sdt, int CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong) {
         this.maHopDong = maHopDong;
-        this.tenNguoiThue = tenNguoiThue;
         this.sdt = sdt;
         this.CCCD = CCCD;
         this.thuongTru = thuongTru;
         this.ngayKy = ngayKy;
         this.thoiHan = thoiHan;
-        this.tenLoai = tenLoai;
         this.tenPhong = tenPhong;
         this.tienCoc = tienCoc;
         this.giaTien = giaTien;
@@ -50,14 +46,6 @@ public class HopDong {
 
     public void setMaHopDong(int maHopDong) {
         this.maHopDong = maHopDong;
-    }
-
-    public String getTenNguoiThue() {
-        return tenNguoiThue;
-    }
-
-    public void setTenNguoiThue(String tenNguoiThue) {
-        this.tenNguoiThue = tenNguoiThue;
     }
 
     public String getSdt() {
@@ -98,14 +86,6 @@ public class HopDong {
 
     public void setThoiHan(int thoiHan) {
         this.thoiHan = thoiHan;
-    }
-
-    public String getTenLoai() {
-        return tenLoai;
-    }
-
-    public void setTenLoai(String tenLoai) {
-        this.tenLoai = tenLoai;
     }
 
     public String getTenPhong() {

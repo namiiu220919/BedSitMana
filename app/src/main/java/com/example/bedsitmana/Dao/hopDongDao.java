@@ -133,6 +133,7 @@ public class hopDongDao {
             hopDong.setSoNguoi(c.getInt(c.getColumnIndex("soNguoi")));
             hopDong.setSoXe(c.getInt(c.getColumnIndex("soXe")));
             hopDong.setGhiChu(c.getString(c.getColumnIndex("ghiChu")));
+            hopDong.setMaNguoiThue(c.getString(c.getColumnIndex("maNguoiThue")));
             hopDong.setMaPhong(c.getInt(c.getColumnIndex("maPhong")));
 
             danhSachHopDong.add(hopDong);
