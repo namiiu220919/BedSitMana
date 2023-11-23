@@ -67,6 +67,11 @@ public class dangnhap extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("key", strUser);
 
+                SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("username11", strUser); // Lưu thông tin người dùng vào SharedPreferences
+                editor.apply();
+
                 // Tạo Fragment và gán Bundle vào Fragment
                 frg_thongtintaikhoan myFragment = new frg_thongtintaikhoan();
                 myFragment.setArguments(bundle);

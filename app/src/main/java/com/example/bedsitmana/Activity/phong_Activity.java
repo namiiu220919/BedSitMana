@@ -26,6 +26,7 @@ import com.example.bedsitmana.Adapter.LoaiPhongSpinnerAdapter;
 import com.example.bedsitmana.Adapter.Phong_Adapter;
 import com.example.bedsitmana.Dao.LoaiPhongDao;
 import com.example.bedsitmana.Dao.phongTroDao;
+import com.example.bedsitmana.MainActivity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.LoaiPhong;
 import com.example.bedsitmana.model.PhongTro;
@@ -65,7 +66,7 @@ public class phong_Activity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(phong_Activity.this, MainActivity.class));
             }
         });
 

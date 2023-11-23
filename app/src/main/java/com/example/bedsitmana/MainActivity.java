@@ -1,6 +1,8 @@
 package com.example.bedsitmana;
 
+import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -107,21 +109,24 @@ public class MainActivity extends AppCompatActivity {
         nav.setItemIconTintList(null);
         drawerLayout.closeDrawers();
 
-        Intent i= getIntent();
-        String user = i.getStringExtra("user");
+        SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
+        String username = preferences.getString("username11", "...");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("key", username);
+        frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
+        frgThongtintaikhoan.setArguments(bundle);
+
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId()==R.id.nav_profileUser){
+
                     setTitle("Thông tin tài khoản");
-                    Bundle bundle = new Bundle();
-                    bundle.putString("key", user);
-                    frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
-                    frgThongtintaikhoan.setArguments(bundle);
                     replaceFrg(frgThongtintaikhoan);
                 }else if (item.getItemId()==R.id.nav_Home){
-
+                    IntentClass(MainActivity.class);
                 }
                 return false;
             }
