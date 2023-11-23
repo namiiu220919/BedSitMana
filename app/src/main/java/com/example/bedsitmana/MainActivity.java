@@ -117,12 +117,11 @@ public class MainActivity extends AppCompatActivity {
                     setTitle("Thông tin tài khoản");
                     Bundle bundle = new Bundle();
                     bundle.putString("key", user);
-
-                    // Tạo Fragment và gán Bundle vào Fragment
-
                     frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
                     frgThongtintaikhoan.setArguments(bundle);
                     replaceFrg(frgThongtintaikhoan);
+                }else if (item.getItemId()==R.id.nav_Home){
+
                 }
                 return false;
             }

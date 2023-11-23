@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_Home"
+        android:title="Trang chủ"
+        android:icon="@drawable/home"/>
     <item android:id="@+id/nav_profileUser"
         android:title="Thông tin tài khoản"
-        android:icon="@drawable/ic_user" />
-    <item
-        android:id="@+id/nav_AddUser"
-        android:title="Tạo tài khoản"
-        android:icon="@drawable/person_add"/>
+        android:icon="@drawable/baseline_person_24" />
+
     <item
         android:id="@+id/nav_ChangePass"
         android:title="Đổi mật khẩu"

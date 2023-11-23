@@ -73,7 +73,8 @@ public class hopDong_Activity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent=new Intent(hopDong_Activity.this,phong_Activity.class);
+                startActivity(intent);
             }
         });
         maphong = getIntent().getIntExtra("maphong", -1);
