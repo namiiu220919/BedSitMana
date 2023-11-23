@@ -63,6 +63,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
         android:hint="Tiện nghi"
+        android:enabled="false"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
