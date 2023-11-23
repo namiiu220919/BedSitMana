@@ -16,9 +16,11 @@ import androidx.annotation.Nullable;
 import com.example.bedsitmana.Activity.hopDong_Activity;
 import com.example.bedsitmana.Dao.hopDongDao;
 import com.example.bedsitmana.Dao.nguoiThueDao;
+import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HopDong;
 import com.example.bedsitmana.model.NguoiThue;
+import com.example.bedsitmana.model.PhongTro;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
     hopDong_Activity hopDong_activity;
     Button btnKetThuc,btnCapNhap;
     hopDongDao dao;
+    phongTroDao ptDao;
     nguoiThueDao ntDao;
     private Phong_Adapter phongAdapter;
 
@@ -89,7 +92,10 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtDiaChi_hd.setText(hd.getThuongTru());
             edtNgayki_hd.setText(sdf.format(hd.getNgayKy()));
             edtSothang_hd.setText(hd.getThoiHan()+"");
-            edtSoPhong_hd.setText(hd.getTenPhong());
+
+            ptDao=new phongTroDao(context);
+            PhongTro phongTro=ptDao.getID(String.valueOf(hd.getMaPhong()));
+            edtSoPhong_hd.setText(phongTro.getTenPhong());
             edtTienCoc_hd.setText(hd.getTienCoc()+"");
             edtTienPhong_hd.setText(hd.getGiaTien()+"");
             edtSonguoi_hd.setText(hd.getSoNguoi()+"");
