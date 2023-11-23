@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -132,6 +133,7 @@ public class phong_Activity extends AppCompatActivity {
             }
         });
         edtmaPhong.setEnabled(false);
+        edtTienNghi.setInputType(InputType.TYPE_NULL);
         edtTienNghi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

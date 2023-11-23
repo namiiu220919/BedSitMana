@@ -59,11 +59,11 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
             txtHoTen.setText("Họ tên: "+nguoiThue.getTenNguoiThue());
 
             if (nguoiThue.getGioiTinh()==0){
-                txtGioiTinh.setText("Nam");
+                txtGioiTinh.setText("Giới tính: Nam");
             }else if (nguoiThue.getGioiTinh()==1){
-                txtGioiTinh.setText("Nữ");
+                txtGioiTinh.setText("Giới tính: Nữ");
             }else {
-                txtGioiTinh.setText("Khác");
+                txtGioiTinh.setText("Giới tính: Khác");
             }
 
             txtNamSinh.setText("Năm sinh: "+String.valueOf(nguoiThue.getNamSinh()));
