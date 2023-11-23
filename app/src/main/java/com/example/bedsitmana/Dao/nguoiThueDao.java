@@ -81,7 +81,7 @@ public class nguoiThueDao {
             obj.setTenNguoiThue(c.getString(c.getColumnIndex("tenNguoiThue")));
             obj.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
             obj.setSdt( c.getString(c.getColumnIndex("sdt")));
-            obj.setcCCD(Integer.parseInt(c.getString(c.getColumnIndex("CCCD"))));
+            obj.setcCCD(c.getString(c.getColumnIndex("CCCD")));
             obj.setNamSinh( Integer.parseInt(c.getString(c.getColumnIndex("namSinh"))));
             obj.setGioiTinh(Integer.parseInt(c.getString(c.getColumnIndex("gioiTinh"))));
             obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
@@ -111,7 +111,7 @@ public class nguoiThueDao {
             obj.setTenNguoiThue(c.getString(c.getColumnIndex("tenNguoiThue")));
             obj.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
             obj.setSdt( c.getString(c.getColumnIndex("sdt")));
-            obj.setcCCD(Integer.parseInt(c.getString(c.getColumnIndex("CCCD"))));
+            obj.setcCCD(c.getString(c.getColumnIndex("CCCD")));
             obj.setNamSinh( Integer.parseInt(c.getString(c.getColumnIndex("namSinh"))));
             obj.setGioiTinh(Integer.parseInt(c.getString(c.getColumnIndex("gioiTinh"))));
             obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));

@@ -73,7 +73,7 @@ public class NguoiThue_Adapter extends ArrayAdapter<NguoiThue> {
             PhongTro phongTro = ptDao.getID(String.valueOf(nguoiThue.getMaPhong()));
             txtPhong.setText("Phòng: "+phongTro.getTenPhong());
 
-            txtCCCD.setText("CCCD: "+String.valueOf(nguoiThue.getcCCD()));
+            txtCCCD.setText("CCCD: "+nguoiThue.getcCCD());
 
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
