@@ -1,12 +1,12 @@
 package com.example.bedsitmana;
 
-import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,7 +22,10 @@ import com.example.bedsitmana.Activity.nguoiThue_Activity;
 import com.example.bedsitmana.Activity.phong_Activity;
 import com.example.bedsitmana.Activity.suCo_Activity;
 import com.example.bedsitmana.Activity.thongKe_Activity;
+import com.example.bedsitmana.Dao.nguoiThueDao;
+import com.example.bedsitmana.Fragment.frg_doimatkhau;
 import com.example.bedsitmana.Fragment.frg_thongtintaikhoan;
+import com.example.bedsitmana.model.NguoiThue;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     View mHeader;
     AdView mAdView;
     Button btnLoaiPhong, btnPhong, btnNguoiThue, btnThongKe, btnHoaDon, btnSuCo;
+    nguoiThueDao dao;
+    TextView txtUser;
 
 
     @Override
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        mHeader = nav.getHeaderView(0);
+        txtUser = mHeader.findViewById(R.id.txtUser);
         btnLoaiPhong = findViewById(R.id.btnLoaiPhong);
         btnHoaDon = findViewById(R.id.btnHoaDon);
         btnPhong = findViewById(R.id.btnPhong);
@@ -81,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 IntentClass(hoaDon_Activity.class);
             }
         });
-        
         btnPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,27 +115,45 @@ public class MainActivity extends AppCompatActivity {
 
         nav.setItemIconTintList(null);
         drawerLayout.closeDrawers();
-
         SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
         String username = preferences.getString("username11", "...");
-
         Bundle bundle = new Bundle();
         bundle.putString("key", username);
         frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
         frgThongtintaikhoan.setArguments(bundle);
 
-
+        String user = username;
+        if(user.equalsIgnoreCase("admin")){
+            nav.getMenu().findItem(R.id.nav_ChangePass).setVisible(false);
+        }else {
+            btnLoaiPhong.setVisibility(View.GONE);
+            btnNguoiThue.setVisibility(View.GONE);
+            btnThongKe.setVisibility(View.GONE);
+            dao = new nguoiThueDao(this);
+            NguoiThue nt = dao.getID(user);
+            String u = nt.getTenNguoiThue();
+            txtUser.setText("Welcome "+u);
+        }
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId()==R.id.nav_profileUser){
-
                     setTitle("Thông tin tài khoản");
+
                     replaceFrg(frgThongtintaikhoan);
                 }else if (item.getItemId()==R.id.nav_Home){
                     IntentClass(MainActivity.class);
+                } else if (item.getItemId()==R.id.nav_Loguot) {
+                    startActivity(new Intent(getApplicationContext(), dangnhap.class));
+                    finish();
+                }else if(item.getItemId()==R.id.nav_ChangePass){
+                    setTitle("Đổi mật khẩu");
+                    frg_doimatkhau frg_dmk=new frg_doimatkhau();
+                    replaceFrg(frg_dmk);
                 }
-                return false;
+
+                drawerLayout.close();
+                return true;
             }
         });
 
