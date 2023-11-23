@@ -187,7 +187,7 @@ public class phong_Activity extends AppCompatActivity {
         if (type != 0) {
             edtmaPhong.setText(item.getMaPhong() + "");
             edttenPhong.setText(item.getTenPhong() + "");
-            edtTienNghi.setText(item.getTenPhong() + "");
+            edtTienNghi.setText(item.getTienNghi() + "");
             edtGia.setText(item.getGia() + "");
             if (item.getTrangThai() == 1) {
                 chk.setChecked(true);
