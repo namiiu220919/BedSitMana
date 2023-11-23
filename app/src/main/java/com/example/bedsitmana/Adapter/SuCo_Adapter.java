@@ -13,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.bedsitmana.Activity.suCo_Activity;
+import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.Dao.suCoDao;
 import com.example.bedsitmana.R;
+import com.example.bedsitmana.model.PhongTro;
 import com.example.bedsitmana.model.suCo;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class SuCo_Adapter extends ArrayAdapter<suCo> {
     suCo_Activity suCo_activity;
     private ArrayList<suCo> list;
     suCoDao sCDao;
+    phongTroDao ptDao;
 
     TextView txtSuCo, txtMoTa,txtPhong_SuCo, txtTinhTrang_SuCo;
 
@@ -52,7 +55,10 @@ public class SuCo_Adapter extends ArrayAdapter<suCo> {
 
             txtSuCo.setText("Loại sự cố: " + suCo.getTenSuCo());
             txtMoTa.setText("Mô tả: " + suCo.getNoiDung());
-            txtPhong_SuCo.setText("Phòng: " +suCo.getMaPhong());
+
+            ptDao = new phongTroDao(context);
+            PhongTro phongTro=ptDao.getID(String.valueOf(suCo.getMaPhong()));
+            txtPhong_SuCo.setText("Phòng: " +phongTro.getTenPhong());
             if(suCo.getTrangThai() == 0){
                 txtTinhTrang_SuCo.setText("Chưa sửa chữa");
                 txtTinhTrang_SuCo.setTextColor(Color.RED);
