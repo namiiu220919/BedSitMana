@@ -113,6 +113,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
                 "maNguoiThue INTEGER REFERENCES NguoiThue(maNguoiThue))";
         sqLiteDatabase.execSQL(createTableSuCo);
+
+        sqLiteDatabase.execSQL("insert into SuCo(tenSuCo, noiDung, trangThai, maPhong, maNguoiThue) values" +
+                "('Điện','Hỏng bóng đèn',0,1,1)," +
+                "('Nước','Vỡ ống nước',0,1,1)");
     }
 
     @Override

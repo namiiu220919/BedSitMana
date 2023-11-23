@@ -16,6 +16,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
         android:hint="Mã phòng"
+        android:visibility="gone"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
@@ -38,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
         android:background="@drawable/khungedt"
         android:popupBackground="@color/black"
         android:textSize="17dp" />

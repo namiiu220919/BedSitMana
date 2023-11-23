@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 IntentClass(hoaDon_Activity.class);
             }
         });
+        
         btnPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

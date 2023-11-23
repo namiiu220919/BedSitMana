@@ -132,6 +132,58 @@ public class phong_Activity extends AppCompatActivity {
             }
         });
         edtmaPhong.setEnabled(false);
+        edtTienNghi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] tienNghi = {"Điều hoà","Nóng lạnh","Máy Giặt","Tủ lạnh","Tủ quần áo"};
+                final boolean[] checkedOptions = {false, false, false, false,false};
+                AlertDialog.Builder builder = new AlertDialog.Builder(phong_Activity.this);
+                builder.setTitle("Chọn Tiện Nghi trong phòng");
+                builder.setMultiChoiceItems(tienNghi, checkedOptions, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        // Cập nhật trạng thái của tùy chọn khi người dùng chọn hoặc hủy chọn
+                        checkedOptions[which] = isChecked;
+
+                    }
+                });
+                // Thiết lập nút đồng ý
+                builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Xử lý khi người dùng bấm nút đồng ý
+                        StringBuilder selectedOptions = new StringBuilder();
+                        for (int i = 0; i < checkedOptions.length; i++) {
+                            if (checkedOptions[i]) {
+                                selectedOptions.append(tienNghi[i]).append(", ");
+                            }
+                        }
+
+                        // Hiển thị các tùy chọn đã chọn
+                        if (selectedOptions.length() > 0) {
+                            selectedOptions.deleteCharAt(selectedOptions.length() - 2); // Loại bỏ dấu phẩy và khoảng trắng cuối cùng
+//                            Toast.makeText(getApplicationContext(), "Đã chọn: " + selectedOptions.toString(), Toast.LENGTH_SHORT).show();
+                            edtTienNghi.setText(selectedOptions.toString());
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Không có tùy chọn được chọn", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                // Thiết lập nút hủy
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog khi người dùng bấm nút hủy
+                        dialog.dismiss();
+                    }
+                });
+
+                // Hiển thị dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
         if (type != 0) {
             edtmaPhong.setText(item.getMaPhong() + "");
             edttenPhong.setText(item.getTenPhong() + "");
