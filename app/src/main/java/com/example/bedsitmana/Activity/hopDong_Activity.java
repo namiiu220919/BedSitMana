@@ -144,7 +144,7 @@ public class hopDong_Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mant = list_nt.get(i).getMaNguoithue();
 
-                cccd = list_nt.get(i).getcCCD();
+                cccd = Integer.parseInt(list_nt.get(i).getcCCD());
                 sdt = list_nt.get(i).getSdt();
                 dc = list_nt.get(i).getThuongTru();
                 edtCCCD_hd.setText(cccd+"");

@@ -1,15 +1,15 @@
 package com.example.bedsitmana.model;
 
 public class NguoiThue {
-    private String maNguoithue,matKhauNT,tenNguoiThue,thuongTru,sdt;
-    private int cCCD,namSinh;
+    private String maNguoithue,matKhauNT,tenNguoiThue,thuongTru,sdt,cCCD;
+    private int namSinh;
     private int gioiTinh;
     private int maPhong;
 
     public NguoiThue() {
     }
 
-    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, int cCCD, int namSinh, int gioiTinh, int maPhong) {
+    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, String cCCD, int namSinh, int gioiTinh, int maPhong) {
         this.maNguoithue = maNguoithue;
         this.matKhauNT = matKhauNT;
         this.tenNguoiThue = tenNguoiThue;
@@ -61,11 +61,11 @@ public class NguoiThue {
         this.sdt = sdt;
     }
 
-    public int getcCCD() {
+    public String getcCCD() {
         return cCCD;
     }
 
-    public void setcCCD(int cCCD) {
+    public void setcCCD(String cCCD) {
         this.cCCD = cCCD;
     }
 

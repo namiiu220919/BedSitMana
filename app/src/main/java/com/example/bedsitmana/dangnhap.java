@@ -57,6 +57,10 @@ public class dangnhap extends AppCompatActivity {
                 remember(strUser,strPass,chkluu.isChecked());
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 i.putExtra("user",strUser);
+                SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("username11", strUser); // Lưu thông tin người dùng vào SharedPreferences
+                editor.apply();
                 startActivity(i);
                 finish();
             }else if (dao.CheckLoginNT(strUser,strPass)>0){

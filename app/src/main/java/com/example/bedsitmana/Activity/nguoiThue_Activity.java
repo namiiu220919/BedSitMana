@@ -154,6 +154,7 @@ public class nguoiThue_Activity extends AppCompatActivity {
                 nguoiThue.setTenNguoiThue(edtHoTen.getText().toString());
                 nguoiThue.setThuongTru(edtThuongTru.getText().toString());
                 nguoiThue.setSdt(edtSDT.getText().toString());
+                nguoiThue.setcCCD(edtCCCD.getText().toString());
 
 
 
@@ -177,12 +178,13 @@ public class nguoiThue_Activity extends AppCompatActivity {
                     Toast.makeText(context, "Sđt sai định dạng", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                try {
-                    nguoiThue.setcCCD(Integer.parseInt(edtCCCD.getText().toString()));
-                }catch (Exception e){
-                    Toast.makeText(context, "CCCD Phải là số", Toast.LENGTH_SHORT).show();
+                if (!nguoiThue.getcCCD().matches("^0\\d{11}$")){
+                    Toast.makeText(context, "CCCD sai định dạng", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+
+
                 String pass=edtPass.getText().toString();
                 String repass=edtRePass.getText().toString();
                 if (pass.equals(repass)){
@@ -286,8 +288,9 @@ public class nguoiThue_Activity extends AppCompatActivity {
                 nguoiThue.setTenNguoiThue(edtHoTen.getText().toString());
                 nguoiThue.setThuongTru(edtThuongTru.getText().toString());
                 nguoiThue.setSdt(edtSDT.getText().toString());
-                nguoiThue.setcCCD(Integer.parseInt(edtCCCD.getText().toString()));
+                nguoiThue.setcCCD(edtCCCD.getText().toString());
                 nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
+                nguoiThue.setcCCD(edtCCCD.getText().toString());
                 nguoiThue.setMaPhong(maPhongTro);
                 if (rdoNam.isChecked()){
                     nguoiThue.setGioiTinh(0);
@@ -311,10 +314,8 @@ public class nguoiThue_Activity extends AppCompatActivity {
                     Toast.makeText(context, "Sđt sai định dạng", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                try {
-                    nguoiThue.setcCCD(Integer.parseInt(edtCCCD.getText().toString()));
-                }catch (Exception e){
-                    Toast.makeText(context, "CCCD Phải là số", Toast.LENGTH_SHORT).show();
+                if (!nguoiThue.getcCCD().matches("^0\\d{11}$")){
+                    Toast.makeText(context, "CCCD sai định dạng", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

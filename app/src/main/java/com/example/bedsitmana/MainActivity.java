@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.close();
                 return true;
             }
+
         });
 
 
