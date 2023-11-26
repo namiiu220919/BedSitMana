@@ -40,6 +40,7 @@ public class NguoiThueSpinerAdapter extends ArrayAdapter<NguoiThue> {
             txtTen.setText(item.getTenNguoiThue());
             txtMa=v.findViewById(R.id.txtmand);
             txtMa.setText(item.getMaNguoithue());
+            txtMa.setVisibility(View.GONE);
         }
         return v;
     }
@@ -56,6 +57,7 @@ public class NguoiThueSpinerAdapter extends ArrayAdapter<NguoiThue> {
             txtTen.setText(item.getTenNguoiThue());
             txtMa=v.findViewById(R.id.txtmand);
             txtMa.setText(item.getMaNguoithue());
+            txtMa.setVisibility(View.GONE);
         }
         return v;
     }

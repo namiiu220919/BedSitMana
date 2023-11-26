@@ -55,49 +55,52 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             v=inflater.inflate(R.layout.item_hoadon,null);
         }
         final HoaDon hoaDon = list.get(position);
-        txtPhong_HoaDon=v.findViewById(R.id.txtPhong_HoaDon);
-        txtTenTruongPhong_HoaDon=v.findViewById(R.id.txtTenTruongPhong_HoaDon);
-        txtNgayTao_HoaDon=v.findViewById(R.id.txtNgayTao_HoaDon);
-        txtGhiChu_HoaDon=v.findViewById(R.id.txtGhiChu_HoaDon);
-        txtTongHoaDon=v.findViewById(R.id.txtTongHoaDon);
-        txtTrangThai_HoaDon=v.findViewById(R.id.txtTrangThai_HoaDon);
-        btnDelete=v.findViewById(R.id.btnDelete);
-        imgAnh=v.findViewById(R.id.imgAnh);
+        if (hoaDon!=null){
+            txtPhong_HoaDon=v.findViewById(R.id.txtPhong_HoaDon);
+            txtTenTruongPhong_HoaDon=v.findViewById(R.id.txtTenTruongPhong_HoaDon);
+            txtNgayTao_HoaDon=v.findViewById(R.id.txtNgayTao_HoaDon);
+            txtGhiChu_HoaDon=v.findViewById(R.id.txtGhiChu_HoaDon);
+            txtTongHoaDon=v.findViewById(R.id.txtTongHoaDon);
+            txtTrangThai_HoaDon=v.findViewById(R.id.txtTrangThai_HoaDon);
+            btnDelete=v.findViewById(R.id.btnDelete);
+            imgAnh=v.findViewById(R.id.imgAnh);
 
-        ptDao = new phongTroDao(context);
-        PhongTro phongTro = ptDao.getID(String.valueOf(hoaDon.getMaPhong()));
-        txtPhong_HoaDon.setText("Phòng: "+phongTro.getTenPhong());
-        ntDao = new nguoiThueDao(context);
-        NguoiThue nguoiThue = ntDao.getID(hoaDon.getMaNguoiThue());
-        txtTenTruongPhong_HoaDon.setText("Tên trưởng phòng: "+nguoiThue.getTenNguoiThue());
-        txtNgayTao_HoaDon.setText(sdf.format("Ngày: "+hoaDon.getNgayTao()));
-        txtGhiChu_HoaDon.setText("Ghi chú: "+hoaDon.getGhiChu());
-        int tong= 0;
-        hoadonDao=new hoaDonDao(context);
-        tong=hoadonDao.getTongTienDien(hoaDon.getMaHoaDon())+hoadonDao.getTongTienNuoc(hoaDon.getMaHoaDon())+hoaDon.getPhiDichVu()+hoaDon.getTienPhong();
-        txtTongHoaDon.setText("Tổng: "+tong);
+            ptDao = new phongTroDao(context);
+            PhongTro phongTro = ptDao.getID(String.valueOf(hoaDon.getMaPhong()));
+            txtPhong_HoaDon.setText("Phòng: "+phongTro.getTenPhong());
+            ntDao = new nguoiThueDao(context);
+            NguoiThue nguoiThue = ntDao.getID(hoaDon.getMaNguoiThue());
+            txtTenTruongPhong_HoaDon.setText("Tên trưởng phòng: "+nguoiThue.getTenNguoiThue());
+            txtNgayTao_HoaDon.setText("Ngày: "+sdf.format(hoaDon.getNgayTao()));
+            txtGhiChu_HoaDon.setText("Ghi chú: "+hoaDon.getGhiChu());
+            int tong= 0;
+            hoadonDao=new hoaDonDao(context);
+            tong=hoadonDao.getTongTienDien(hoaDon.getMaHoaDon())+hoadonDao.getTongTienNuoc(hoaDon.getMaHoaDon())+hoaDon.getPhiDichVu()+hoaDon.getTienPhong();
+            txtTongHoaDon.setText("Tổng: "+tong);
 
-        if (hoaDon.getTrangThai()==0){
-            txtTrangThai_HoaDon.setText("Thanh Toán");
-            txtTrangThai_HoaDon.setBackgroundColor(Color.GREEN);
-            txtTrangThai_HoaDon.setTextColor(Color.WHITE);
-        }else if (hoaDon.getTrangThai()==1){
-            txtTrangThai_HoaDon.setText("Chờ xác nhận");
-            txtTrangThai_HoaDon.setTextColor(Color.RED);
-        }else {
-            txtTrangThai_HoaDon.setText("Đã thanh toán");
-            txtTrangThai_HoaDon.setTextColor(Color.GREEN);
-        }
-        anhthanhtoan=hoaDon.getAnhThanhToan();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(anhthanhtoan,0,anhthanhtoan.length);
-        imgAnh.setImageBitmap(bitmap);
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+            if (hoaDon.getTrangThai()==0){
+                txtTrangThai_HoaDon.setText("Thanh toán ngay");
+                txtTrangThai_HoaDon.setTextColor(Color.GREEN);
+            }else if (hoaDon.getTrangThai()==1){
+                txtTrangThai_HoaDon.setText("Chờ xác nhận");
+                txtTrangThai_HoaDon.setTextColor(Color.RED);
+            }else {
+                txtTrangThai_HoaDon.setText("Đã thanh toán");
+                txtTrangThai_HoaDon.setTextColor(Color.GREEN);
             }
-        });
+            anhthanhtoan=hoaDon.getAnhThanhToan();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(anhthanhtoan,0,anhthanhtoan.length);
+            imgAnh.setImageBitmap(bitmap);
+
+
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    hoaDonActivity.xoa(String.valueOf(hoaDon.getMaHoaDon()));
+                }
+            });
+        }
+
 
         return v;
     }

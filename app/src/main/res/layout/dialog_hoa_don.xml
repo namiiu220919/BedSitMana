@@ -20,30 +20,148 @@
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+    <Spinner
+        android:id="@+id/spnNguoiThue"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginTop="10dp"
 
+        android:popupBackground="@color/black"
+        android:textSize="17dp" />
     <EditText
-        android:id="@+id/edtPhong"
+        android:id="@+id/edtSdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Phòng"
+        android:hint="SĐT"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+    <Spinner
+        android:id="@+id/spnPhong"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginTop="10dp"
+
+        android:popupBackground="@color/black"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edtPhiDichVu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Phí dịch vụ"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
 
     <EditText
-        android:id="@+id/edtSoDien"
+        android:id="@+id/edtTienphong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Số điện"
+        android:hint="Tiền Phòng"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edtSoDien"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/khungedt"
+            android:hint="Số điện"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9F9B9B"
+            android:textSize="17dp" />
+        <EditText
+            android:id="@+id/edtDonGiaDien"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/khungedt"
+            android:hint="Đơn giá điện"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9F9B9B"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edtSoNguoi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/khungedt"
+            android:hint="Số người ở"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9F9B9B"
+            android:textSize="17dp" />
+        <EditText
+            android:id="@+id/edtDonGiaNuoc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/khungedt"
+            android:hint="Đơn giá nước"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9F9B9B"
+            android:textSize="17dp" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/edtNgayTao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Ngày tạo"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
+        android:textSize="17dp" />
+    <EditText
+        android:id="@+id/edtGhiChu_hd"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="start"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Ghi chú"
+        android:paddingLeft="7dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:background="@drawable/khungedt"/>
+    <ImageView
+        android:id="@+id/imgAnhQR"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/img_camera"/>
 
     <CheckBox
         android:layout_gravity="start"

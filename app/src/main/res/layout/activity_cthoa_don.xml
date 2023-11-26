@@ -114,7 +114,7 @@
                     android:layout_margin="3dp"
                     android:textSize="18sp" />
                 <TextView
-                    android:id="@+id/txtGiaNước"
+                    android:id="@+id/txtGiaNuoc"
                     android:text="Giá nước: "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

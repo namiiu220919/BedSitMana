@@ -120,7 +120,6 @@ public class hoaDonDao {
         }
 
         cursor.close();
-        db.close();
 
         return tongTienDien;
 
@@ -137,7 +136,6 @@ public class hoaDonDao {
         }
 
         cursor.close();
-        db.close();
 
         return tongTienNuoc;
 
