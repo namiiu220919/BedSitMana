@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import com.example.bedsitmana.R;
 
+import java.io.InputStream;
+
 public class hoaDon_Activity extends AppCompatActivity {
 
 
@@ -25,6 +27,7 @@ public class hoaDon_Activity extends AppCompatActivity {
         Drawable upArrow = getResources().getDrawable(R.drawable.ic_back);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,6 +23,7 @@ import com.example.bedsitmana.Activity.phong_Activity;
 import com.example.bedsitmana.Activity.suCo_Activity;
 import com.example.bedsitmana.Activity.thongKe_Activity;
 import com.example.bedsitmana.Dao.nguoiThueDao;
+import com.example.bedsitmana.Fragment.frg_NganHang;
 import com.example.bedsitmana.Fragment.frg_doimatkhau;
 import com.example.bedsitmana.Fragment.frg_thongtintaikhoan;
 import com.example.bedsitmana.model.NguoiThue;
@@ -150,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
                     setTitle("Đổi mật khẩu");
                     frg_doimatkhau frg_dmk=new frg_doimatkhau();
                     replaceFrg(frg_dmk);
+                }else if (item.getItemId()==R.id.nav_NganHang){
+                    setTitle("Ngân Hàng Thanh Toán");
+                    frg_NganHang frg_nh=new frg_NganHang();
+                    replaceFrg(frg_nh);
                 }
 
                 drawerLayout.close();

@@ -56,14 +56,27 @@ public class DbHelper extends SQLiteOpenHelper {
 
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
-            "maHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "soDien INTEGER NOT NULL," +
-                "soNuoc INTEGER NOT NULL," +
-                "phiDichVu INTEGER NOT NULL," +
+                "maHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "trangThai INTEGER NOT NULL," +
+                "ngayTao DATE NOT NULL," +
+                "soDien INTEGER," +
+                "soNuoc INTEGER," +
+                "phiDichVu INTEGER," +
+                "ghiChu TEXT NOT NULL," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
                 "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue))";
         sqLiteDatabase.execSQL(createTableHoaDon);
+
+
+//        String createTableCTHoaDon="create table CTHoaDon(" +
+//                "maCTHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
+//                "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
+//                "soDien INTEGER NOT NULL," +
+//                "soNuoc INTEGER NOT NULL," +
+//                "phiDichVu INTEGER NOT NULL," +
+//                "tongTien INTEGER NOT NULL)";
+//        sqLiteDatabase.execSQL(createTableCTHoaDon);
 
         //Tạo bảng NguoiThue
         String createTableNguoiThue ="create table NguoiThue(" +
@@ -116,6 +129,15 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("insert into SuCo(tenSuCo, noiDung, trangThai, maPhong, maNguoiThue) values" +
                 "('Điện','Hỏng bóng đèn',0,1,1)," +
                 "('Nước','Vỡ ống nước',0,1,1)");
+
+        //Tạo bảng ngân hàng
+        String createTableNganHang = "create table NganHang(" +
+                "Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenTKNganHang TEXT ," +
+                "tenNganHang TEXT ," +
+                "STK TEXT," +
+                "HinhAnh BLOB)";
+        sqLiteDatabase.execSQL(createTableNganHang);
     }
 
     @Override
