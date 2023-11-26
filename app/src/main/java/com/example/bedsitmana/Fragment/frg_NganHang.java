@@ -2,19 +2,23 @@ package com.example.bedsitmana.Fragment;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.UriMatcher;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
@@ -56,7 +60,7 @@ public class frg_NganHang extends Fragment {
     NganHangDao nganHangDao;
     NganHang_Adapter nganHangAdapter;
     byte[] hinhAnh;
-    int REQUEST_CODE_FOLDER = 456;
+    final int REQUEST_CODE_FOLDER = 456;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,11 +106,7 @@ public class frg_NganHang extends Fragment {
 
         edtID.setVisibility(View.GONE);
 
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) imgAnhQR.getDrawable();
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        hinhAnh = byteArrayOutputStream.toByteArray();
+
 
         if (type!=0){
             edtID.setText(String.valueOf(item.getId()));
@@ -121,6 +121,7 @@ public class frg_NganHang extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent,REQUEST_CODE_FOLDER);
+//                ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODE_FOLDER);
             }
         });
         btnHuy.setOnClickListener(new View.OnClickListener() {
@@ -134,10 +135,16 @@ public class frg_NganHang extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (TextUtils.isEmpty(edtTenTKNganHang.getText().toString()) || TextUtils.isEmpty(edtTenNganHang.getText().toString()) || TextUtils.isEmpty(edtSTK.getText().toString()) || hinhAnh==null) {
+                if (TextUtils.isEmpty(edtTenTKNganHang.getText().toString()) || TextUtils.isEmpty(edtTenNganHang.getText().toString()) || TextUtils.isEmpty(edtSTK.getText().toString())) {
                     Toast.makeText(context, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) imgAnhQR.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                hinhAnh = byteArrayOutputStream.toByteArray();
 
                 item=new NganHang();
                 item.setTenTKNganHang(edtTenTKNganHang.getText().toString());
@@ -168,6 +175,8 @@ public class frg_NganHang extends Fragment {
         dialog.show();
     }
 
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null){
@@ -183,6 +192,26 @@ public class frg_NganHang extends Fragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//
+//        switch (requestCode){
+//            case REQUEST_CODE_FOLDER:
+//                if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+//                    Intent intent = new Intent(Intent.ACTION_PICK);
+//                    intent.setType("image/*");
+//                    startActivityForResult(intent,REQUEST_CODE_FOLDER);
+//                }else {
+//                    Toast.makeText(getContext(), "Bạn không cho phép truy cập thư viện ảnh", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//
+//        }
+//
+//
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
 
     public void capNhatLv() {
         list = (ArrayList<NganHang>) nganHangDao.getAll();
