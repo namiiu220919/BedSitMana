@@ -1,6 +1,7 @@
 package com.example.bedsitmana;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ public class dangnhap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangnhap);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.black));
         edtUser = findViewById(R.id.edtUser);
         edtPass = findViewById(R.id.edtPass);
         chkluu = findViewById(R.id.chkLuu);

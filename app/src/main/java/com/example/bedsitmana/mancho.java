@@ -15,6 +15,7 @@ public class mancho extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mancho);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.black));
         LottieAnimationView animationView = findViewById(R.id.anm);
         animationView.setSpeed(0.5f);
         animationView.playAnimation();

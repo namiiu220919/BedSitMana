@@ -2,6 +2,7 @@ package com.example.bedsitmana.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -59,7 +60,7 @@ public class nguoiThue_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguoi_thue);
-
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.black));
         btnadd=findViewById(R.id.btnadd_toolbar);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
