@@ -1,27 +1,31 @@
 package com.example.bedsitmana.model;
 
+import java.util.Date;
+
 public class HoaDon {
-    private int maHoaDon;
-    private int soDien;
-    private int soNuoc;
-    private int phiDichVu;
-    private int trangThai;
-    private int maPhong;
-    private String maNguoiThue;
-    private String maKeToan;
+    private int maHoaDon,soDien,donGiaDien,soNguoi,donGiaNuoc,phiDichVu,tienPhong,trangThai,maPhong;
+    private String sdt,ghiChu,maNguoiThue;
+    private Date ngayTao;
+    private byte[] anhThanhToan;
 
     public HoaDon() {
     }
 
-    public HoaDon(int maHoaDon, int soDien, int soNuoc, int phiDichVu, int trangThai, int maPhong, String maNguoiThue, String maKeToan) {
+    public HoaDon(int maHoaDon, int soDien, int donGiaDien, int soNguoi, int donGiaNuoc, int phiDichVu, int tienPhong, int trangThai, int maPhong, String sdt, String ghiChu, String maNguoiThue, Date ngayTao, byte[] anhThanhToan) {
         this.maHoaDon = maHoaDon;
         this.soDien = soDien;
-        this.soNuoc = soNuoc;
+        this.donGiaDien = donGiaDien;
+        this.soNguoi = soNguoi;
+        this.donGiaNuoc = donGiaNuoc;
         this.phiDichVu = phiDichVu;
+        this.tienPhong = tienPhong;
         this.trangThai = trangThai;
         this.maPhong = maPhong;
+        this.sdt = sdt;
+        this.ghiChu = ghiChu;
         this.maNguoiThue = maNguoiThue;
-        this.maKeToan = maKeToan;
+        this.ngayTao = ngayTao;
+        this.anhThanhToan = anhThanhToan;
     }
 
     public int getMaHoaDon() {
@@ -40,12 +44,28 @@ public class HoaDon {
         this.soDien = soDien;
     }
 
-    public int getSoNuoc() {
-        return soNuoc;
+    public int getDonGiaDien() {
+        return donGiaDien;
     }
 
-    public void setSoNuoc(int soNuoc) {
-        this.soNuoc = soNuoc;
+    public void setDonGiaDien(int donGiaDien) {
+        this.donGiaDien = donGiaDien;
+    }
+
+    public int getSoNguoi() {
+        return soNguoi;
+    }
+
+    public void setSoNguoi(int soNguoi) {
+        this.soNguoi = soNguoi;
+    }
+
+    public int getDonGiaNuoc() {
+        return donGiaNuoc;
+    }
+
+    public void setDonGiaNuoc(int donGiaNuoc) {
+        this.donGiaNuoc = donGiaNuoc;
     }
 
     public int getPhiDichVu() {
@@ -54,6 +74,14 @@ public class HoaDon {
 
     public void setPhiDichVu(int phiDichVu) {
         this.phiDichVu = phiDichVu;
+    }
+
+    public int getTienPhong() {
+        return tienPhong;
+    }
+
+    public void setTienPhong(int tienPhong) {
+        this.tienPhong = tienPhong;
     }
 
     public int getTrangThai() {
@@ -72,6 +100,22 @@ public class HoaDon {
         this.maPhong = maPhong;
     }
 
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
     public String getMaNguoiThue() {
         return maNguoiThue;
     }
@@ -80,11 +124,19 @@ public class HoaDon {
         this.maNguoiThue = maNguoiThue;
     }
 
-    public String getMaKeToan() {
-        return maKeToan;
+    public Date getNgayTao() {
+        return ngayTao;
     }
 
-    public void setMaKeToan(String maKeToan) {
-        this.maKeToan = maKeToan;
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
+    public byte[] getAnhThanhToan() {
+        return anhThanhToan;
+    }
+
+    public void setAnhThanhToan(byte[] anhThanhToan) {
+        this.anhThanhToan = anhThanhToan;
     }
 }

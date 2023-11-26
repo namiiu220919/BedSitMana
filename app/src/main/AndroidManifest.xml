@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,14 +16,16 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.ThemNganHang_Activity"
+            android:name=".Activity.CTHoaDon_Activity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Adapter.PhongSpinnerAdapter"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".Activity.TaoHopDong_Activity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".Activity.ThemNganHang_Activity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Adapter.PhongSpinnerAdapter" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Activity.TaoHopDong_Activity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Activity.testQC"
             android:exported="false" />

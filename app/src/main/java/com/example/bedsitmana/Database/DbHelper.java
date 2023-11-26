@@ -57,12 +57,17 @@ public class DbHelper extends SQLiteOpenHelper {
         //Tạo bảng HoaDon
         String createTableHoaDon="create table HoaDon("+
                 "maHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "trangThai INTEGER NOT NULL," +
-                "ngayTao DATE NOT NULL," +
+                "sdt TEXT ," +
+                "ngayTao DATE ," +
                 "soDien INTEGER," +
-                "soNuoc INTEGER," +
+                "donGiaDien INTEGER," +
+                "soNguoi INTEGER," +
+                "donGiaNuoc INTEGER," +
                 "phiDichVu INTEGER," +
-                "ghiChu TEXT NOT NULL," +
+                "ghiChu TEXT ," +
+                "tienPhong INTEGER," +
+                "anhThanhToan BLOB," +
+                "trangThai INTEGER ," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
                 "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue))";
         sqLiteDatabase.execSQL(createTableHoaDon);
