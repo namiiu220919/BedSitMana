@@ -31,7 +31,7 @@
             android:gravity="center_horizontal"
             android:textSize="13sp" />
         <TextView
-            android:id="@+id/txtTênTruongPhong"
+            android:id="@+id/txtTenTruongPhong"
             android:text="Trưởng phòng: "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

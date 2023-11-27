@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BedSitMana"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ThanhToan_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.CTHoaDon_Activity"
             android:exported="false" />
         <activity

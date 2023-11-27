@@ -58,6 +58,11 @@ public class hoaDonDao {
         values.put("maNguoiThue", hd.getMaNguoiThue());
         return db.update("HoaDon", values,"maHoaDon=?", new String[]{String.valueOf(hd.getMaHoaDon())});
     }
+    public int updateanh(HoaDon hd){
+        ContentValues values=new ContentValues();
+        values.put("anhThanhToan", hd.getAnhThanhToan());
+        return db.update("HoaDon", values,"maHoaDon=?", new String[]{String.valueOf(hd.getMaHoaDon())});
+    }
 
     public int delete(String id){
         return db.delete("HoaDon","maHoaDon=?",new String[]{id});
@@ -139,5 +144,12 @@ public class hoaDonDao {
 
         return tongTienNuoc;
 
+    }
+
+    public void updateTrangThaiHoaDon(int mahoadon, int trangthai) {
+        ContentValues values = new ContentValues();
+        values.put("trangThai", trangthai);
+        db.update("HoaDon", values, "maHoaDon = ?", new String[]{String.valueOf(mahoadon)});
+        db.close();
     }
 }

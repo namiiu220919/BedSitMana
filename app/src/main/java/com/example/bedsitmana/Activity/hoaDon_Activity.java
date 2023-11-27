@@ -1,5 +1,6 @@
 package com.example.bedsitmana.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,9 +8,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,17 +27,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bedsitmana.Adapter.HoaDon_Adapter;
+import com.example.bedsitmana.Adapter.NganHangSpinner_Adapter;
 import com.example.bedsitmana.Adapter.NguoiThueSpinerAdapter;
 import com.example.bedsitmana.Adapter.SPPhong_Adapter;
+import com.example.bedsitmana.Dao.NganHangDao;
 import com.example.bedsitmana.Dao.hoaDonDao;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HoaDon;
+import com.example.bedsitmana.model.NganHang;
 import com.example.bedsitmana.model.NguoiThue;
 import com.example.bedsitmana.model.PhongTro;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,14 +62,17 @@ public class hoaDon_Activity extends AppCompatActivity {
     Spinner spPhong, spNguoiThue;
     NguoiThueSpinerAdapter nguoiThueSpinerAdapter;
     SPPhong_Adapter spPhongAdapter;
-    int maPhong,phidichvu,tienPhong, positionNT, positionPT;
+
+    int maPhong,tienPhong, positionNT, positionPT;
     String maNguoiThue,sdt;
     CheckBox chkDaThanhToan;
+
     Button btnXacNhan, btnHuy;
     Dialog dialog;
     phongTroDao ptDao;
     byte[] hinhAnh;
     nguoiThueDao ntDao;
+    final int REQUEST_CODE_FOLDER = 456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +89,10 @@ public class hoaDon_Activity extends AppCompatActivity {
         lstHoaDon = findViewById(R.id.lstHoaDon);
         hdDao=new hoaDonDao(hoaDon_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
+
+
+
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +108,15 @@ public class hoaDon_Activity extends AppCompatActivity {
                 return false;
             }
         });
+
+        lstHoaDon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                hoaDon=list.get(i);
+                openDialogCTHD(hoaDon_Activity.this);
+            }
+        });
+
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -127,10 +151,61 @@ public class hoaDon_Activity extends AppCompatActivity {
         builder.show();
     }
 
-    private void capNhatLv() {
+    public void capNhatLv() {
         list = (ArrayList<HoaDon>) hdDao.getAll();
         hoaDonAdapter=new HoaDon_Adapter(hoaDon_Activity.this,list,this);
         lstHoaDon.setAdapter(hoaDonAdapter);
+    }
+
+
+
+    public void openDialogCTHD(final Context context){
+        dialog = new Dialog(hoaDon_Activity.this);
+        dialog.setContentView(R.layout.item_cthoadon);
+
+
+        txtNgayTao=dialog.findViewById(R.id.txtNgayTao);
+        txtTenTruongPhong=dialog.findViewById(R.id.txtTenTruongPhong);
+        txtSdt=dialog.findViewById(R.id.txtSdt);
+        txtTenPhong=dialog.findViewById(R.id.txtTenPhong);
+        txtSoDien=dialog.findViewById(R.id.txtSoDien);
+        txtGiaDien=dialog.findViewById(R.id.txtGiaDien);
+        txtTongDien=dialog.findViewById(R.id.txtTongDien);
+        txtSoNguoi=dialog.findViewById(R.id.txtSoNguoi);
+        txtGiaNuoc=dialog.findViewById(R.id.txtGiaNuoc);
+        txtTongNuoc=dialog.findViewById(R.id.txtTongNuoc);
+        txtPhiDichVu_hd=dialog.findViewById(R.id.txtPhiDichVu_hd);
+        txtTienPhong_hd=dialog.findViewById(R.id.txtTienPhong_hd);
+        txtGhiChu_hd=dialog.findViewById(R.id.txtGhiChu_hd);
+        txtTongHd=dialog.findViewById(R.id.txtTongHd);
+
+        txtNgayTao.setText(""+sdf.format(hoaDon.getNgayTao()));
+        ptDao = new phongTroDao(context);
+        PhongTro phongTro = ptDao.getID(String.valueOf(hoaDon.getMaPhong()));
+        txtTenPhong.setText("Phòng: "+phongTro.getTenPhong());
+        ntDao = new nguoiThueDao(context);
+        NguoiThue nguoiThue = ntDao.getID(hoaDon.getMaNguoiThue());
+        txtTenTruongPhong.setText("Trưởng phòng: "+nguoiThue.getTenNguoiThue());
+        txtSdt.setText("Điện thoại: "+nguoiThue.getSdt());
+//        String sdt=hoaDon.getSdt();
+        txtSoDien.setText("Số điện: "+hoaDon.getSoDien());
+        txtGiaDien.setText("Giá điện: "+hoaDon.getDonGiaDien()+"đ/số");
+        txtTongDien.setText("Tổng điện: "+hdDao.getTongTienDien(hoaDon.getMaHoaDon())+"đ");
+        txtSoNguoi.setText("Số người: "+hoaDon.getSoNguoi());
+        txtGiaNuoc.setText("Giá nước: "+hoaDon.getDonGiaNuoc()+"đ/người");
+        txtTongNuoc.setText("Tổng nước: "+hdDao.getTongTienNuoc(hoaDon.getMaHoaDon())+"đ");
+        txtPhiDichVu_hd.setText("Phí dịch vụ: "+hoaDon.getPhiDichVu()+"đ");
+        txtTienPhong_hd.setText("Tiền phòng: "+hoaDon.getTienPhong()+"đ");
+        txtGhiChu_hd.setText("Ghi chú: "+hoaDon.getGhiChu());
+
+        int tong= 0;
+        tong=hdDao.getTongTienDien(hoaDon.getMaHoaDon())+hdDao.getTongTienNuoc(hoaDon.getMaHoaDon())+hoaDon.getPhiDichVu()+hoaDon.getTienPhong();
+        txtTongHd.setText("Tổng tiền: "+tong+"đ");
+
+        dialog.show();
+
+
+
     }
     public void openDialog(final Context context, final int type){
         dialog = new Dialog(hoaDon_Activity.this);
@@ -279,5 +354,6 @@ public class hoaDon_Activity extends AppCompatActivity {
         dialog.show();
 
     }
+
 
 }
