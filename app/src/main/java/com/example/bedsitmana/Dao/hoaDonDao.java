@@ -52,7 +52,6 @@ public class hoaDonDao {
         values.put("phiDichVu", hd.getPhiDichVu());
         values.put("ghiChu", hd.getGhiChu());
         values.put("tienPhong", hd.getTienPhong());
-        values.put("anhThanhToan", hd.getAnhThanhToan());
         values.put("trangThai", hd.getTrangThai());
         values.put("maPhong", hd.getMaPhong());
         values.put("maNguoiThue", hd.getMaNguoiThue());

@@ -130,7 +130,6 @@ public class ThanhToan_Activity extends AppCompatActivity {
                 }else {
                     Toast.makeText(ThanhToan_Activity.this, "Thất bại", Toast.LENGTH_SHORT).show();
                 }
-                hoaDonActivity.capNhatLv();
                 Intent intent=new Intent(ThanhToan_Activity.this,hoaDon_Activity.class);
                 startActivity(intent);
 
@@ -152,8 +151,6 @@ public class ThanhToan_Activity extends AppCompatActivity {
             }
 
         }
-        super.onActivityResult(requestCode, resultCode, data);
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
