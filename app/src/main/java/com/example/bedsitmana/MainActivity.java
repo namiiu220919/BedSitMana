@@ -128,10 +128,12 @@ public class MainActivity extends AppCompatActivity {
         String user = username;
         if(user.equalsIgnoreCase("admin")){
             nav.getMenu().findItem(R.id.nav_ChangePass).setVisible(false);
+            nav.getMenu().findItem(R.id.nav_profileUser).setVisible(false);
         }else {
             btnLoaiPhong.setVisibility(View.GONE);
             btnNguoiThue.setVisibility(View.GONE);
             btnThongKe.setVisibility(View.GONE);
+            btnPhong.setVisibility(View.GONE);
             dao = new nguoiThueDao(this);
             NguoiThue nt = dao.getID(user);
             String u = nt.getTenNguoiThue();

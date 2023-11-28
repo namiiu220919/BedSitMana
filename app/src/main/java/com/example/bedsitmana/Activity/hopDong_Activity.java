@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -44,7 +45,7 @@ public class hopDong_Activity extends AppCompatActivity {
     ImageView btnAdd;
     EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
     Spinner spinner;
-    int position,cccd,maphong;
+    int position,cccd,maphong,gia;
     String mant,dc,sdt;
     nguoiThueDao dao_nt;
     NguoiThue nt;
@@ -159,7 +160,7 @@ public class hopDong_Activity extends AppCompatActivity {
             }
         });
         maphong = getIntent().getIntExtra("maphong", -1);
-        int gia = dao_pt.getGiaPhongTheoMaPhong(maphong);
+        gia = dao_pt.getGiaPhongTheoMaPhong(maphong);
         String tenphong=dao_pt.getTenPhongTheoMaPhong(maphong);
         edtTienPhong_hd.setText(gia + "");
         edtSoPhong_hd.setText(tenphong);
@@ -173,10 +174,59 @@ public class hopDong_Activity extends AppCompatActivity {
         btnTaoHD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(TextUtils.isEmpty(edtSothang_hd.getText().toString())||TextUtils.isEmpty(edtTienCoc_hd.getText().toString())||TextUtils.isEmpty(edtSonguoi_hd.getText().toString())||TextUtils.isEmpty(edtSoxe_hd.getText().toString())){
+                    Toast.makeText(hopDong_Activity.this, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    int st = Integer.parseInt(edtSothang_hd.getText().toString());
+                    if (st <= 0) {
+                        Toast.makeText(hopDong_Activity.this, "Số tháng phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(hopDong_Activity.this, "Số tháng phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    int tc = Integer.parseInt(edtTienCoc_hd.getText().toString());
+                    if (tc <= 0) {
+                        Toast.makeText(hopDong_Activity.this, "Tiền cọc phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+//                    if(tc>gia){
+//                        Toast.makeText(hopDong_Activity.this, "Tiền cọc phải nhỏ hơnn tiền phòng", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+                } catch (Exception e) {
+                    Toast.makeText(hopDong_Activity.this, "Tiền cọc phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    int sn = Integer.parseInt(edtSonguoi_hd.getText().toString());
+                    if (sn <= 0) {
+                        Toast.makeText(hopDong_Activity.this, "Số người phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(hopDong_Activity.this, "Số người phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    int sx = Integer.parseInt(edtSoxe_hd.getText().toString());
+                    if (sx <= 0) {
+                        Toast.makeText(hopDong_Activity.this, "Số xe phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(hopDong_Activity.this, "Số xe phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int soThang = Integer.parseInt(edtSothang_hd.getText().toString());
                 int tienCoc = Integer.parseInt(edtTienCoc_hd.getText().toString());
                 int soNguoi = Integer.parseInt(edtSonguoi_hd.getText().toString());
                 int soXe = Integer.parseInt(edtSoxe_hd.getText().toString());
+
                 item = new HopDong();
                 item.setMaNguoiThue(mant);
                 item.setMaPhong(maphong);
@@ -185,6 +235,7 @@ public class hopDong_Activity extends AppCompatActivity {
                 item.setNgayKy(new Date());
                 item.setSdt(sdt);
                 item.setCCCD(cccd);
+                item.setGiaTien(gia);
                 item.setThuongTru(dc);
                 item.setThoiHan(soThang);
                 item.setTienCoc(tienCoc);

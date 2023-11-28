@@ -76,17 +76,6 @@ public class phong_Activity extends AppCompatActivity {
         dao = new phongTroDao(phong_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
         capNhapLv();
-//        lstPhong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                PhongTro pp = list.get(i);
-//                int maPhong = pp.getMaPhong();
-//
-//                Intent intent = new Intent(phong_Activity.this, hopDong_Activity.class);
-//                intent.putExtra("maphong", maPhong);
-//                startActivity(intent);
-//            }
-//        });
         btnAdd.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View view) {
@@ -192,8 +181,14 @@ public class phong_Activity extends AppCompatActivity {
             edttenPhong.setText(item.getTenPhong() + "");
             edtTienNghi.setText(item.getTienNghi() + "");
             edtGia.setText(item.getGia() + "");
+
             if (item.getTrangThai() == 1) {
                 chk.setChecked(true);
+                edtmaPhong.setEnabled(false);
+                edttenPhong.setEnabled(false);
+                edtTienNghi.setEnabled(false);
+                edtGia.setEnabled(false);
+                spinner.setEnabled(false);
             } else {
                 chk.setChecked(false);
             }
@@ -216,6 +211,17 @@ public class phong_Activity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (TextUtils.isEmpty(edttenPhong.getText().toString()) || TextUtils.isEmpty(edtTienNghi.getText().toString()) || TextUtils.isEmpty(edtGia.getText().toString())) {
                         Toast.makeText(context, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    int checkTen = 0;
+                    for (PhongTro pt :list){
+                        if(pt.getTenPhong().equalsIgnoreCase(edttenPhong.getText().toString())){
+                            checkTen=1;
+                            break;
+                        }
+                    }
+                    if(checkTen==1){
+                        Toast.makeText(context, "Tên phòng đã tồn tại", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     try {

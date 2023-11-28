@@ -110,6 +110,17 @@ public class loaiPhong_Activity extends AppCompatActivity {
                     Toast.makeText(context, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                int checkTen = 0;
+                for (LoaiPhong lp:list){
+                    if(lp.getTenLoaiPhong().equalsIgnoreCase(edttenLoai.getText().toString())){
+                        checkTen=1;
+                        break;
+                    }
+                }
+                if(checkTen==1){
+                    Toast.makeText(context, "Loại phòng đã tồn tại", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try {
                     int pdv = Integer.parseInt(edtPhidv.getText().toString());
                     if (pdv <= 0) {

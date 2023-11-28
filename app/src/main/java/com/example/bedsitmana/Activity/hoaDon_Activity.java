@@ -30,12 +30,16 @@ import com.example.bedsitmana.Adapter.HoaDon_Adapter;
 import com.example.bedsitmana.Adapter.NganHangSpinner_Adapter;
 import com.example.bedsitmana.Adapter.NguoiThueSpinerAdapter;
 import com.example.bedsitmana.Adapter.SPPhong_Adapter;
+import com.example.bedsitmana.Dao.LoaiPhongDao;
 import com.example.bedsitmana.Dao.NganHangDao;
 import com.example.bedsitmana.Dao.hoaDonDao;
+import com.example.bedsitmana.Dao.hopDongDao;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HoaDon;
+import com.example.bedsitmana.model.HopDong;
+import com.example.bedsitmana.model.LoaiPhong;
 import com.example.bedsitmana.model.NganHang;
 import com.example.bedsitmana.model.NguoiThue;
 import com.example.bedsitmana.model.PhongTro;
@@ -73,6 +77,10 @@ public class hoaDon_Activity extends AppCompatActivity {
     byte[] hinhAnh;
     nguoiThueDao ntDao;
     final int REQUEST_CODE_FOLDER = 456;
+    hopDongDao dao_hd;
+    LoaiPhongDao dao_lp;
+    int songuoii,maloaii;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +98,8 @@ public class hoaDon_Activity extends AppCompatActivity {
         hdDao=new hoaDonDao(hoaDon_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
 
-
-
+dao_hd = new hopDongDao(hoaDon_Activity.this);
+songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,6 +234,7 @@ public class hoaDon_Activity extends AppCompatActivity {
         spPhong=dialog.findViewById(R.id.spnPhong);
         spNguoiThue=dialog.findViewById(R.id.spnNguoiThue);
         imgAnhhd=dialog.findViewById(R.id.imgAnhQR);
+//        edtSoNguoi.setText(hdDao.getSoNguoiByMaPhong(maPhong));
 
         edtNgayTao.setText(""+sdf.format(new Date()));
         edtMaHoaDon.setVisibility(View.GONE);
@@ -252,7 +261,7 @@ public class hoaDon_Activity extends AppCompatActivity {
 
         ptDao = new phongTroDao(hoaDon_Activity.this);
         listpt=new ArrayList<PhongTro>();
-        listpt= (ArrayList<PhongTro>) ptDao.getAll();
+        listpt= (ArrayList<PhongTro>) ptDao.getPhongByTrangThai(1);
         spPhongAdapter=new SPPhong_Adapter(hoaDon_Activity.this,listpt);
         spPhong.setAdapter(spPhongAdapter);
         spPhong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -261,6 +270,21 @@ public class hoaDon_Activity extends AppCompatActivity {
                 maPhong=listpt.get(i).getMaPhong();
                 tienPhong=listpt.get(i).getGia();
                 edtTienphong.setText("Tiền phòng: "+tienPhong);
+                dao_hd = new hopDongDao(hoaDon_Activity.this);
+                songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
+                edtSoNguoi.setText(""+songuoii);
+
+                ptDao = new phongTroDao(hoaDon_Activity.this);
+                dao_lp = new LoaiPhongDao(hoaDon_Activity.this);
+                maloaii = ptDao.getMaLoaiTheoMaPhong(maPhong);
+
+                LoaiPhong lp = dao_lp.getID(String.valueOf(maloaii));
+                int gd = lp.getGiaDien();
+                int gn = lp.getGiaNuoc();
+                int pdv = lp.getPhiDichVu();
+                edtDonGiaDien.setText(""+gd);
+                edtDonGiaNuoc.setText(""+gn);
+                edtPhiDichVu.setText(""+pdv);
             }
 
             @Override

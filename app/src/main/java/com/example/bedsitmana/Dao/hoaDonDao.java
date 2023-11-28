@@ -8,7 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bedsitmana.Database.DbHelper;
 import com.example.bedsitmana.model.HoaDon;
+import com.example.bedsitmana.model.LoaiPhong;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -151,4 +155,17 @@ public class hoaDonDao {
         db.update("HoaDon", values, "maHoaDon = ?", new String[]{String.valueOf(mahoadon)});
         db.close();
     }
+    @SuppressLint("Range")
+    public int getSoNguoiByMaPhong(int maPhong) {
+        String sql = "SELECT HoaDon.soNguoi FROM HoaDon JOIN HopDong ON HoaDon.maPhong = HopDong.maPhong WHERE HopDong.maPhong=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        int soNguoi = 0;
+        if (cursor.moveToFirst()) {
+            soNguoi = cursor.getInt(cursor.getColumnIndex("soNguoi"));
+        }
+        cursor.close();
+        return soNguoi;
+    }
+
+
 }

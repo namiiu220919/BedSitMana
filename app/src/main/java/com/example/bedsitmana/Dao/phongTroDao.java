@@ -94,4 +94,20 @@ public class phongTroDao {
         cursor.close();
         return tenPhong;
     }
+    @SuppressLint("Range")
+    public int getMaLoaiTheoMaPhong(int maPhong) {
+        String sql = "SELECT maLoai FROM PhongTro WHERE maPhong = ?";
+        int maLoai = 0;
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        if (cursor.moveToFirst()) {
+            maLoai = cursor.getInt(cursor.getColumnIndex("maLoai"));
+        }
+        cursor.close();
+        return maLoai;
+    }
+    public List<PhongTro> getPhongByTrangThai(int trangThai) {
+        String sql = "SELECT * FROM PhongTro WHERE trangThai = ?";
+        return getData(sql, String.valueOf(trangThai));
+    }
+
 }

@@ -145,4 +145,15 @@ public class hopDongDao {
         db.update("PhongTro", values, "maphong = ?", new String[]{String.valueOf(maphong)});
         db.close();
     }
+    @SuppressLint("Range")
+    public int getSoNguoiByMaPhongHD(int maPhong) {
+        String sql = "SELECT soNguoi FROM HopDong WHERE maPhong=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        int soNguoi = 0;
+        if (cursor.moveToFirst()) {
+            soNguoi = cursor.getInt(cursor.getColumnIndex("soNguoi"));
+        }
+        cursor.close();
+        return soNguoi;
+    }
 }

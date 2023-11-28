@@ -112,14 +112,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 "giaTien INTEGER NOT NULL," +
                 "soNguoi INTEGER NOT NULL," +
                 "soXe INTEGER NOT NULL," +
-                "ghiChu TEXT NOT NULL," +
+                "ghiChu TEXT," +
                 "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableHopDong);
         //Thêm dữ liệu bảng HopDong
         sqLiteDatabase.execSQL("insert into HopDong(sdt,CCCD,thuongTru,ngayKy,thoiHan,tienCoc,giaTien,soNguoi,soXe,ghiChu,maNguoiThue,maPhong) values" +
-                "('847837487',847837487,'Bắc Giang','2023-11-17',6,2000000,3000000,3,3,'non','quynh01',1),"+
-        "('123456789',123456789,'Hải Dương','2023-11-17',6,2000000,3000000,3,3,'non','huy',2)");
+                "('847837487',847837487,'Bắc Giang','2023-11-17',6,2000000,3000000,2,3,'non','quynh01',1),"+
+        "('123456789',123456789,'Hải Dương','2023-11-17',6,2000000,3000000,4,5,'non','huy',2)");
 
         //Tạo bảng SuCo
         String createTableSuCo = "create table SuCo(" +
