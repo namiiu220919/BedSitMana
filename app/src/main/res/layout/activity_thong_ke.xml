@@ -8,9 +8,82 @@
     android:background="@drawable/background"
     tools:context=".Activity.loaiPhong_Activity">
     <include layout="@layout/toolbar"/>
-    <ListView
-        android:id="@+id/lstThongKe"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".fragment_doanh_thu">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="100dp"
+            android:weightSum="3">
+            <Button
+                android:id="@+id/btnTuNgay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/khungedt"
+                android:text="Từ ngày"/>
+            <EditText
+                android:id="@+id/edtTuNgay"
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+                android:hint="yyyy-MM-dd"
+                android:textColorHint="@color/white"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="18dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/btnDenNgay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/khungedt"
+                android:text="Đến ngày"/>
+            <EditText
+                android:id="@+id/edtDenNgay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="yyyy-MM-dd"
+                android:textColorHint="@color/white"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="18dp"/>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnDoanhThu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doanh thu"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/khungedt"/>
+        <TextView
+            android:id="@+id/txtDoanhThu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Doanh Thu"
+            android:layout_marginTop="20dp"
+            android:textColor="#F88E4B"/>
+    </LinearLayout>
 
 </LinearLayout>
