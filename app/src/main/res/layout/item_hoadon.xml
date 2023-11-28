@@ -107,7 +107,7 @@
             <TextView
                 android:id="@+id/txtTongHoaDon"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:text="Tổng : 4.583.000đ"
                 android:textColor="@color/white"
@@ -115,9 +115,10 @@
             <TextView
                 android:id="@+id/txtTrangThai_HoaDon"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Đã thanh toán"
+                android:gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
