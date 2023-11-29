@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.bedsitmana.Database.DbHelper;
 import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.LoaiPhong;
+import com.example.bedsitmana.model.NguoiThue;
+import com.example.bedsitmana.model.PhongTro;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,6 +103,10 @@ public class hoaDonDao {
         }
         return list;
     }
+    public List<HoaDon> getHoaDonByMaPhong(int maPhong) {
+        String sql = "SELECT * FROM HoaDon WHERE maPhong = ?";
+        return getDaTa(sql, String.valueOf(maPhong));
+    }
     //get all
     public List<HoaDon> getAll(){
         String sql = "SELECT * FROM HoaDon";
@@ -155,6 +161,8 @@ public class hoaDonDao {
         db.update("HoaDon", values, "maHoaDon = ?", new String[]{String.valueOf(mahoadon)});
         db.close();
     }
+
+
 
 
 
