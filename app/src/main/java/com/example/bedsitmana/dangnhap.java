@@ -63,6 +63,7 @@ public class dangnhap extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("username11", strUser); // Lưu thông tin người dùng vào SharedPreferences
                 editor.apply();
+
                 startActivity(i);
                 finish();
             }else if (dao.CheckLoginNT(strUser,strPass)>0){

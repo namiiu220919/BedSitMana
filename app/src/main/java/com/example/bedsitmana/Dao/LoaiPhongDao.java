@@ -71,15 +71,5 @@ public class    LoaiPhongDao {
             return null;
         }
     }
-//    public LoaiPhong getLoaiPhongByMaPhong(int maPhong) {
-//        String sql = "SELECT LoaiPhong.* FROM LoaiPhong " +
-//                "JOIN Phong ON LoaiPhong.maLoai = Phong.maLoai " +
-//                "WHERE Phong.maPhong = ?";
-//        List<LoaiPhong> list = getDaTa(sql, String.valueOf(maPhong));
-//        if (!list.isEmpty()) {
-//            return list.get(0);
-//        } else {
-//            return null;
-//        }
-//    }
+
 }

@@ -23,6 +23,7 @@ import com.example.bedsitmana.Activity.nguoiThue_Activity;
 import com.example.bedsitmana.Activity.phong_Activity;
 import com.example.bedsitmana.Activity.suCo_Activity;
 import com.example.bedsitmana.Activity.thongKe_Activity;
+import com.example.bedsitmana.Adapter.HoaDon_Adapter;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Fragment.frg_NganHang;
 import com.example.bedsitmana.Fragment.frg_doimatkhau;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("key", username);
         frg_thongtintaikhoan frgThongtintaikhoan=new frg_thongtintaikhoan();
         frgThongtintaikhoan.setArguments(bundle);
+
 
         String user = username;
         if(user.equalsIgnoreCase("admin")){

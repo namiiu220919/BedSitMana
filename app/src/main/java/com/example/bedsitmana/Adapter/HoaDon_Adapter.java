@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 
 public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
     TextView txtPhong_HoaDon,txtTenTruongPhong_HoaDon,txtNgayTao_HoaDon,txtGhiChu_HoaDon,txtTongHoaDon,txtTrangThai_HoaDon;
-    ImageView btnDelete, imgAnh,imgAnhQR_tt, imgAnhThanhToan;
+    ImageView btnDelete, imgAnh,imgAnhQR_tt, imgAnhThanhToan,imgXN;
     private Context context;
     private ArrayList<HoaDon> list;
     hoaDon_Activity hoaDonActivity;
@@ -93,6 +94,7 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             txtTrangThai_HoaDon=v.findViewById(R.id.txtTrangThai_HoaDon);
             btnDelete=v.findViewById(R.id.btnDelete);
             imgAnh=v.findViewById(R.id.imgAnh);
+            imgXN=v.findViewById(R.id.imgXN);
             txtTrangThai_HoaDon=v.findViewById(R.id.txtTrangThai_HoaDon);
 
             ptDao = new phongTroDao(context);
@@ -111,13 +113,21 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             if (hoaDon.getTrangThai()==0){
                 txtTrangThai_HoaDon.setText("Thanh toán ngay");
                 txtTrangThai_HoaDon.setTextColor(Color.GREEN);
+                imgXN.setVisibility(View.GONE);
             }else if (hoaDon.getTrangThai()==1){
                 txtTrangThai_HoaDon.setText("Chờ xác nhận");
                 txtTrangThai_HoaDon.setTextColor(Color.RED);
             }else {
                 txtTrangThai_HoaDon.setText("Đã thanh toán");
                 txtTrangThai_HoaDon.setTextColor(Color.GREEN);
+                imgXN.setVisibility(View.GONE);
             }
+            imgXN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    hoaDon.setTrangThai(2);
+                }
+            });
             anhthanhtoan=hoaDon.getAnhThanhToan();
             Bitmap bitmap = BitmapFactory.decodeByteArray(anhthanhtoan,0,anhthanhtoan.length);
             imgAnh.setImageBitmap(bitmap);
