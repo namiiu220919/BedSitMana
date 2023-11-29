@@ -113,28 +113,9 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             imgXN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Cảnh báo");
-        builder.setIcon(R.drawable.baseline_warning_24);
-        builder.setMessage("Bạn có chắc chắn muốn xác nhận thanh toán không");
-        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                hoadonDao.updateTrangThaiHoaDon(hoaDon.getMaHoaDon(),2);
-                notifyDataSetChanged();
-                dialogInterface.cancel();
-                Toast.makeText(context, "Xóa thành công ", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        builder.show();
-
+                    hoadonDao.updateTrangThaiHoaDon(hoaDon.getMaHoaDon(),2);
+                    hoaDon.setTrangThai(2);
+                    notifyDataSetChanged();
                 }
             });
 
