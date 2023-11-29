@@ -4,7 +4,7 @@
     android:layout_width="350dp"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="vertical"
 
     android:padding="20dp">
@@ -21,48 +21,65 @@
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Tên phòng"
+        android:textColor="@color/white" />
     <EditText
         android:id="@+id/edtTenPhong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Tên phòng"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Loại phòng"
+        android:textColor="@color/white" />
     <Spinner
         android:id="@+id/spnLoaiPhong"
         android:layout_width="match_parent"
         android:layout_height="33dp"
-        android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
-        android:background="@drawable/khungedt"
+        android:backgroundTint="@color/orange"
         android:popupBackground="@color/black"
         android:textSize="17dp" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Giá phòng"
+        android:textColor="@color/white" />
     <EditText
         android:id="@+id/edtGia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Giá"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Tiện nghi"
+        android:textColor="@color/white" />
     <EditText
         android:id="@+id/edtTienNghi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Tiện nghi"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"

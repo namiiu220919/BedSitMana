@@ -124,7 +124,7 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setTitle("Cảnh báo");
                         builder.setIcon(R.drawable.baseline_warning_24);
-                        builder.setMessage("Bạn có chắc chắn xác nhận đã sửa chữa");
+                        builder.setMessage("Bạn có chắc chắn xác nhận đã thanh toán");
                         builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

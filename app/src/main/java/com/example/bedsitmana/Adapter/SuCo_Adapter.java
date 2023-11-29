@@ -77,6 +77,7 @@ public class SuCo_Adapter extends ArrayAdapter<suCo> {
                 txtTinhTrang_SuCo.setTextColor(Color.RED);
             }else{
                 txtTinhTrang_SuCo.setText("Đã sửa chữa");
+                imgXN.setVisibility(View.GONE);
                 txtTinhTrang_SuCo.setTextColor(Color.GREEN);
             }
 
@@ -87,7 +88,7 @@ public class SuCo_Adapter extends ArrayAdapter<suCo> {
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setTitle("Cảnh báo");
                         builder.setIcon(R.drawable.baseline_warning_24);
-                        builder.setMessage("Bạn có chắc chắn xác nhận thanh toán");
+                        builder.setMessage("Bạn có chắc chắn xác nhận đã sửa chữa");
                         builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

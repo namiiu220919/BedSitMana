@@ -5,7 +5,7 @@ import java.util.Date;
 public class HopDong {
     private int maHopDong;
     private String sdt;
-    private int CCCD;
+    private String CCCD;
     private String thuongTru;
     private Date ngayKy;
     private int thoiHan;
@@ -21,23 +21,6 @@ public class HopDong {
 
 
     public HopDong() {
-    }
-
-    public HopDong(int maHopDong, String sdt, int CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong) {
-        this.maHopDong = maHopDong;
-        this.sdt = sdt;
-        this.CCCD = CCCD;
-        this.thuongTru = thuongTru;
-        this.ngayKy = ngayKy;
-        this.thoiHan = thoiHan;
-        this.tenPhong = tenPhong;
-        this.tienCoc = tienCoc;
-        this.giaTien = giaTien;
-        this.soNguoi = soNguoi;
-        this.soXe = soXe;
-        this.ghiChu = ghiChu;
-        this.maNguoiThue = maNguoiThue;
-        this.maPhong = maPhong;
     }
 
     public int getMaHopDong() {
@@ -56,11 +39,11 @@ public class HopDong {
         this.sdt = sdt;
     }
 
-    public int getCCCD() {
+    public String getCCCD() {
         return CCCD;
     }
 
-    public void setCCCD(int CCCD) {
+    public void setCCCD(String CCCD) {
         this.CCCD = CCCD;
     }
 
@@ -149,6 +132,23 @@ public class HopDong {
     }
 
     public void setMaPhong(int maPhong) {
+        this.maPhong = maPhong;
+    }
+
+    public HopDong(int maHopDong, String sdt, String CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong) {
+        this.maHopDong = maHopDong;
+        this.sdt = sdt;
+        this.CCCD = CCCD;
+        this.thuongTru = thuongTru;
+        this.ngayKy = ngayKy;
+        this.thoiHan = thoiHan;
+        this.tenPhong = tenPhong;
+        this.tienCoc = tienCoc;
+        this.giaTien = giaTien;
+        this.soNguoi = soNguoi;
+        this.soXe = soXe;
+        this.ghiChu = ghiChu;
+        this.maNguoiThue = maNguoiThue;
         this.maPhong = maPhong;
     }
 }

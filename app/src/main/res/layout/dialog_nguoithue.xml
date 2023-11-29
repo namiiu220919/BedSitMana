@@ -3,58 +3,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     android:background="@drawable/khungedt"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
     android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Tài khoản"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/edtUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Nhập tên đăng nhập"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Mật khẩu"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/edtPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Nhập mật khẩu"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Nhập lại mật khẩu"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/edtNhapLaiPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Nhập lại mật khẩu"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Họ tên"
+        android:textColor="@color/white" />
+
     <EditText
         android:id="@+id/edtHoTen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Nhập họ tên"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
@@ -98,49 +123,89 @@
 
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/edtNamSinh"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/khungedt"
-        android:hint="Năm sinh"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/edtSDT"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="6dp"
+            android:paddingTop="10dp"
+            android:text="Ngày sinh"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="18dp"
+            android:paddingTop="10dp"
+            android:text="Số điẹn thoại"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/khungedt"
-        android:hint="Số điện thoại"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtNamSinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/khungedt"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9F9B9B"
+            android:textSize="17dp" />
+
+        <EditText
+            android:id="@+id/edtSDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/khungedt"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9F9B9B"
+            android:textSize="17dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Thường trú"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/edtThuongTru"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Thường trú"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="CCCD/CMND"
+        android:textColor="@color/white" />
+
     <EditText
         android:id="@+id/edtCCCD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="CCCD/CMND"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
@@ -152,32 +217,33 @@
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:layout_marginTop="10dp"
-
+        android:backgroundTint="@color/orange"
         android:popupBackground="@color/black"
         android:textSize="17dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnXacNhan"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:text="Xác nhận"
-            android:textColor="@color/orange"
-            android:background="@drawable/khung_login"
             android:layout_margin="20dp"
-            />
+            android:background="@drawable/khung_login"
+            android:text="Xác nhận"
+            android:textColor="@color/orange" />
+
         <Button
             android:id="@+id/btnHuy"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:text="Hủy"
-            android:textColor="@color/orange"
-            android:background="@drawable/khung_login"
             android:layout_margin="20dp"
-            />
+            android:background="@drawable/khung_login"
+            android:text="Hủy"
+            android:textColor="@color/orange" />
     </LinearLayout>
 
 </LinearLayout>

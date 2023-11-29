@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="20dp">
-
     <EditText
         android:id="@+id/edtMaSuCo"
         android:layout_width="match_parent"
@@ -20,39 +19,54 @@
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Loại sự cố"
+        android:textColor="@color/white" />
     <EditText
         android:id="@+id/edtLoaiSuCo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Loai sự cố"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Mô tả"
+        android:textColor="@color/white" />
     <EditText
         android:id="@+id/edtMota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@drawable/khungedt"
-        android:hint="Mô tả"
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
-    <Spinner
-        android:id="@+id/spnPhong_SuCo"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="Phòng"
+        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/edtPhong"
         android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/khungedt"
-        android:popupBackground="@color/black"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
-
     <CheckBox
         android:layout_gravity="start"
         android:id="@+id/chkDaSua"

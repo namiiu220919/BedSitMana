@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bedsitmana.Database.DbHelper;
 
+import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.suCo;
 
 import java.util.ArrayList;
@@ -77,5 +78,9 @@ public class suCoDao {
         values.put("trangThai", trangthai);
         db.update("SuCo", values, "maSuCo = ?", new String[]{String.valueOf(maSuCo)});
         db.close();
+    }
+    public List<suCo> getSuCoByMaPhong(int maPhong) {
+        String sql = "SELECT * FROM SuCo WHERE maPhong = ?";
+        return getData(sql, String.valueOf(maPhong));
     }
 }

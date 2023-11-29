@@ -120,7 +120,7 @@ public class nguoiThue_Activity extends AppCompatActivity {
         spnPhong=dialog.findViewById(R.id.spnPhong);
         btnXacNhan=dialog.findViewById(R.id.btnXacNhan);
         btnHuy=dialog.findViewById(R.id.btnHuy);
-
+        rdoNam.setChecked(true);
 
         troDao=new phongTroDao(context);
         listpt = new ArrayList<PhongTro>();

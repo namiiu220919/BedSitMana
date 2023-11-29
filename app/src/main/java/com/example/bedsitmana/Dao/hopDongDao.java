@@ -71,7 +71,7 @@ public class hopDongDao {
             HopDong hopDong = new HopDong();
             hopDong.setMaHopDong(Integer.parseInt(c.getString(c.getColumnIndex("maHopDong"))));
             hopDong.setSdt(c.getString(c.getColumnIndex("sdt")));
-            hopDong.setCCCD(Integer.parseInt(c.getString(c.getColumnIndex("CCCD"))));
+            hopDong.setCCCD(c.getString(c.getColumnIndex("CCCD")));
             hopDong.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
             try {
                 hopDong.setNgayKy(sdf.parse(c.getString(c.getColumnIndex("ngayKy"))));
@@ -116,7 +116,7 @@ public class hopDongDao {
             HopDong hopDong = new HopDong();
             hopDong.setMaHopDong(c.getInt(c.getColumnIndex("maHopDong")));
             hopDong.setSdt(c.getString(c.getColumnIndex("sdt")));
-            hopDong.setCCCD(c.getInt(c.getColumnIndex("CCCD")));
+            hopDong.setCCCD(c.getString(c.getColumnIndex("CCCD")));
             hopDong.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
             try {
                 hopDong.setNgayKy(sdf.parse(c.getString(c.getColumnIndex("ngayKy"))));

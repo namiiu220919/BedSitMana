@@ -14,25 +14,20 @@
         android:textStyle="bold"
         android:textSize="30dp"
         android:layout_gravity="center"
-        android:layout_margin="20dp"/>
+        android:layout_margin="10dp"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:paddingTop="5dp"
             android:text="Người thuê"
             android:paddingLeft="6dp"
             android:textColor="@color/white" />
-    </LinearLayout>
+
 
     <Spinner
         android:id="@+id/spnNguoiThue"
@@ -269,25 +264,43 @@
     <EditText
         android:id="@+id/edtGhiChu_hd"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:gravity="start"
         android:padding="10dp"
         android:paddingLeft="7dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:background="@drawable/khungedt"/>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="20dp"
+    android:orientation="horizontal">
     <Button
         android:id="@+id/btnTao"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/khung_login"
-        android:layout_gravity="center"
+        android:layout_gravity="end"
         android:text="Tạo hợp đồng"
         android:textColor="@color/orange"/>
+    <Button
+        android:id="@+id/btnHuy"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="end"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/khung_login"
+        android:text="Hủy"
+        android:textColor="@color/orange"/>
 
+</LinearLayout>
 </LinearLayout>
 </LinearLayout>

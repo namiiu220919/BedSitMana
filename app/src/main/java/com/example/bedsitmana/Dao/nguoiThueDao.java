@@ -7,10 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bedsitmana.Database.DbHelper;
-import com.example.bedsitmana.model.HopDong;
 import com.example.bedsitmana.model.NguoiThue;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +123,7 @@ public class nguoiThueDao {
 
         return danhSachNguoiThue;
     }
+    @SuppressLint("Range")
     public int getMaPhongByUser(String user) {
         String sql = "SELECT maPhong FROM NguoiThue WHERE maNguoiThue=?";
         Cursor cursor = db.rawQuery(sql, new String[]{user});
@@ -136,6 +135,29 @@ public class nguoiThueDao {
 
         cursor.close();
         return maPhong;
+    }
+    @SuppressLint("Range")
+    public ArrayList<NguoiThue> getNguoiThueByMaPhong(int maPhong) {
+        String sql = "SELECT * FROM NguoiThue WHERE maPhong=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        ArrayList<NguoiThue> danhSachNguoiThue = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            NguoiThue obj = new NguoiThue();
+            obj.setMaNguoithue(cursor.getString(cursor.getColumnIndex("maNguoiThue")));
+            obj.setMatKhauNT(cursor.getString(cursor.getColumnIndex("matKhauNT")));
+            obj.setTenNguoiThue(cursor.getString(cursor.getColumnIndex("tenNguoiThue")));
+            obj.setThuongTru(cursor.getString(cursor.getColumnIndex("thuongTru")));
+            obj.setSdt(cursor.getString(cursor.getColumnIndex("sdt")));
+            obj.setcCCD(cursor.getString(cursor.getColumnIndex("CCCD")));
+            obj.setNamSinh(cursor.getString(cursor.getColumnIndex("namSinh")));
+            obj.setGioiTinh(Integer.parseInt(cursor.getString(cursor.getColumnIndex("gioiTinh"))));
+            obj.setMaPhong(Integer.parseInt(cursor.getString(cursor.getColumnIndex("maPhong"))));
+            danhSachNguoiThue.add(obj);
+        }
+
+        cursor.close();
+        return danhSachNguoiThue;
     }
 
 }

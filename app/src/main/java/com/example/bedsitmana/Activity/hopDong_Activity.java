@@ -26,6 +26,7 @@ import com.example.bedsitmana.Dao.hopDongDao;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
+import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.HopDong;
 import com.example.bedsitmana.model.NguoiThue;
 
@@ -45,13 +46,13 @@ public class hopDong_Activity extends AppCompatActivity {
     ImageView btnAdd;
     EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
     Spinner spinner;
-    int position,cccd,maphong,gia;
-    String mant,dc,sdt;
+    int position,maphong,gia;
+    String mant,dc,sdt,cccd;
     nguoiThueDao dao_nt;
     NguoiThue nt;
     NguoiThueSpinerAdapter spinerAdapter;
     phongTroDao dao_pt;
-    Button btnTaoHD;
+    Button btnTaoHD,btnHuy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,19 +135,20 @@ public class hopDong_Activity extends AppCompatActivity {
         edtSoxe_hd = dialog.findViewById(R.id.edtSoxe_hd);
         edtGhiChu_hd = dialog.findViewById(R.id.edtGhiChu_hd);
         btnTaoHD = dialog.findViewById(R.id.btnTao);
+        btnHuy = dialog.findViewById(R.id.btnHuy);
         spinner = dialog.findViewById(R.id.spnNguoiThue);
         dao_pt = new phongTroDao(hopDong_Activity.this);
         list_nt = new ArrayList<NguoiThue>();
         dao_nt = new nguoiThueDao(hopDong_Activity.this);
-        list_nt = (ArrayList<NguoiThue>) dao_nt.getAll();
+        maphong = getIntent().getIntExtra("maphong", -1);
+        list_nt =dao_nt.getNguoiThueByMaPhong(maphong);
         spinerAdapter = new NguoiThueSpinerAdapter(hopDong_Activity.this, list_nt);
         spinner.setAdapter(spinerAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mant = list_nt.get(i).getMaNguoithue();
-
-                cccd = Integer.parseInt(list_nt.get(i).getcCCD());
+                cccd = list_nt.get(i).getcCCD();
                 sdt = list_nt.get(i).getSdt();
                 dc = list_nt.get(i).getThuongTru();
                 edtCCCD_hd.setText(cccd+"");
@@ -171,6 +173,13 @@ public class hopDong_Activity extends AppCompatActivity {
         edtCCCD_hd.setEnabled(false);
         edtSdt_hd.setEnabled(false);
         edtDiaChi_hd.setEnabled(false);
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(hopDong_Activity.this, phong_Activity.class);
+                startActivity(intent);
+            }
+        });
         btnTaoHD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
