@@ -122,12 +122,6 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
                 txtTrangThai_HoaDon.setTextColor(Color.GREEN);
                 imgXN.setVisibility(View.GONE);
             }
-            imgXN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    hoaDon.setTrangThai(2);
-                }
-            });
             anhthanhtoan=hoaDon.getAnhThanhToan();
             Bitmap bitmap = BitmapFactory.decodeByteArray(anhthanhtoan,0,anhthanhtoan.length);
             imgAnh.setImageBitmap(bitmap);

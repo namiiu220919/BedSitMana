@@ -21,12 +21,23 @@
         android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
     <Spinner
-        android:id="@+id/spnNguoiThue"
+        android:id="@+id/spnPhong"
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:layout_marginTop="10dp"
-
+        android:backgroundTint="@color/orange"
         android:popupBackground="@color/black"
+        android:textSize="17dp" />
+    <EditText
+        android:id="@+id/edtNguoiThue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/khungedt"
+        android:hint="Người thuê"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9F9B9B"
         android:textSize="17dp" />
     <EditText
         android:id="@+id/edtSdt"
@@ -38,14 +49,6 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textColorHint="#9F9B9B"
-        android:textSize="17dp" />
-    <Spinner
-        android:id="@+id/spnPhong"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:layout_marginTop="10dp"
-
-        android:popupBackground="@color/black"
         android:textSize="17dp" />
 
     <EditText

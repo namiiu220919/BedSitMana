@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -61,9 +62,9 @@ public class hoaDon_Activity extends AppCompatActivity {
     hoaDonDao hdDao;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     TextView txtNgayTao,txtTenTruongPhong,txtSdt,txtTenPhong,txtSoDien,txtGiaDien,txtTongDien,txtSoNguoi,txtGiaNuoc,txtTongNuoc,txtPhiDichVu_hd,txtTienPhong_hd,txtGhiChu_hd,txtTongHd;
-    EditText edtMaHoaDon,edtSdt,edtPhiDichVu,edtTienphong,edtSoDien,edtDonGiaDien,edtSoNguoi,edtDonGiaNuoc,edtNgayTao,edtGhiChu_hd;
+    EditText edtNguoithue,edtMaHoaDon,edtSdt,edtPhiDichVu,edtTienphong,edtSoDien,edtDonGiaDien,edtSoNguoi,edtDonGiaNuoc,edtNgayTao,edtGhiChu_hd;
     ImageView btnAdd, imgAnhhd;
-    Spinner spPhong, spNguoiThue;
+    Spinner spPhong;
     NguoiThueSpinerAdapter nguoiThueSpinerAdapter;
     SPPhong_Adapter spPhongAdapter;
 
@@ -232,8 +233,17 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
         btnXacNhan=dialog.findViewById(R.id.btnXacNhan);
         btnHuy=dialog.findViewById(R.id.btnHuy);
         spPhong=dialog.findViewById(R.id.spnPhong);
-        spNguoiThue=dialog.findViewById(R.id.spnNguoiThue);
+        edtNguoithue=dialog.findViewById(R.id.edtNguoiThue);
         imgAnhhd=dialog.findViewById(R.id.imgAnhQR);
+        chkDaThanhToan.setVisibility(View.GONE);
+        edtNgayTao.setEnabled(false);
+        edtSoNguoi.setEnabled(false);
+        edtDonGiaDien.setEnabled(false);
+        edtDonGiaNuoc.setEnabled(false);
+        edtPhiDichVu.setEnabled(false);
+        edtTienphong.setEnabled(false);
+        edtNguoithue.setEnabled(false);
+        edtSdt.setEnabled(false);
 //        edtSoNguoi.setText(hdDao.getSoNguoiByMaPhong(maPhong));
 
         edtNgayTao.setText(""+sdf.format(new Date()));
@@ -244,20 +254,7 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
         listnt=new ArrayList<NguoiThue>();
         listnt= (ArrayList<NguoiThue>) ntDao.getAll();
         nguoiThueSpinerAdapter = new NguoiThueSpinerAdapter(hoaDon_Activity.this,listnt);
-        spNguoiThue.setAdapter(nguoiThueSpinerAdapter);
-        spNguoiThue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                maNguoiThue= listnt.get(i).getMaNguoithue();
-                sdt= listnt.get(i).getSdt();
-                edtSdt.setText("Điện thoại: "+sdt);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         ptDao = new phongTroDao(hoaDon_Activity.this);
         listpt=new ArrayList<PhongTro>();
@@ -269,10 +266,16 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 maPhong=listpt.get(i).getMaPhong();
                 tienPhong=listpt.get(i).getGia();
-                edtTienphong.setText("Tiền phòng: "+tienPhong);
+                edtTienphong.setText(""+tienPhong);
                 dao_hd = new hopDongDao(hoaDon_Activity.this);
                 songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
                 edtSoNguoi.setText(""+songuoii);
+                sdt = dao_hd.getSDTByMaPhong(maPhong);
+                edtSdt.setText(sdt);
+                maNguoiThue = dao_hd.getMaNguoiThueByMaPhong(maPhong);
+                NguoiThue nt = ntDao.getID(maNguoiThue);
+                String ten = nt.getTenNguoiThue();
+                edtNguoithue.setText(ten);
 
                 ptDao = new phongTroDao(hoaDon_Activity.this);
                 dao_lp = new LoaiPhongDao(hoaDon_Activity.this);
@@ -285,6 +288,8 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
                 edtDonGiaDien.setText(""+gd);
                 edtDonGiaNuoc.setText(""+gn);
                 edtPhiDichVu.setText(""+pdv);
+
+
             }
 
             @Override
@@ -299,13 +304,6 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
                     positionNT=i;
                 }
             }
-            spNguoiThue.setSelection(positionNT);
-            for (int i = 0; i<listpt.size();i++){
-                if (hoaDon.getMaPhong()==(listnt.get(i).getMaPhong())){
-                    positionPT=i;
-                }
-            }
-            spNguoiThue.setSelection(positionPT);
             edtSdt.setText(hoaDon.getSdt());
             edtPhiDichVu.setText(String.valueOf(hoaDon.getPhiDichVu()));
             edtTienphong.setText(String.valueOf(hoaDon.getTienPhong()));
@@ -327,6 +325,20 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (TextUtils.isEmpty(edtSoDien.getText().toString())) {
+                    Toast.makeText(context, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    int sod = Integer.parseInt(edtSoDien.getText().toString());
+                    if (sod <= 0) {
+                        Toast.makeText(context, "Số điện phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, "Số điện phải là số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 hoaDon=new HoaDon();
                 hoaDon.setMaNguoiThue(maNguoiThue);
                 hoaDon.setSdt(sdt);

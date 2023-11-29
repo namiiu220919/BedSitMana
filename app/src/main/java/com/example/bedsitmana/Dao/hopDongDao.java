@@ -156,4 +156,26 @@ public class hopDongDao {
         cursor.close();
         return soNguoi;
     }
+    @SuppressLint("Range")
+    public String getMaNguoiThueByMaPhong(int maPhong) {
+        String maNguoiThue = "";
+        String sql = "SELECT maNguoiThue FROM HopDong WHERE maPhong=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        if (cursor.moveToFirst()) {
+            maNguoiThue = cursor.getString(cursor.getColumnIndex("maNguoiThue"));
+        }
+        cursor.close();
+        return maNguoiThue;
+    }
+    @SuppressLint("Range")
+    public String getSDTByMaPhong(int maPhong) {
+        String sdt = "";
+        String sql = "SELECT sdt FROM HopDong WHERE maPhong=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(maPhong)});
+        if (cursor.moveToFirst()) {
+            sdt = cursor.getString(cursor.getColumnIndex("sdt"));
+        }
+        cursor.close();
+        return sdt;
+    }
 }
