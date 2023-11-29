@@ -72,4 +72,10 @@ public class suCoDao {
         }
         return list;
     }
+    public void updateTrangThaiHoaDon(int maSuCo, int trangthai) {
+        ContentValues values = new ContentValues();
+        values.put("trangThai", trangthai);
+        db.update("SuCo", values, "maSuCo = ?", new String[]{String.valueOf(maSuCo)});
+        db.close();
+    }
 }

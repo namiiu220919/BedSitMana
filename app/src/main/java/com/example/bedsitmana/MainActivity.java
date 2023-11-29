@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             NguoiThue nt = dao.getID(user);
             String u = nt.getTenNguoiThue();
             txtUser.setText("Welcome "+u);
+            nav.getMenu().findItem(R.id.nav_NganHang).setVisible(false);
         }
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -1,12 +1,14 @@
 package com.example.bedsitmana.Adapter;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -86,6 +88,9 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             v=inflater.inflate(R.layout.item_hoadon,null);
         }
         final HoaDon hoaDon = list.get(position);
+
+        SharedPreferences preferences = context.getSharedPreferences("user11", MODE_PRIVATE);
+        String username = preferences.getString("username11", "...");
         if (hoaDon!=null){
             txtPhong_HoaDon=v.findViewById(R.id.txtPhong_HoaDon);
             txtTenTruongPhong_HoaDon=v.findViewById(R.id.txtTenTruongPhong_HoaDon);
@@ -106,18 +111,52 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             txtTenTruongPhong_HoaDon.setText("Tên trưởng phòng: "+nguoiThue.getTenNguoiThue());
             txtNgayTao_HoaDon.setText("Ngày: "+sdf.format(hoaDon.getNgayTao()));
             txtGhiChu_HoaDon.setText("Ghi chú: "+hoaDon.getGhiChu());
+
+
             int tong= 0;
             hoadonDao=new hoaDonDao(context);
             tong=hoadonDao.getTongTienDien(hoaDon.getMaHoaDon())+hoadonDao.getTongTienNuoc(hoaDon.getMaHoaDon())+hoaDon.getPhiDichVu()+hoaDon.getTienPhong();
             txtTongHoaDon.setText("Tổng: "+tong+"đ");
-            imgXN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    hoadonDao.updateTrangThaiHoaDon(hoaDon.getMaHoaDon(),2);
-                    hoaDon.setTrangThai(2);
-                    notifyDataSetChanged();
-                }
-            });
+            if (username.equalsIgnoreCase("admin")){
+                imgXN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setTitle("Cảnh báo");
+                        builder.setIcon(R.drawable.baseline_warning_24);
+                        builder.setMessage("Bạn có chắc chắn xác nhận đã sửa chữa");
+                        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                hoadonDao.updateTrangThaiHoaDon(hoaDon.getMaHoaDon(),2);
+                                hoaDon.setTrangThai(2);
+                                notifyDataSetChanged();
+                                dialogInterface.cancel();
+                                Toast.makeText(context, "Đã xác nhận ", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        builder.show();
+
+                    }
+                });
+                btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        hoaDonActivity.xoa(String.valueOf(hoaDon.getMaHoaDon()));
+                    }
+                });
+            }else {
+                imgXN.setVisibility(View.GONE);
+                btnDelete.setVisibility(View.GONE);
+            }
+
 
 
 
@@ -149,12 +188,7 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             imgAnh.setImageBitmap(bitmap);
 
 
-            btnDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    hoaDonActivity.xoa(String.valueOf(hoaDon.getMaHoaDon()));
-                }
-            });
+
 
             txtTrangThai_HoaDon.setOnClickListener(new View.OnClickListener() {
                 @Override

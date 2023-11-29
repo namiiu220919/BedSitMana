@@ -15,7 +15,7 @@
     <item
         android:id="@+id/nav_NganHang"
         android:title="Ngân Hàng Thanh Toán"
-        android:icon="@drawable/ic_key"/>
+        android:icon="@drawable/bank"/>
     <item
         android:id="@+id/nav_Loguot"
         android:title="Đăng xuất"

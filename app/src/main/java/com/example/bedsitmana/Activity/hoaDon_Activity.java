@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -100,24 +101,32 @@ public class hoaDon_Activity extends AppCompatActivity {
         hdDao=new hoaDonDao(hoaDon_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
 
-dao_hd = new hopDongDao(hoaDon_Activity.this);
-songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
+        SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
+        String username = preferences.getString("username11", "...");
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog(hoaDon_Activity.this,0);
-            }
-        });
+        dao_hd = new hopDongDao(hoaDon_Activity.this);
+        songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
+        if(username.equalsIgnoreCase("admin")){
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openDialog(hoaDon_Activity.this,0);
+                }
+            });
+        }else {
+            btnAdd.setVisibility(View.GONE);
+        }
+
+
         capNhatLv();
-        lstHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                hoaDon=list.get(i);
-                openDialog(hoaDon_Activity.this,1);
-                return false;
-            }
-        });
+//        lstHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                hoaDon=list.get(i);
+//                openDialog(hoaDon_Activity.this,1);
+//                return false;
+//            }
+//        });
 
         lstHoaDon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -58,6 +58,12 @@
                 android:text="Đã sửa chữa"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/imgXN"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_xacnhan"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
