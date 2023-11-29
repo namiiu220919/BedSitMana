@@ -71,6 +71,7 @@ public class ThanhToan_Activity extends AppCompatActivity {
         hoaDonActivity=new hoaDon_Activity();
         hoadonDao=new hoaDonDao(ThanhToan_Activity.this);
         list= (ArrayList<HoaDon>) hoadonDao.getAll();
+        hoaDon=new HoaDon();
 
         mahoadon=getIntent().getIntExtra("mahoadon",-1);
 
@@ -115,7 +116,7 @@ public class ThanhToan_Activity extends AppCompatActivity {
         btnXacNhantt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hoaDon=new HoaDon();
+
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imgAnhThanhToan.getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

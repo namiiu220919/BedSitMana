@@ -47,18 +47,18 @@ public class hoaDonDao {
 
     public int update(HoaDon hd){
         ContentValues values=new ContentValues();
-        values.put("sdt", hd.getSoDien());
-        values.put("ngayTao", sdf.format(hd.getNgayTao()));
-        values.put("soDien", hd.getSoDien());
-        values.put("donGiaDien", hd.getDonGiaDien());
-        values.put("soNguoi", hd.getSoNguoi());
-        values.put("donGiaNuoc", hd.getDonGiaNuoc());
-        values.put("phiDichVu", hd.getPhiDichVu());
-        values.put("ghiChu", hd.getGhiChu());
-        values.put("tienPhong", hd.getTienPhong());
+//        values.put("sdt", hd.getSoDien());
+//        values.put("ngayTao", sdf.format(hd.getNgayTao()));
+//        values.put("soDien", hd.getSoDien());
+//        values.put("donGiaDien", hd.getDonGiaDien());
+//        values.put("soNguoi", hd.getSoNguoi());
+//        values.put("donGiaNuoc", hd.getDonGiaNuoc());
+//        values.put("phiDichVu", hd.getPhiDichVu());
+//        values.put("ghiChu", hd.getGhiChu());
+//        values.put("tienPhong", hd.getTienPhong());
         values.put("trangThai", hd.getTrangThai());
-        values.put("maPhong", hd.getMaPhong());
-        values.put("maNguoiThue", hd.getMaNguoiThue());
+//        values.put("maPhong", hd.getMaPhong());
+//        values.put("maNguoiThue", hd.getMaNguoiThue());
         return db.update("HoaDon", values,"maHoaDon=?", new String[]{String.valueOf(hd.getMaHoaDon())});
     }
     public int updateanh(HoaDon hd){

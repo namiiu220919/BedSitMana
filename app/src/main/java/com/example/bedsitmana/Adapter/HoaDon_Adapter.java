@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.bedsitmana.Activity.ThanhToan_Activity;
 import com.example.bedsitmana.Activity.hoaDon_Activity;
@@ -65,7 +67,6 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
     Dialog dialog;
     ArrayList<NganHang> listnh;
     NganHangDao nhDao;
-    HoaDon hoaDon;
     final int REQUEST_CODE_FOLDER = 456;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -84,7 +85,7 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             v=inflater.inflate(R.layout.item_hoadon,null);
         }
-        hoaDon = list.get(position);
+        final HoaDon hoaDon = list.get(position);
         if (hoaDon!=null){
             txtPhong_HoaDon=v.findViewById(R.id.txtPhong_HoaDon);
             txtTenTruongPhong_HoaDon=v.findViewById(R.id.txtTenTruongPhong_HoaDon);
@@ -109,19 +110,59 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
             hoadonDao=new hoaDonDao(context);
             tong=hoadonDao.getTongTienDien(hoaDon.getMaHoaDon())+hoadonDao.getTongTienNuoc(hoaDon.getMaHoaDon())+hoaDon.getPhiDichVu()+hoaDon.getTienPhong();
             txtTongHoaDon.setText("Tổng: "+tong+"đ");
+            imgXN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Cảnh báo");
+        builder.setIcon(R.drawable.baseline_warning_24);
+        builder.setMessage("Bạn có chắc chắn muốn xác nhận thanh toán không");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                hoadonDao.updateTrangThaiHoaDon(hoaDon.getMaHoaDon(),2);
+                notifyDataSetChanged();
+                dialogInterface.cancel();
+                Toast.makeText(context, "Xóa thành công ", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        builder.show();
+
+                }
+            });
+
+
 
             if (hoaDon.getTrangThai()==0){
                 txtTrangThai_HoaDon.setText("Thanh toán ngay");
                 txtTrangThai_HoaDon.setTextColor(Color.GREEN);
                 imgXN.setVisibility(View.GONE);
+
             }else if (hoaDon.getTrangThai()==1){
                 txtTrangThai_HoaDon.setText("Chờ xác nhận");
                 txtTrangThai_HoaDon.setTextColor(Color.RED);
+
             }else {
                 txtTrangThai_HoaDon.setText("Đã thanh toán");
                 txtTrangThai_HoaDon.setTextColor(Color.GREEN);
                 imgXN.setVisibility(View.GONE);
             }
+
+//            final int[] isButtonClicked = {0};
+
+
+//            if (isButtonClicked[0] ==1){
+//                hoadonDao.updateTrangThaiHoaDon(hoaDon.getMaHoaDon(),2);
+//            }
+
+
             anhthanhtoan=hoaDon.getAnhThanhToan();
             Bitmap bitmap = BitmapFactory.decodeByteArray(anhthanhtoan,0,anhthanhtoan.length);
             imgAnh.setImageBitmap(bitmap);
@@ -148,85 +189,6 @@ public class HoaDon_Adapter extends ArrayAdapter<HoaDon> {
 
 
         return v;
-    }
-    public void openDialogThanhToan(){
-        dialog = new Dialog(context);
-        dialog.setContentView(R.layout.dialog_thanhtoan);
-
-        spNganHang=dialog.findViewById(R.id.spnNganHang);
-        imgAnhQR_tt=dialog.findViewById(R.id.imgAnhQR_tt);
-        imgAnhThanhToan=dialog.findViewById(R.id.imgAnhThanhToan);
-        btnChonAnhtt=dialog.findViewById(R.id.btnChonAnhtt);
-        btnXacNhantt=dialog.findViewById(R.id.btnXacNhantt);
-        btnHuytt=dialog.findViewById(R.id.btnHuytt);
-        edtmaHoaDon=dialog.findViewById(R.id.edtMaHoaDon);
-        edtmaHoaDon.setVisibility(View.GONE);
-
-        btnChonAnhtt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                hoaDonActivity.startActivityForResult(intent,REQUEST_CODE_FOLDER);
-//                ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODE_FOLDER);
-            }
-        });
-
-        nhDao = new NganHangDao(context);
-        listnh=new ArrayList<NganHang>();
-        listnh= (ArrayList<NganHang>) nhDao.getAll();
-        nganHangSpinnerAdapter = new NganHangSpinner_Adapter(context,listnh);
-        spNganHang.setAdapter(nganHangSpinnerAdapter);
-        spNganHang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                maNganHang= listnh.get(i).getId();
-                anhqr=listnh.get(i).getHinhAnh();
-                Bitmap bitmap = BitmapFactory.decodeByteArray(anhqr,0,anhqr.length);
-                imgAnhQR_tt.setImageBitmap(bitmap);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        edtmaHoaDon.setText(String.valueOf(hoaDon.getMaHoaDon()));
-
-        btnHuytt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        btnXacNhantt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                hoaDon=new HoaDon();
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) imgAnhThanhToan.getDrawable();
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                anhthanhtoan = byteArrayOutputStream.toByteArray();
-                hoaDon.setAnhThanhToan(anhthanhtoan);
-                hoaDon.setTrangThai(1);
-                hoaDon.setMaHoaDon(Integer.parseInt(edtmaHoaDon.getText().toString()));
-                if (hoadonDao.update(hoaDon)>0){
-                    Toast.makeText(context, "Đã gửi", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
-                }
-                hoaDonActivity.capNhatLv();
-                dialog.dismiss();
-            }
-        });
-
-
-
-
-
-        dialog.show();
     }
 
 }

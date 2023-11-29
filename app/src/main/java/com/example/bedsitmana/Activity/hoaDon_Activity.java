@@ -37,6 +37,7 @@ import com.example.bedsitmana.Dao.hoaDonDao;
 import com.example.bedsitmana.Dao.hopDongDao;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Dao.phongTroDao;
+import com.example.bedsitmana.MainActivity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.HopDong;
@@ -131,7 +132,7 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(hoaDon_Activity.this, MainActivity.class));
             }
         });
     }
@@ -159,6 +160,30 @@ songuoii=dao_hd.getSoNguoiByMaPhongHD(maPhong);
         AlertDialog alert = builder.create();
         builder.show();
     }
+    public void udTrangThai(int id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cảnh báo");
+        builder.setIcon(R.drawable.baseline_warning_24);
+        builder.setMessage("Bạn có chắc chắn muốn xác nhận thanh toán không");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                hdDao.updateTrangThaiHoaDon(id,2);
+                capNhatLv();
+                dialogInterface.cancel();
+                Toast.makeText(hoaDon_Activity.this, "Xóa thành công ", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        builder.show();
+    }
+
 
     public void capNhatLv() {
         list = (ArrayList<HoaDon>) hdDao.getAll();

@@ -114,7 +114,7 @@ public class phong_Activity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                 maLoaiPhong = list_lp.get(position).getMaLoaiPhong();
+                 maLoaiPhong = list_lp.get(i).getMaLoaiPhong();
             }
 
             @Override
