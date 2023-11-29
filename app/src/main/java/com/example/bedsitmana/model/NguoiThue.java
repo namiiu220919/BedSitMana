@@ -1,24 +1,14 @@
 package com.example.bedsitmana.model;
 
+import java.sql.Date;
+
 public class NguoiThue {
     private String maNguoithue,matKhauNT,tenNguoiThue,thuongTru,sdt,cCCD;
-    private int namSinh;
+    private String namSinh;
     private int gioiTinh;
     private int maPhong;
 
     public NguoiThue() {
-    }
-
-    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, String cCCD, int namSinh, int gioiTinh, int maPhong) {
-        this.maNguoithue = maNguoithue;
-        this.matKhauNT = matKhauNT;
-        this.tenNguoiThue = tenNguoiThue;
-        this.thuongTru = thuongTru;
-        this.sdt = sdt;
-        this.cCCD = cCCD;
-        this.namSinh = namSinh;
-        this.gioiTinh = gioiTinh;
-        this.maPhong = maPhong;
     }
 
     public String getMaNguoithue() {
@@ -69,11 +59,11 @@ public class NguoiThue {
         this.cCCD = cCCD;
     }
 
-    public int getNamSinh() {
+    public String getNamSinh() {
         return namSinh;
     }
 
-    public void setNamSinh(int namSinh) {
+    public void setNamSinh(String namSinh) {
         this.namSinh = namSinh;
     }
 
@@ -90,6 +80,18 @@ public class NguoiThue {
     }
 
     public void setMaPhong(int maPhong) {
+        this.maPhong = maPhong;
+    }
+
+    public NguoiThue(String maNguoithue, String matKhauNT, String tenNguoiThue, String thuongTru, String sdt, String cCCD, String namSinh, int gioiTinh, int maPhong) {
+        this.maNguoithue = maNguoithue;
+        this.matKhauNT = matKhauNT;
+        this.tenNguoiThue = tenNguoiThue;
+        this.thuongTru = thuongTru;
+        this.sdt = sdt;
+        this.cCCD = cCCD;
+        this.namSinh = namSinh;
+        this.gioiTinh = gioiTinh;
         this.maPhong = maPhong;
     }
 }

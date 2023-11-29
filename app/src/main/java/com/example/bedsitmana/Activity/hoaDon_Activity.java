@@ -100,7 +100,7 @@ public class hoaDon_Activity extends AppCompatActivity {
         lstHoaDon = findViewById(R.id.lstHoaDon);
         hdDao=new hoaDonDao(hoaDon_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
-
+        ntDao = new nguoiThueDao(hoaDon_Activity.this);
         SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
         String username = preferences.getString("username11", "...");
 
@@ -117,8 +117,14 @@ public class hoaDon_Activity extends AppCompatActivity {
             btnAdd.setVisibility(View.GONE);
         }
 
-
-        capNhatLv();
+if(username.equalsIgnoreCase("admin")){
+        capNhatLv();}else {
+int mp = ntDao.getMaPhongByUser(username);
+    list=new ArrayList<HoaDon>();
+    list= (ArrayList<HoaDon>) hdDao.getHoaDonByMaPhong(mp);
+    hoaDonAdapter=new HoaDon_Adapter(hoaDon_Activity.this,list,this);
+    lstHoaDon.setAdapter(hoaDonAdapter);
+        }
 //        lstHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            @Override
 //            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -198,6 +204,9 @@ public class hoaDon_Activity extends AppCompatActivity {
         list = (ArrayList<HoaDon>) hdDao.getAll();
         hoaDonAdapter=new HoaDon_Adapter(hoaDon_Activity.this,list,this);
         lstHoaDon.setAdapter(hoaDonAdapter);
+    }
+    public void capNhatLvbyUser() {
+
     }
 
 

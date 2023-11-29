@@ -11,12 +11,14 @@ import com.example.bedsitmana.model.HopDong;
 import com.example.bedsitmana.model.NguoiThue;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class nguoiThueDao {
     private SQLiteDatabase db;
     private Context context;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public nguoiThueDao(Context context) {
         DbHelper dbHelper = new DbHelper(context);
@@ -82,7 +84,9 @@ public class nguoiThueDao {
             obj.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
             obj.setSdt( c.getString(c.getColumnIndex("sdt")));
             obj.setcCCD(c.getString(c.getColumnIndex("CCCD")));
-            obj.setNamSinh( Integer.parseInt(c.getString(c.getColumnIndex("namSinh"))));
+            obj.setNamSinh(c.getString(c.getColumnIndex("namSinh")));
+
+
             obj.setGioiTinh(Integer.parseInt(c.getString(c.getColumnIndex("gioiTinh"))));
             obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
             list.add(obj);
@@ -112,7 +116,7 @@ public class nguoiThueDao {
             obj.setThuongTru(c.getString(c.getColumnIndex("thuongTru")));
             obj.setSdt( c.getString(c.getColumnIndex("sdt")));
             obj.setcCCD(c.getString(c.getColumnIndex("CCCD")));
-            obj.setNamSinh( Integer.parseInt(c.getString(c.getColumnIndex("namSinh"))));
+            obj.setNamSinh( c.getString(c.getColumnIndex("namSinh")));
             obj.setGioiTinh(Integer.parseInt(c.getString(c.getColumnIndex("gioiTinh"))));
             obj.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
             danhSachNguoiThue.add(obj);
@@ -120,6 +124,18 @@ public class nguoiThueDao {
         c.close();
 
         return danhSachNguoiThue;
+    }
+    public int getMaPhongByUser(String user) {
+        String sql = "SELECT maPhong FROM NguoiThue WHERE maNguoiThue=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{user});
+        int maPhong = -1; // Mã phòng mặc định nếu không tìm thấy
+
+        if (cursor.moveToFirst()) {
+            maPhong = cursor.getInt(cursor.getColumnIndex("maPhong"));
+        }
+
+        cursor.close();
+        return maPhong;
     }
 
 }

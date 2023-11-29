@@ -91,7 +91,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "thuongTru TEXT NOT NULL," +
                 "sdt TEXT NOT NULL," +
                 "CCCD TEXT NOT NULL," +
-                "namSinh INTEGER NOT NULL," +
+                "namSinh date NOT NULL," +
                 "gioiTinh INTEGER NOT NULL," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableNguoiThue);

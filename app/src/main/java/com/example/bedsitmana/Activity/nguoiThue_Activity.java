@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,7 +32,9 @@ import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.NguoiThue;
 import com.example.bedsitmana.model.PhongTro;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class nguoiThue_Activity extends AppCompatActivity {
 
@@ -50,7 +54,7 @@ public class nguoiThue_Activity extends AppCompatActivity {
     ArrayList<PhongTro> listpt;
     PhongTro phongTro;
     int maPhongTro;
-
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 
 
@@ -123,6 +127,23 @@ public class nguoiThue_Activity extends AppCompatActivity {
         listpt= (ArrayList<PhongTro>) troDao.getAll();
         spPhongAdapter=new SPPhong_Adapter(context,listpt);
         spnPhong.setAdapter(spPhongAdapter);
+        edtNamSinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar lich=Calendar.getInstance();//tạo đối tượng để lấy ngày giờ hiện tại
+                int year=lich.get(Calendar.YEAR);
+                int month=lich.get(Calendar.MONTH);
+                int day=lich.get(Calendar.DAY_OF_MONTH);
+                //Tạo đối tượng DatePickerDialog và show nó
+                DatePickerDialog datedg=new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        edtNamSinh.setText(String.format("%d/%d/%d",dayOfMonth,month,year));
+                    }
+                },year,month,day);
+                datedg.show();
+            }
+        });
         spnPhong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -156,15 +177,8 @@ public class nguoiThue_Activity extends AppCompatActivity {
                 nguoiThue.setThuongTru(edtThuongTru.getText().toString());
                 nguoiThue.setSdt(edtSDT.getText().toString());
                 nguoiThue.setcCCD(edtCCCD.getText().toString());
+                nguoiThue.setNamSinh(edtNamSinh.getText().toString());
 
-
-
-                try {
-                    nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
-                }catch (Exception e){
-                    Toast.makeText(context, "Năm sinh phải phải là số", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 nguoiThue.setMaPhong(maPhongTro);
                 if (rdoNam.isChecked()){
@@ -247,7 +261,24 @@ public class nguoiThue_Activity extends AppCompatActivity {
         edtThuongTru.setText(nguoiThue.getThuongTru());
         edtSDT.setText(nguoiThue.getSdt());
         edtCCCD.setText(String.valueOf(nguoiThue.getcCCD()));
-        edtNamSinh.setText(String.valueOf(nguoiThue.getNamSinh()));
+        edtNamSinh.setText(nguoiThue.getNamSinh());
+        edtNamSinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar lich=Calendar.getInstance();//tạo đối tượng để lấy ngày giờ hiện tại
+                int year=lich.get(Calendar.YEAR);
+                int month=lich.get(Calendar.MONTH);
+                int day=lich.get(Calendar.DAY_OF_MONTH);
+                //Tạo đối tượng DatePickerDialog và show nó
+                DatePickerDialog datedg=new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        edtNamSinh.setText(String.format("%d/%d/%d",dayOfMonth,month,year));
+                    }
+                },year,month,day);
+                datedg.show();
+            }
+        });
 
         for (int i=0; i<listpt.size();i++){
             if (nguoiThue.getMaPhong()==(listpt.get(i).getMaPhong())){
@@ -290,7 +321,8 @@ public class nguoiThue_Activity extends AppCompatActivity {
                 nguoiThue.setThuongTru(edtThuongTru.getText().toString());
                 nguoiThue.setSdt(edtSDT.getText().toString());
                 nguoiThue.setcCCD(edtCCCD.getText().toString());
-                nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
+                nguoiThue.setNamSinh(edtNamSinh.getText().toString());
+
                 nguoiThue.setcCCD(edtCCCD.getText().toString());
                 nguoiThue.setMaPhong(maPhongTro);
                 if (rdoNam.isChecked()){
@@ -302,12 +334,6 @@ public class nguoiThue_Activity extends AppCompatActivity {
                 }
                 if (TextUtils.isEmpty(edtUser.getText().toString())||TextUtils.isEmpty(edtPass.getText().toString())||TextUtils.isEmpty(edtThuongTru.getText().toString())||TextUtils.isEmpty(edtHoTen.getText().toString())||TextUtils.isEmpty(edtCCCD.getText().toString())||TextUtils.isEmpty(edtSDT.getText().toString())||TextUtils.isEmpty(edtNamSinh.getText().toString())){
                     Toast.makeText(context, "Bạn phải nhập đầy đủ", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                try {
-                    nguoiThue.setNamSinh(Integer.parseInt(edtNamSinh.getText().toString()));
-                }catch (Exception e){
-                    Toast.makeText(context, "Năm sinh phải phải là số", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
