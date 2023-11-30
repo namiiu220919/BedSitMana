@@ -127,6 +127,7 @@ public class loaiPhong_Activity extends AppCompatActivity {
         btnHuy = dialog.findViewById(R.id.btnHuy);
         btnXacNhan = dialog.findViewById(R.id.btnXacNhan);
         edtmaLoai.setEnabled(false);
+        edtmaLoai.setVisibility(View.GONE);
         if (type != 0) {
             edtmaLoai.setText(item.getMaLoaiPhong() + "");
             edttenLoai.setText(item.getTenLoaiPhong());
