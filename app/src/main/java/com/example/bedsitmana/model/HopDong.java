@@ -17,10 +17,29 @@ public class HopDong {
     private String ghiChu;
     private String maNguoiThue;
     private int maPhong;
+    private byte[] hinhAnhhd;
 
 
 
     public HopDong() {
+    }
+
+    public HopDong(int maHopDong, String sdt, String CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong, byte[] hinhAnhhd) {
+        this.maHopDong = maHopDong;
+        this.sdt = sdt;
+        this.CCCD = CCCD;
+        this.thuongTru = thuongTru;
+        this.ngayKy = ngayKy;
+        this.thoiHan = thoiHan;
+        this.tenPhong = tenPhong;
+        this.tienCoc = tienCoc;
+        this.giaTien = giaTien;
+        this.soNguoi = soNguoi;
+        this.soXe = soXe;
+        this.ghiChu = ghiChu;
+        this.maNguoiThue = maNguoiThue;
+        this.maPhong = maPhong;
+        this.hinhAnhhd = hinhAnhhd;
     }
 
     public int getMaHopDong() {
@@ -135,20 +154,11 @@ public class HopDong {
         this.maPhong = maPhong;
     }
 
-    public HopDong(int maHopDong, String sdt, String CCCD, String thuongTru, Date ngayKy, int thoiHan, String tenPhong, int tienCoc, int giaTien, int soNguoi, int soXe, String ghiChu, String maNguoiThue, int maPhong) {
-        this.maHopDong = maHopDong;
-        this.sdt = sdt;
-        this.CCCD = CCCD;
-        this.thuongTru = thuongTru;
-        this.ngayKy = ngayKy;
-        this.thoiHan = thoiHan;
-        this.tenPhong = tenPhong;
-        this.tienCoc = tienCoc;
-        this.giaTien = giaTien;
-        this.soNguoi = soNguoi;
-        this.soXe = soXe;
-        this.ghiChu = ghiChu;
-        this.maNguoiThue = maNguoiThue;
-        this.maPhong = maPhong;
+    public byte[] getHinhAnhhd() {
+        return hinhAnhhd;
+    }
+
+    public void setHinhAnhhd(byte[] hinhAnhhd) {
+        this.hinhAnhhd = hinhAnhhd;
     }
 }

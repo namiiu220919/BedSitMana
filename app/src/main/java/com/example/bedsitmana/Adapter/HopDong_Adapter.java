@@ -2,12 +2,15 @@ package com.example.bedsitmana.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,10 +35,12 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
     private ArrayList<HopDong> list;
     hopDong_Activity hopDong_activity;
     Button btnKetThuc,btnCapNhap;
+    ImageView imgAnhHopDong;
     hopDongDao dao;
     phongTroDao ptDao;
     nguoiThueDao ntDao;
     private Phong_Adapter phongAdapter;
+    byte[] hinhAnh;
 
     public HopDong_Adapter(@NonNull Context context, ArrayList<HopDong> list, hopDong_Activity hopDong_activity) {
         super(context, 0,list);
@@ -73,6 +78,7 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtGhiChu_hd = v.findViewById(R.id.edtGhiChu_hd);
             btnCapNhap=v.findViewById(R.id.btnCapNhat_hd);
             btnKetThuc=v.findViewById(R.id.btnKetThuc_hd);
+            imgAnhHopDong=v.findViewById(R.id.imgAnhHopDong);
             edtma_hd.setEnabled(false);
             edtTenkh_hd.setEnabled(false);
             edtSdt_hd.setEnabled(false);
@@ -101,6 +107,9 @@ public class HopDong_Adapter extends ArrayAdapter<HopDong> {
             edtSonguoi_hd.setText(hd.getSoNguoi()+"");
             edtSoxe_hd.setText(hd.getSoXe()+"");
             edtGhiChu_hd.setText(hd.getGhiChu());
+            hinhAnh = hd.getHinhAnhhd();
+            Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh, 0, hinhAnh.length);
+            imgAnhHopDong.setImageBitmap(bitmap);
 
 
             ntDao = new nguoiThueDao(context);

@@ -1,5 +1,6 @@
 package com.example.bedsitmana.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,7 +9,11 @@ import androidx.core.content.ContextCompat;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,6 +35,9 @@ import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.HopDong;
 import com.example.bedsitmana.model.NguoiThue;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +51,8 @@ public class hopDong_Activity extends AppCompatActivity {
     HopDong_Adapter hopDongAdapter;
     HopDong item;
     ArrayList<HopDong> list_hdm = new ArrayList<>();
-    ImageView btnAdd;
+    ImageView btnAdd,imgAnhhd;
+    Button btnChonAnh;
     EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
     Spinner spinner;
     int position,maphong,gia;
@@ -53,6 +62,8 @@ public class hopDong_Activity extends AppCompatActivity {
     NguoiThueSpinerAdapter spinerAdapter;
     phongTroDao dao_pt;
     Button btnTaoHD,btnHuy;
+    byte[] hinhAnh;
+    final int REQUEST_CODE_FOLDER = 456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +147,8 @@ public class hopDong_Activity extends AppCompatActivity {
         edtGhiChu_hd = dialog.findViewById(R.id.edtGhiChu_hd);
         btnTaoHD = dialog.findViewById(R.id.btnTao);
         btnHuy = dialog.findViewById(R.id.btnHuy);
+        imgAnhhd=dialog.findViewById(R.id.imgAnhhd);
+        btnChonAnh=dialog.findViewById(R.id.btnChonAnh);
         spinner = dialog.findViewById(R.id.spnNguoiThue);
         dao_pt = new phongTroDao(hopDong_Activity.this);
         list_nt = new ArrayList<NguoiThue>();
@@ -161,6 +174,18 @@ public class hopDong_Activity extends AppCompatActivity {
 
             }
         });
+
+        btnChonAnh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,REQUEST_CODE_FOLDER);
+//                ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODE_FOLDER);
+            }
+        });
+
+
         maphong = getIntent().getIntExtra("maphong", -1);
         gia = dao_pt.getGiaPhongTheoMaPhong(maphong);
         String tenphong=dao_pt.getTenPhongTheoMaPhong(maphong);
@@ -180,6 +205,7 @@ public class hopDong_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btnTaoHD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -231,6 +257,15 @@ public class hopDong_Activity extends AppCompatActivity {
                     Toast.makeText(hopDong_Activity.this, "Số xe phải là số", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) imgAnhhd.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                hinhAnh = byteArrayOutputStream.toByteArray();
+
+
+
                 int soThang = Integer.parseInt(edtSothang_hd.getText().toString());
                 int tienCoc = Integer.parseInt(edtTienCoc_hd.getText().toString());
                 int soNguoi = Integer.parseInt(edtSonguoi_hd.getText().toString());
@@ -250,6 +285,7 @@ public class hopDong_Activity extends AppCompatActivity {
                 item.setTienCoc(tienCoc);
                 item.setSoNguoi(soNguoi);
                 item.setSoXe(soXe);
+                item.setHinhAnhhd(hinhAnh);
                 item.setGhiChu(edtGhiChu_hd.getText().toString());
                 if (dao.insert(item) > 0) {
 
@@ -270,5 +306,21 @@ public class hopDong_Activity extends AppCompatActivity {
         list= (ArrayList<HopDong>) dao.getAll();
         hopDongAdapter=new HopDong_Adapter(hopDong_Activity.this,list, hopDong_Activity.this);
         lsthopDong.setAdapter(hopDongAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                imgAnhhd.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

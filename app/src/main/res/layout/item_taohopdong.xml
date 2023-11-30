@@ -14,7 +14,7 @@
         android:textStyle="bold"
         android:textSize="30dp"
         android:layout_gravity="center"
-        android:layout_margin="10dp"/>
+        android:layout_margin="5dp"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -261,16 +261,45 @@
         android:paddingLeft="6dp"
         android:layout_marginTop="5dp"
         android:textColor="@color/white" />
-    <EditText
-        android:id="@+id/edtGhiChu_hd"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="start"
-        android:padding="10dp"
-        android:paddingLeft="7dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:background="@drawable/khungedt"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtGhiChu_hd"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_weight="3"
+            android:paddingLeft="7dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:background="@drawable/khungedt"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imgAnhhd"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_camera"/>
+            <Button
+                android:id="@+id/btnChonAnh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="30px"
+                android:text="chọn ảnh"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

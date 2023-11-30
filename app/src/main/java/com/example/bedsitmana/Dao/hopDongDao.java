@@ -37,6 +37,7 @@ public class hopDongDao {
         values.put("giaTien", hopDong.getGiaTien());
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
+        values.put("hinhAnh", hopDong.getHinhAnhhd());
         values.put("ghiChu", hopDong.getGhiChu());
 
 
@@ -56,6 +57,7 @@ public class hopDongDao {
         values.put("soNguoi", hopDong.getSoNguoi());
         values.put("soXe", hopDong.getSoXe());
         values.put("ghiChu", hopDong.getGhiChu());
+        values.put("hinhAnh", hopDong.getHinhAnhhd());
         values.put("maPhong", hopDong.getMaPhong());
         return db.update("HopDong", values,"maHopDong=?", new String[]{String.valueOf(hopDong.getMaHopDong())});
     }
@@ -86,8 +88,10 @@ public class hopDongDao {
             hopDong.setSoNguoi(Integer.parseInt(c.getString(c.getColumnIndex("soNguoi"))));
             hopDong.setSoXe(Integer.parseInt(c.getString(c.getColumnIndex("soXe"))));
             hopDong.setGhiChu(c.getString(c.getColumnIndex("ghiChu")));
+            hopDong.setHinhAnhhd(c.getBlob(c.getColumnIndex("hinhAnh")));
             hopDong.setMaNguoiThue(c.getString(c.getColumnIndex("maNguoiThue")));
             hopDong.setMaPhong(Integer.parseInt(c.getString(c.getColumnIndex("maPhong"))));
+
 
             list.add(hopDong);
         }
@@ -129,8 +133,10 @@ public class hopDongDao {
             hopDong.setSoNguoi(c.getInt(c.getColumnIndex("soNguoi")));
             hopDong.setSoXe(c.getInt(c.getColumnIndex("soXe")));
             hopDong.setGhiChu(c.getString(c.getColumnIndex("ghiChu")));
+            hopDong.setHinhAnhhd(c.getBlob(c.getColumnIndex("hinhAnh")));
             hopDong.setMaNguoiThue(c.getString(c.getColumnIndex("maNguoiThue")));
             hopDong.setMaPhong(c.getInt(c.getColumnIndex("maPhong")));
+
 
             danhSachHopDong.add(hopDong);
         }

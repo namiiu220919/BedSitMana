@@ -290,6 +290,19 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:background="@drawable/khungedt"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hình ảnh hợp đồng"
+            android:paddingLeft="6dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/imgAnhHopDong"
+            android:layout_width="350dp"
+            android:layout_height="500dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -314,6 +327,7 @@
                 android:background="@drawable/khungedt"
                 android:text="Cập nhật"/>
         </LinearLayout>
+
     </LinearLayout>
 
 
