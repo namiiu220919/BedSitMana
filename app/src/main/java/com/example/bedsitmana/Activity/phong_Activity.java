@@ -11,8 +11,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,12 +40,13 @@ import java.util.ArrayList;
 public class phong_Activity extends AppCompatActivity {
     ListView lstPhong;
     ArrayList<PhongTro> list;
+    ArrayList<PhongTro> listtemp;
     ArrayList<LoaiPhong> list_lp;
     Phong_Adapter adapter;
     PhongTro item;
     phongTroDao dao;
     ImageView btnAdd;
-    EditText edtmaPhong, edttenPhong, edtGia, edtTienNghi;
+    EditText edtmaPhong, edttenPhong, edtGia, edtTienNghi,edtSearch;
     Button btnHuy, btnXacNhan;
     Spinner spinner;
     int position, maLoaiPhong;
@@ -72,9 +75,39 @@ public class phong_Activity extends AppCompatActivity {
             }
         });
 
+
+
+
         lstPhong = findViewById(R.id.lstPhongTro);
         dao = new phongTroDao(phong_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
+
+        listtemp= (ArrayList<PhongTro>) dao.getAll();
+        edtSearch=findViewById(R.id.edtSearch);
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                list.clear();
+                for (PhongTro pt : listtemp){
+                    if (pt.getTenPhong().contains(charSequence.toString())){
+                        list.add(pt);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         capNhapLv();
         btnAdd.setOnClickListener(new View.OnClickListener() {
                                       @Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,17 +15,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.bedsitmana.Activity.loaiPhong_Activity;
+import com.example.bedsitmana.Dao.LoaiPhongDao;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.LoaiPhong;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoaiPhong_Adapter extends ArrayAdapter<LoaiPhong> {
     TextView txtLoaiPhong,txtPhiDV,txtGiaDien,txtGiaNuoc;
     ImageView btnXoa;
 private  Context context;
 private  ArrayList<LoaiPhong> list;
+
+    LoaiPhongDao loaiPhongDao;
 loaiPhong_Activity loaiphong_activity;
+
 
 
     public LoaiPhong_Adapter(@NonNull Context context, ArrayList<LoaiPhong> list, loaiPhong_Activity loaiphong_activity) {
@@ -54,6 +60,9 @@ loaiPhong_Activity loaiphong_activity;
             txtPhiDV.setText("Phí dịch vụ: "+lp.getPhiDichVu()+"/người");
             txtGiaDien.setText("Giá điện: "+lp.getGiaDien()+"/số");
             txtGiaNuoc.setText("Giá nước: "+lp.getGiaNuoc()+"/người");
+            loaiPhongDao=new LoaiPhongDao(context);
+
+
             btnXoa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -63,4 +72,5 @@ loaiPhong_Activity loaiphong_activity;
         }
         return v;
     }
+
 }

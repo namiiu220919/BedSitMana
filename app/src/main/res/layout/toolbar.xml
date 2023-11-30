@@ -16,7 +16,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:paddingEnd="16dp"
-            android:src="@drawable/icon_add_toolbar"/>
+            android:src="@drawable/icon_add_toolbar"
+            />
+
+
+
     </androidx.appcompat.widget.Toolbar>
 
 </LinearLayout>

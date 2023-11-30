@@ -11,7 +11,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +31,7 @@ import com.example.bedsitmana.Adapter.SPPhong_Adapter;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Dao.phongTroDao;
 import com.example.bedsitmana.R;
+import com.example.bedsitmana.model.LoaiPhong;
 import com.example.bedsitmana.model.NguoiThue;
 import com.example.bedsitmana.model.PhongTro;
 
@@ -40,6 +43,8 @@ public class nguoiThue_Activity extends AppCompatActivity {
 
     ListView lstNguoiThue;
     ArrayList<NguoiThue> list;
+    ArrayList<NguoiThue> listtemp;
+    EditText edtSearch;
     NguoiThue_Adapter nguoiThueAdapter;
     NguoiThue nguoiThue;
     static nguoiThueDao dao;
@@ -85,6 +90,33 @@ public class nguoiThue_Activity extends AppCompatActivity {
 
         lstNguoiThue=findViewById(R.id.lstNguoiThue);
         dao =new nguoiThueDao(nguoiThue_Activity.this);
+
+        listtemp= (ArrayList<NguoiThue>) dao.getAll();
+        edtSearch=findViewById(R.id.edtSearch);
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                list.clear();
+                for (NguoiThue nt : listtemp){
+                    if (nt.getTenNguoiThue().contains(charSequence.toString())){
+                        list.add(nt);
+                    }
+                }
+                nguoiThueAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         capNhatList();
 
         btnadd.setOnClickListener(new View.OnClickListener() {

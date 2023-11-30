@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,11 +17,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -52,11 +56,14 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class hoaDon_Activity extends AppCompatActivity {
     ListView lstHoaDon;
     ArrayList<HoaDon> list;
+    ArrayList<HoaDon> listtemp;
+    EditText edtSearch;
     ArrayList<PhongTro> listpt;
     ArrayList<NguoiThue> listnt;
     HoaDon_Adapter hoaDonAdapter;
@@ -100,6 +107,52 @@ public class hoaDon_Activity extends AppCompatActivity {
         lstHoaDon = findViewById(R.id.lstHoaDon);
         hdDao = new hoaDonDao(hoaDon_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
+
+        listtemp= (ArrayList<HoaDon>) hdDao.getAll();
+        edtSearch=findViewById(R.id.edtSearch);
+//        edtSearch.setEnabled(false);
+
+        edtSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar lich=Calendar.getInstance();
+                int year=lich.get(Calendar.YEAR);
+                int month=lich.get(Calendar.MONTH);
+                int day=lich.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datedg=new DatePickerDialog(hoaDon_Activity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        edtSearch.setText(String.format("%d-%d-%d",year,month,dayOfMonth));
+                    }
+                },year,month,day);
+                datedg.show();
+            }
+        });
+
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                list.clear();
+                for (HoaDon hd : listtemp){
+                    if (sdf.format(hd.getNgayTao()).contains(charSequence.toString())){
+                        list.add(hd);
+                    }
+                }
+                hoaDonAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         ntDao = new nguoiThueDao(hoaDon_Activity.this);
         SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
         String username = preferences.getString("username11", "...");

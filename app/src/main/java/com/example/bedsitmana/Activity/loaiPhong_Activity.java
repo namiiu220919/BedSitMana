@@ -2,6 +2,7 @@ package com.example.bedsitmana.Activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
@@ -10,7 +11,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -30,6 +36,8 @@ import java.util.ArrayList;
 public class loaiPhong_Activity extends AppCompatActivity {
     ListView lstLoaiPhong;
     ArrayList<LoaiPhong> list;
+    ArrayList<LoaiPhong> listtemp;
+    EditText edtSearch;
     LoaiPhong_Adapter adapter;
     LoaiPhong item;
     LoaiPhongDao dao;
@@ -61,6 +69,8 @@ public class loaiPhong_Activity extends AppCompatActivity {
         dao = new LoaiPhongDao(loaiPhong_Activity.this);
         capNhatLv();
         btnAdd = findViewById(R.id.btnadd_toolbar);
+
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View view) {
@@ -68,6 +78,33 @@ public class loaiPhong_Activity extends AppCompatActivity {
                                       }
                                   }
         );
+
+        listtemp= (ArrayList<LoaiPhong>) dao.getAll();
+        edtSearch=findViewById(R.id.edtSearch);
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                list.clear();
+                for (LoaiPhong lp : listtemp){
+                    if (lp.getTenLoaiPhong().contains(charSequence.toString())){
+                        list.add(lp);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         lstLoaiPhong.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -208,4 +245,6 @@ public class loaiPhong_Activity extends AppCompatActivity {
         adapter = new LoaiPhong_Adapter(loaiPhong_Activity.this, list, this);
         lstLoaiPhong.setAdapter(adapter);
     }
+
+
 }

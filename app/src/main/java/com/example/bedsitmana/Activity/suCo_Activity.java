@@ -11,8 +11,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -42,7 +44,10 @@ public class suCo_Activity extends AppCompatActivity {
 
     ListView lstSuCo;
     ArrayList<suCo> list;
+    ArrayList<suCo> listtemp;
+    EditText edtSearch;
     ArrayList<PhongTro> list_phong;
+    ArrayList<PhongTro> list_phongtemp;
     SuCo_Adapter adapter;
     suCo item;
     suCoDao dao;
@@ -90,6 +95,39 @@ public class suCo_Activity extends AppCompatActivity {
         lstSuCo = findViewById(R.id.lstSuCo);
         dao = new suCoDao(suCo_Activity.this);
         btnAdd = findViewById(R.id.btnadd_toolbar);
+
+
+        listtemp = (ArrayList<suCo>) dao.getAll();
+        list_phongtemp = (ArrayList<PhongTro>) dao_phong.getAll();
+        edtSearch = findViewById(R.id.edtSearch);
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                list.clear();
+                for (suCo sc: listtemp){
+                    for (PhongTro pt1: list_phongtemp) {
+                        pt1 = dao_phong.getID(String.valueOf(sc.getMaPhong()));
+                        if (pt1.getTenPhong().contains(charSequence.toString())){
+                            list.add(sc);
+                            break;
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         capnhatLv();
         if (username.equalsIgnoreCase("admin")) {
             btnAdd.setVisibility(View.GONE);
