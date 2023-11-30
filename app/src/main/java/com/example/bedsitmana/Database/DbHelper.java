@@ -1,21 +1,33 @@
 package com.example.bedsitmana.Database;
 
+
+
+
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
+import com.example.bedsitmana.R;
+
+import java.io.ByteArrayOutputStream;
 import java.sql.SQLDataException;
 import java.text.SimpleDateFormat;
 
 public class DbHelper extends SQLiteOpenHelper {
     static final String dbName="BEDSIT";
     static final int dbVersion=1;
+    Context context;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVersion);
+        this.context = context;
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -72,6 +84,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue))";
         sqLiteDatabase.execSQL(createTableHoaDon);
 
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.img_camera);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] imageData = stream.toByteArray();
+
+        sqLiteDatabase.execSQL("insert into HoaDon(sdt,ngayTao,soDien,donGiaDien,soNguoi,donGiaNuoc,phiDichVu,ghiChu,tienPhong,anhThanhToan,trangThai,maPhong,maNguoiThue) values" +
+                "('0236475775','2023-08-03',5,3500,3,100000,100000,'Thu tiền tháng 8',35000000,'imageData',0,1,'quynh01')," +
+                "('0236475775','2023-09-03',5,3500,3,100000,100000,'Thu tiền tháng 8',35000000,'imageData',0,1,'quynh01')," +
+                "('0236475775','2023-10-03',5,3500,3,100000,100000,'Thu tiền tháng 8',35000000,'imageData',0,1,'quynh01')");
+
 
 //        String createTableCTHoaDon="create table CTHoaDon(" +
 //                "maCTHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -117,6 +139,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
                 "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableHopDong);
+
+
+
+
+
         //Thêm dữ liệu bảng HopDong
 
         //Tạo bảng SuCo
@@ -141,6 +168,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "STK TEXT," +
                 "HinhAnh BLOB)";
         sqLiteDatabase.execSQL(createTableNganHang);
+
     }
 
     @Override
