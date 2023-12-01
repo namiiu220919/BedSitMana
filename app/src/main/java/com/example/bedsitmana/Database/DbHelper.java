@@ -90,9 +90,9 @@ public class DbHelper extends SQLiteOpenHelper {
         byte[] imageData = stream.toByteArray();
 
         sqLiteDatabase.execSQL("insert into HoaDon(sdt,ngayTao,soDien,donGiaDien,soNguoi,donGiaNuoc,phiDichVu,ghiChu,tienPhong,anhThanhToan,trangThai,maPhong,maNguoiThue) values" +
-                "('0236475775','2023-08-03',5,3500,3,100000,100000,'Thu tiền tháng 8',35000000,'imageData',0,1,'quynh01')," +
-                "('0236475775','2023-09-03',5,3500,3,100000,100000,'Thu tiền tháng 8',35000000,'imageData',0,1,'quynh01')," +
-                "('0236475775','2023-10-03',5,3500,3,100000,100000,'Thu tiền tháng 8',35000000,'imageData',0,1,'quynh01')");
+                "('0236475775','2023-08-03',5,3500,3,100000,100000,'Thu tiền tháng 8',3500000,'imageData',0,1,'quynh01')," +
+                "('0236475775','2023-09-03',5,3500,3,100000,100000,'Thu tiền tháng 8',3500000,'imageData',0,1,'quynh01')," +
+                "('0236475775','2023-10-03',5,3500,3,100000,100000,'Thu tiền tháng 8',3500000,'imageData',0,1,'quynh01')");
 
 
 //        String createTableCTHoaDon="create table CTHoaDon(" +

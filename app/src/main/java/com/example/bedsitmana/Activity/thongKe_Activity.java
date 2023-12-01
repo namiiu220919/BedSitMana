@@ -15,8 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bedsitmana.Dao.ThongKeDao;
+import com.example.bedsitmana.Dao.hoaDonDao;
 import com.example.bedsitmana.R;
+import com.example.bedsitmana.model.HoaDon;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -38,6 +41,8 @@ public class thongKe_Activity extends AppCompatActivity {
 //    TextView txtDoanhThu;
 //    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //    int mYear, mMonth, mDay;
+    ArrayList<HoaDon> list;
+hoaDonDao hdDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,18 @@ public class thongKe_Activity extends AppCompatActivity {
                 finish();
             }
         });
+        BarChart barChart = findViewById(R.id.barChart);
+
+        // Khai báo và lấy danh sách HoaDon từ cơ sở dữ liệu
+        hdDao = new hoaDonDao(thongKe_Activity.this);
+        list = (ArrayList<HoaDon>) hdDao.getAll();
+
+        // Gọi phương thức để lấy danh sách BarEntry từ dữ liệu HoaDon
+        List<BarEntry> monthlyRevenueEntries = getMonthlyRevenue(list);
+
+        // Tiếp theo, bạn có thể sử dụng danh sách này để cập nhật biểu đồ BarChart
+        updateBarChart(barChart, monthlyRevenueEntries);
+
 
 //        edtTuNgay = findViewById(R.id.edtTuNgay);
 //        edtDenNgay = findViewById(R.id.edtDenNgay);
@@ -120,47 +137,107 @@ public class thongKe_Activity extends AppCompatActivity {
 
 
 
-        BarChart barChart = findViewById(R.id.barChart);
+//        BarChart barChart = findViewById(R.id.barChart);
+//        List<BarEntry> entries = new ArrayList<>();
+//        entries.add(new BarEntry(0f, 100f));  // Tháng 1
+//        entries.add(new BarEntry(1f, 200f));  // Tháng 2
+//        entries.add(new BarEntry(2f, 150f));  // Tháng 3
+//        entries.add(new BarEntry(3f, 100f));  // Tháng 4
+//        entries.add(new BarEntry(4f, 200f));  // Tháng 5
+//        entries.add(new BarEntry(5f, 150f));  // Tháng 6
+//        entries.add(new BarEntry(6f, 100f));  // Tháng 7
+//        entries.add(new BarEntry(7f, 200f));  // Tháng 8
+//        entries.add(new BarEntry(8f, 150f));  // Tháng 9
+//        entries.add(new BarEntry(9f, 100f));  // Tháng 10
+//        entries.add(new BarEntry(10f, 200f));  // Tháng 11
+//        entries.add(new BarEntry(11f, 150f));  // Tháng 12
+//
+//        BarDataSet dataSet = new BarDataSet(entries, "Doanh thu theo tháng");
+//
+//        dataSet.setColors(Color.RED);
+//        dataSet.setValueTextColor(Color.WHITE);
+//        dataSet.setValueTextSize(12f);
+//
+//        BarData barData = new BarData(dataSet);
+//
+//        // Cấu hình trục x
+//        String[] months = new String[]{"T1", "T2", "T3","T4", "T5", "T6","T7", "T8", "T9","T10", "T11", "T12" };
+//        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
+//        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+//        barChart.getXAxis().setGranularity(1f);
+//        barChart.getXAxis().setGranularityEnabled(true);
+//        barChart.getXAxis().setLabelCount(months.length);
+//
+//        // Cấu hình trục y
+//        barChart.getAxisRight().setEnabled(false);
+//        YAxis leftAxis = barChart.getAxisLeft();
+//        leftAxis.setAxisMinimum(0f);
+//
+//        barChart.setData(barData);
+//        barChart.getDescription().setEnabled(false);
+//        barChart.animateY(2000);
+//
+//        getMonthlyRevenue(list);
+//
+//// Cập nhật biểu đồ
+//        barChart.invalidate();
+    }
+    private List<BarEntry> getMonthlyRevenue(ArrayList<HoaDon> hoaDonList) {
         List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 100f));  // Tháng 1
-        entries.add(new BarEntry(1f, 200f));  // Tháng 2
-        entries.add(new BarEntry(2f, 150f));  // Tháng 3
-        entries.add(new BarEntry(3f, 100f));  // Tháng 4
-        entries.add(new BarEntry(4f, 200f));  // Tháng 5
-        entries.add(new BarEntry(5f, 150f));  // Tháng 6
-        entries.add(new BarEntry(6f, 100f));  // Tháng 7
-        entries.add(new BarEntry(7f, 200f));  // Tháng 8
-        entries.add(new BarEntry(8f, 150f));  // Tháng 9
-        entries.add(new BarEntry(9f, 100f));  // Tháng 10
-        entries.add(new BarEntry(10f, 200f));  // Tháng 11
-        entries.add(new BarEntry(11f, 150f));  // Tháng 12
+        int[] monthlyRevenue = new int[12];
 
+        for (HoaDon hoaDon : hoaDonList) {
+            if (hoaDon.getTrangThai()==2){
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(hoaDon.getNgayTao());
+                int month = calendar.get(Calendar.MONTH);
+                monthlyRevenue[month] += hdDao.getTongTienDien(hoaDon.getMaHoaDon())
+                        + hdDao.getTongTienNuoc(hoaDon.getMaHoaDon())
+                        + hoaDon.getPhiDichVu() + hoaDon.getTienPhong();
+            }
+
+        }
+
+        for (int i = 0; i < monthlyRevenue.length; i++) {
+            entries.add(new BarEntry(i, monthlyRevenue[i]));
+        }
+
+        return entries;
+    }
+
+    private void updateBarChart(BarChart barChart, List<BarEntry> entries) {
         BarDataSet dataSet = new BarDataSet(entries, "Doanh thu theo tháng");
-
-        dataSet.setColors(Color.RED);
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         dataSet.setValueTextColor(Color.WHITE);
         dataSet.setValueTextSize(12f);
 
         BarData barData = new BarData(dataSet);
 
         // Cấu hình trục x
-        String[] months = new String[]{"T1", "T2", "T3","T4", "T5", "T6","T7", "T8", "T9","T10", "T11", "T12" };
+        String[] months = new String[]{"T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"};
         barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         barChart.getXAxis().setGranularity(1f);
         barChart.getXAxis().setGranularityEnabled(true);
         barChart.getXAxis().setLabelCount(months.length);
+        barChart.getXAxis().setTextColor(Color.WHITE);
+
+
 
         // Cấu hình trục y
         barChart.getAxisRight().setEnabled(false);
         YAxis leftAxis = barChart.getAxisLeft();
         leftAxis.setAxisMinimum(0f);
+        leftAxis.setTextColor(Color.WHITE);
 
+        // Đặt dữ liệu lên biểu đồ
         barChart.setData(barData);
         barChart.getDescription().setEnabled(false);
         barChart.animateY(2000);
+        Legend legend = barChart.getLegend();
+        legend.setTextColor(Color.WHITE);
 
-// Cập nhật biểu đồ
+        // Cập nhật biểu đồ
         barChart.invalidate();
     }
 }
