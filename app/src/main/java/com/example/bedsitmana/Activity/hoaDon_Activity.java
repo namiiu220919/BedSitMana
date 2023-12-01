@@ -122,7 +122,8 @@ public class hoaDon_Activity extends AppCompatActivity {
                 DatePickerDialog datedg=new DatePickerDialog(hoaDon_Activity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        edtSearch.setText(String.format("%d-%d-%d",year,month,dayOfMonth));
+                        month = month + 1;
+                        edtSearch.setText(String.format("%d-%02d-%02d",year,month,dayOfMonth));
                     }
                 },year,month,day);
                 datedg.show();

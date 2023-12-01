@@ -170,7 +170,8 @@ public class nguoiThue_Activity extends AppCompatActivity {
                 DatePickerDialog datedg=new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        edtNamSinh.setText(String.format("%d/%d/%d",dayOfMonth,month,year));
+                        month = month + 1;
+                        edtNamSinh.setText(String.format("%02d/%02d/%d",dayOfMonth,month,year));
                     }
                 },year,month,day);
                 datedg.show();

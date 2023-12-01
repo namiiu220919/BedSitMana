@@ -118,9 +118,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maPhong INTEGER REFERENCES PhongTro(maPhong))";
         sqLiteDatabase.execSQL(createTableNguoiThue);
 
-        sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Quỳnh','Bắc Giang','3456789987','847837487',2004,0,1)," +
-                "('huy','huy','Huy','Hải Dương','123456789','123456789',2004,1,1),"+
-                "('nam','nam','Nam','Hà Nội','3456789987','847837487',2004,1,2)");
+        sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Lưu Tuấn Quỳnh','Bắc Giang','3456789987','847837487','03/08/2004',0,1)," +
+                "('huy','huy','Phạm Quang Huy','Hải Dương','123456789','123456789','03/09/2004',1,1),"+
+                "('nam','nam','Nguyễn Phương Nam','Hà Nội','3456789987','847837487','03/05/2004',1,2)");
 
         //Tạo bảng HopDong
         String createTableHopDong = "create table HopDong(" +
