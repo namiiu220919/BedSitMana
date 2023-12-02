@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,6 +31,7 @@ import com.example.bedsitmana.Adapter.NguoiThueSpinerAdapter;
 import com.example.bedsitmana.Dao.hopDongDao;
 import com.example.bedsitmana.Dao.nguoiThueDao;
 import com.example.bedsitmana.Dao.phongTroDao;
+import com.example.bedsitmana.MainActivity;
 import com.example.bedsitmana.R;
 import com.example.bedsitmana.model.HoaDon;
 import com.example.bedsitmana.model.HopDong;
@@ -51,11 +53,12 @@ public class hopDong_Activity extends AppCompatActivity {
     HopDong_Adapter hopDongAdapter;
     HopDong item;
     ArrayList<HopDong> list_hdm = new ArrayList<>();
+    ArrayList<HopDong> list_hdnt = new ArrayList<>();
     ImageView btnAdd,imgAnhhd;
     Button btnChonAnh;
     EditText edtma_hd, edtTenkh_hd, edtSdt_hd, edtCCCD_hd, edtDiaChi_hd, edtNgayki_hd, edtSothang_hd, edtSoPhong_hd, edtTienCoc_hd, edtTienPhong_hd, edtSonguoi_hd, edtSoxe_hd, edtGhiChu_hd;
     Spinner spinner;
-    int position,maphong,gia;
+    int position,maphong,gia,mp;
     String mant,dc,sdt,cccd;
     nguoiThueDao dao_nt;
     NguoiThue nt;
@@ -84,23 +87,55 @@ public class hopDong_Activity extends AppCompatActivity {
         list = (ArrayList<HopDong>) dao.getAll();
         hopDongAdapter = new HopDong_Adapter(hopDong_Activity.this, list, this);
         lsthopDong.setAdapter(hopDongAdapter);
+        SharedPreferences preferences = getSharedPreferences("user11", MODE_PRIVATE);
+        String username = preferences.getString("username11", "...");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(hopDong_Activity.this,phong_Activity.class);
-                startActivity(intent);
+                if(username.equalsIgnoreCase("admin")) {
+                    Intent intent = new Intent(hopDong_Activity.this, phong_Activity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(hopDong_Activity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         maphong = getIntent().getIntExtra("maphong", -1);
         list_hdm = dao.getHopDongByMaPhong(maphong);
+
+
+        dao_nt=new nguoiThueDao(hopDong_Activity.this);
+        mp = dao_nt.getMaPhongByUser(username);
+        list_hdnt = dao.getHopDongByMaPhong(mp);
+        if(username.equalsIgnoreCase("admin")) {
         if (list_hdm.isEmpty()) {
             list.clear();
-           openDialog();
+            openDialog();
         } else {
             hopDongAdapter = new HopDong_Adapter(hopDong_Activity.this, list_hdm, this);
             lsthopDong.setAdapter(hopDongAdapter);
-        }
+        }}else {
+            if (list_hdnt.isEmpty()) {
+                list.clear();
+                AlertDialog.Builder builder = new AlertDialog.Builder(hopDong_Activity.this);
+                builder.setTitle("Cảnh báo");
+                builder.setIcon(R.drawable.baseline_warning_24);
+                builder.setMessage("Bạn chưa có hợp đồng");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                builder.show();
+            } else if (!list_hdnt.isEmpty()) {
+                hopDongAdapter = new HopDong_Adapter(hopDong_Activity.this, list_hdnt, this);
+                lsthopDong.setAdapter(hopDongAdapter);
 
+            }
+        }
 
 
     }

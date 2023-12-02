@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bedsitmana.Adapter.NguoiThue_Adapter;
@@ -36,6 +37,8 @@ import com.example.bedsitmana.model.NguoiThue;
 import com.example.bedsitmana.model.PhongTro;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -58,8 +61,8 @@ public class nguoiThue_Activity extends AppCompatActivity {
     SPPhong_Adapter spPhongAdapter;
     ArrayList<PhongTro> listpt;
     PhongTro phongTro;
-    int maPhongTro;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    int maPhongTro,age;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 
 
@@ -162,18 +165,27 @@ public class nguoiThue_Activity extends AppCompatActivity {
         edtNamSinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar lich=Calendar.getInstance();//tạo đối tượng để lấy ngày giờ hiện tại
-                int year=lich.get(Calendar.YEAR);
-                int month=lich.get(Calendar.MONTH);
-                int day=lich.get(Calendar.DAY_OF_MONTH);
+                Calendar lich = Calendar.getInstance();//tạo đối tượng để lấy ngày giờ hiện tại
+                int year = lich.get(Calendar.YEAR);
+                int month = lich.get(Calendar.MONTH);
+                int day = lich.get(Calendar.DAY_OF_MONTH);
                 //Tạo đối tượng DatePickerDialog và show nó
-                DatePickerDialog datedg=new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datedg = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month + 1;
-                        edtNamSinh.setText(String.format("%02d/%02d/%d",dayOfMonth,month,year));
+                        edtNamSinh.setText(String.format("%02d/%02d/%d", dayOfMonth, month, year));
+
+                        // Tính tuổi từ ngày sinh
+                        age = calculateAge(year, month, dayOfMonth);
+
+                        // Kiểm tra nếu tuổi không lớn hơn 18
+                        if (age < 18) {
+                            // Hiển thị thông báo hoặc thực hiện hành động phù hợp
+                            Toast.makeText(context, "Người thuê phải trên 18 tuổi.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                },year,month,day);
+                }, year, month, day);
                 datedg.show();
             }
         });
@@ -201,6 +213,11 @@ public class nguoiThue_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 if (TextUtils.isEmpty(edtUser.getText().toString())||TextUtils.isEmpty(edtPass.getText().toString())||TextUtils.isEmpty(edtThuongTru.getText().toString())||TextUtils.isEmpty(edtHoTen.getText().toString())||TextUtils.isEmpty(edtCCCD.getText().toString())||TextUtils.isEmpty(edtSDT.getText().toString())||TextUtils.isEmpty(edtNamSinh.getText().toString())){
                     Toast.makeText(context, "Bạn phải nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (age < 18) {
+                    // Hiển thị thông báo hoặc thực hiện hành động phù hợp
+                    Toast.makeText(context, "Người thuê phải trên 18 tuổi.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 nguoiThue = new NguoiThue();
@@ -280,6 +297,12 @@ public class nguoiThue_Activity extends AppCompatActivity {
         edtUser.setVisibility(View.GONE);
         edtPass.setVisibility(View.GONE);
         edtRePass.setVisibility(View.GONE);
+        TextView txt1 = dialog.findViewById(R.id.txt1);
+        TextView txt2 = dialog.findViewById(R.id.txt2);
+        TextView txt3 = dialog.findViewById(R.id.txt3);
+        txt1.setVisibility(View.GONE);
+        txt2.setVisibility(View.GONE);
+        txt3.setVisibility(View.GONE);
 
         troDao=new phongTroDao(context);
         listpt = new ArrayList<PhongTro>();
@@ -298,17 +321,27 @@ public class nguoiThue_Activity extends AppCompatActivity {
         edtNamSinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar lich=Calendar.getInstance();//tạo đối tượng để lấy ngày giờ hiện tại
-                int year=lich.get(Calendar.YEAR);
-                int month=lich.get(Calendar.MONTH);
-                int day=lich.get(Calendar.DAY_OF_MONTH);
+                Calendar lich = Calendar.getInstance();//tạo đối tượng để lấy ngày giờ hiện tại
+                int year = lich.get(Calendar.YEAR);
+                int month = lich.get(Calendar.MONTH);
+                int day = lich.get(Calendar.DAY_OF_MONTH);
                 //Tạo đối tượng DatePickerDialog và show nó
-                DatePickerDialog datedg=new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datedg = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        edtNamSinh.setText(String.format("%d/%d/%d",dayOfMonth,month,year));
+                        month = month + 1;
+                        edtNamSinh.setText(String.format("%02d/%02d/%d", dayOfMonth, month, year));
+
+                        // Tính tuổi từ ngày sinh
+                         age = calculateAge(year, month, dayOfMonth);
+
+                        // Kiểm tra nếu tuổi không lớn hơn 18
+                        if (age < 18) {
+                            // Hiển thị thông báo hoặc thực hiện hành động phù hợp
+                            Toast.makeText(context, "Người thuê phải trên 18 tuổi.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                },year,month,day);
+                }, year, month, day);
                 datedg.show();
             }
         });
@@ -369,6 +402,11 @@ public class nguoiThue_Activity extends AppCompatActivity {
                     Toast.makeText(context, "Bạn phải nhập đầy đủ", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (age < 18) {
+                    // Hiển thị thông báo hoặc thực hiện hành động phù hợp
+                    Toast.makeText(context, "Người thuê phải trên 18 tuổi.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (!nguoiThue.getSdt().matches("^0\\d{9}$")){
                     Toast.makeText(context, "Sđt sai định dạng", Toast.LENGTH_SHORT).show();
@@ -426,5 +464,20 @@ public class nguoiThue_Activity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         builder.show();
+    }
+    private int calculateAge(int birthYear, int birthMonth, int birthDay) {
+        Calendar today = Calendar.getInstance();
+        int currentYear = today.get(Calendar.YEAR);
+        int currentMonth = today.get(Calendar.MONTH) + 1;
+        int currentDay = today.get(Calendar.DAY_OF_MONTH);
+
+        int age = currentYear - birthYear;
+
+        // Kiểm tra nếu chưa đến sinh nhật trong năm nay
+        if (birthMonth > currentMonth || (birthMonth == currentMonth && birthDay > currentDay)) {
+            age--;
+        }
+
+        return age;
     }
 }

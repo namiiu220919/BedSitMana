@@ -16,7 +16,7 @@ import java.util.List;
 public class nguoiThueDao {
     private SQLiteDatabase db;
     private Context context;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     public nguoiThueDao(Context context) {
         DbHelper dbHelper = new DbHelper(context);

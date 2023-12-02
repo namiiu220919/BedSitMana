@@ -9,6 +9,7 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
@@ -27,6 +28,7 @@
         android:textSize="17dp" />
 
     <TextView
+        android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
@@ -45,6 +47,7 @@
         android:textSize="17dp" />
 
     <TextView
+        android:id="@+id/txt3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
@@ -160,6 +163,10 @@
             android:background="@drawable/khungedt"
             android:padding="5dp"
             android:textColor="@color/white"
+            android:inputType="none"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:clickable="false"
             android:textColorHint="#9F9B9B"
             android:textSize="17dp" />
 

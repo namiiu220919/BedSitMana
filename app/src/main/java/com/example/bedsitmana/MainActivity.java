@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.bedsitmana.Activity.hoaDon_Activity;
+import com.example.bedsitmana.Activity.hopDong_Activity;
 import com.example.bedsitmana.Activity.loaiPhong_Activity;
 import com.example.bedsitmana.Activity.nguoiThue_Activity;
 import com.example.bedsitmana.Activity.phong_Activity;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView nav;
     View mHeader;
     AdView mAdView;
-    Button btnLoaiPhong, btnPhong, btnNguoiThue, btnThongKe, btnHoaDon, btnSuCo;
+    Button btnLoaiPhong, btnPhong, btnNguoiThue, btnThongKe, btnHoaDon, btnSuCo,btnHopDong;
     nguoiThueDao dao;
     TextView txtUser;
 
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btnNguoiThue = findViewById(R.id.btnNguoiThue);
         btnThongKe = findViewById(R.id.btnThongKe);
         btnSuCo = findViewById(R.id.btnSuCo);
+        btnHopDong = findViewById(R.id.btnHopDong);
         btnLoaiPhong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +118,12 @@ public class MainActivity extends AppCompatActivity {
                 IntentClass(suCo_Activity.class);
             }
         });
+        btnHopDong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentClass(hopDong_Activity.class);
+            }
+        });
 
         nav.setItemIconTintList(null);
         drawerLayout.closeDrawers();
@@ -131,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         if(user.equalsIgnoreCase("admin")){
             nav.getMenu().findItem(R.id.nav_ChangePass).setVisible(false);
             nav.getMenu().findItem(R.id.nav_profileUser).setVisible(false);
+            btnHopDong.setVisibility(View.GONE);
         }else {
             btnLoaiPhong.setVisibility(View.GONE);
             btnNguoiThue.setVisibility(View.GONE);
