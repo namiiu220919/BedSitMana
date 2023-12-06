@@ -50,6 +50,7 @@ import com.example.bedsitmana.model.LoaiPhong;
 import com.example.bedsitmana.model.NganHang;
 import com.example.bedsitmana.model.NguoiThue;
 import com.example.bedsitmana.model.PhongTro;
+import com.example.bedsitmana.myservice;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -464,6 +465,7 @@ public class hoaDon_Activity extends AppCompatActivity {
                     if (hdDao.insert(hoaDon) > 0) {
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
                         hoaDon.setTrangThai(0);
+                        startSV();
                     } else {
                         Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                     }
@@ -486,6 +488,11 @@ public class hoaDon_Activity extends AppCompatActivity {
         });
         dialog.show();
 
+    }
+    public void startSV(){
+        Intent intent = new Intent(hoaDon_Activity.this, myservice.class);
+        intent.putExtra("phong",maPhong);
+        startService(intent);
     }
 
 
