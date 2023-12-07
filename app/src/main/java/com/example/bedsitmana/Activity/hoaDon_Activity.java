@@ -491,7 +491,9 @@ public class hoaDon_Activity extends AppCompatActivity {
     }
     public void startSV(){
         Intent intent = new Intent(hoaDon_Activity.this, myservice.class);
-        intent.putExtra("phong",maPhong);
+        ptDao = new phongTroDao(hoaDon_Activity.this);
+        PhongTro phongTro = ptDao.getID(String.valueOf(hoaDon.getMaPhong()));
+        intent.putExtra("phong",phongTro.getTenPhong());
         startService(intent);
     }
 

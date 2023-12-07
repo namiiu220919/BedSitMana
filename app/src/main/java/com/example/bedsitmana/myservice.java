@@ -26,8 +26,8 @@ public class myservice extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //nhan du lieu
-        String ten = intent.getStringExtra("phong");
-        sendNotification(ten);
+        String phong = intent.getStringExtra("phong");
+        sendNotification(phong);
         return START_NOT_STICKY; // service se khoi dong lai khi co lenh startService()
         // return super.onStartCommand(intent,flags,startID);
 
@@ -43,8 +43,8 @@ public class myservice extends Service {
         Intent intent = new Intent(this, hoaDon_Activity.class);
         PendingIntent pendingIntent= PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
         // tao ra 1 thong bao va truyen no vao startForeground services
-        Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID).setContentTitle("Update DV")
-                .setContentText("Admin đã thêm 1 hóa đơn phòng"+data)
+        Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID).setContentTitle("Hóa đơn mới phòng "+data)
+                .setContentText("Admin đã thêm 1 hóa đơn phòng "+data)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentIntent(pendingIntent).build();
         // id cua startforeground se la 1 so lon hon 0
