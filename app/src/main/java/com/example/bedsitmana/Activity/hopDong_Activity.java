@@ -190,6 +190,13 @@ public class hopDong_Activity extends AppCompatActivity {
         dao_nt = new nguoiThueDao(hopDong_Activity.this);
         maphong = getIntent().getIntExtra("maphong", -1);
         list_nt =dao_nt.getNguoiThueByMaPhong(maphong);
+        if (list_nt.isEmpty()) {
+            Toast.makeText(hopDong_Activity.this, "Không có người thuê phòng. Thêm người thuê trước khi tạo hợp đồng.", Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+            Intent intent = new Intent(hopDong_Activity.this, phong_Activity.class);
+            hopDong_Activity.this.startActivity(intent);
+            return;
+        }
         spinerAdapter = new NguoiThueSpinerAdapter(hopDong_Activity.this, list_nt);
         spinner.setAdapter(spinerAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

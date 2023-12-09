@@ -358,6 +358,11 @@ public class hoaDon_Activity extends AppCompatActivity {
         ptDao = new phongTroDao(hoaDon_Activity.this);
         listpt = new ArrayList<PhongTro>();
         listpt = (ArrayList<PhongTro>) ptDao.getPhongByTrangThai(1);
+        if (listpt.isEmpty()) {
+            Toast.makeText(hoaDon_Activity.this, "Chưa có hợp đồng cho Phòng. Vui lòng tạo hợp đồng trước.", Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+            return;
+        }
         spPhongAdapter = new SPPhong_Adapter(hoaDon_Activity.this, listpt);
         spPhong.setAdapter(spPhongAdapter);
         spPhong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
