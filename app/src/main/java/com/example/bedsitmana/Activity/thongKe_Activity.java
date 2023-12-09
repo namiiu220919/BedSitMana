@@ -1,8 +1,10 @@
 package com.example.bedsitmana.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -14,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.bedsitmana.Adapter.viewpage_adapter;
 import com.example.bedsitmana.Dao.ThongKeDao;
 import com.example.bedsitmana.Dao.hoaDonDao;
 import com.example.bedsitmana.R;
@@ -27,6 +30,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +48,9 @@ public class thongKe_Activity extends AppCompatActivity {
 //    int mYear, mMonth, mDay;
     ArrayList<HoaDon> list;
 hoaDonDao hdDao;
+    TabLayout tabLayout;
+    viewpage_adapter adapter;
+    ViewPager2 viewPager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,181 +71,27 @@ hoaDonDao hdDao;
                 finish();
             }
         });
-        BarChart barChart = findViewById(R.id.barChart);
 
-        // Khai báo và lấy danh sách HoaDon từ cơ sở dữ liệu
-        hdDao = new hoaDonDao(thongKe_Activity.this);
-        list = (ArrayList<HoaDon>) hdDao.getAll();
-
-        // Gọi phương thức để lấy danh sách BarEntry từ dữ liệu HoaDon
-        List<BarEntry> monthlyRevenueEntries = getMonthlyRevenue(list);
-
-        // Tiếp theo, bạn có thể sử dụng danh sách này để cập nhật biểu đồ BarChart
-        updateBarChart(barChart, monthlyRevenueEntries);
-
-
-//        edtTuNgay = findViewById(R.id.edtTuNgay);
-//        edtDenNgay = findViewById(R.id.edtDenNgay);
-//        txtDoanhThu = findViewById(R.id.txtDoanhThu);
-//        btnTuNgay = findViewById(R.id.btnTuNgay);
-//        btnDenNgay = findViewById(R.id.btnDenNgay);
-//        btnDoanhThu = findViewById(R.id.btnDoanhThu);
-//        btnTuNgay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Calendar c = Calendar.getInstance();
-//                mYear = c.get(Calendar.YEAR);
-//                mMonth = c.get(Calendar.MONTH);
-//                mDay = c.get(Calendar.DAY_OF_MONTH);
-//                DatePickerDialog d = new DatePickerDialog(thongKe_Activity.this,0,mDateTuNgay,mYear,mMonth,mDay);
-//                d.show();
-//            }
-//        });
-//        btnDenNgay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Calendar c = Calendar.getInstance();
-//                mYear = c.get(Calendar.YEAR);
-//                mMonth = c.get(Calendar.MONTH);
-//                mDay = c.get(Calendar.DAY_OF_MONTH);
-//                DatePickerDialog d = new DatePickerDialog(thongKe_Activity.this,0,mDateDenNgay,mYear,mMonth,mDay);
-//                d.show();
-//            }
-//        });
-//        btnDoanhThu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String tuNgay = edtTuNgay.getText().toString();
-//                String denNgay = edtDenNgay.getText().toString();
-//                ThongKeDao thongKeDao=new ThongKeDao(thongKe_Activity.this);
-//                txtDoanhThu.setText("Doanh Thu: "+thongKeDao.getDoanhThu(tuNgay,denNgay)+" VND");
-//            }
-//        });
-//    }
-//
-//    DatePickerDialog.OnDateSetListener mDateTuNgay = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-//            mYear = i;
-//            mMonth = i1;
-//            mDay = i2;
-//            GregorianCalendar c = new GregorianCalendar(mYear,mMonth,mDay);
-//            edtTuNgay.setText(sdf.format(c.getTime()));
-//        }
-//    };
-//    DatePickerDialog.OnDateSetListener mDateDenNgay = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-//            mYear = i;
-//            mMonth = i1;
-//            mDay = i2;
-//            GregorianCalendar c = new GregorianCalendar(mYear,mMonth,mDay);
-//            edtDenNgay.setText(sdf.format(c.getTime()));
-//        }
-
-
-
-//        BarChart barChart = findViewById(R.id.barChart);
-//        List<BarEntry> entries = new ArrayList<>();
-//        entries.add(new BarEntry(0f, 100f));  // Tháng 1
-//        entries.add(new BarEntry(1f, 200f));  // Tháng 2
-//        entries.add(new BarEntry(2f, 150f));  // Tháng 3
-//        entries.add(new BarEntry(3f, 100f));  // Tháng 4
-//        entries.add(new BarEntry(4f, 200f));  // Tháng 5
-//        entries.add(new BarEntry(5f, 150f));  // Tháng 6
-//        entries.add(new BarEntry(6f, 100f));  // Tháng 7
-//        entries.add(new BarEntry(7f, 200f));  // Tháng 8
-//        entries.add(new BarEntry(8f, 150f));  // Tháng 9
-//        entries.add(new BarEntry(9f, 100f));  // Tháng 10
-//        entries.add(new BarEntry(10f, 200f));  // Tháng 11
-//        entries.add(new BarEntry(11f, 150f));  // Tháng 12
-//
-//        BarDataSet dataSet = new BarDataSet(entries, "Doanh thu theo tháng");
-//
-//        dataSet.setColors(Color.RED);
-//        dataSet.setValueTextColor(Color.WHITE);
-//        dataSet.setValueTextSize(12f);
-//
-//        BarData barData = new BarData(dataSet);
-//
-//        // Cấu hình trục x
-//        String[] months = new String[]{"T1", "T2", "T3","T4", "T5", "T6","T7", "T8", "T9","T10", "T11", "T12" };
-//        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-//        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-//        barChart.getXAxis().setGranularity(1f);
-//        barChart.getXAxis().setGranularityEnabled(true);
-//        barChart.getXAxis().setLabelCount(months.length);
-//
-//        // Cấu hình trục y
-//        barChart.getAxisRight().setEnabled(false);
-//        YAxis leftAxis = barChart.getAxisLeft();
-//        leftAxis.setAxisMinimum(0f);
-//
-//        barChart.setData(barData);
-//        barChart.getDescription().setEnabled(false);
-//        barChart.animateY(2000);
-//
-//        getMonthlyRevenue(list);
-//
-//// Cập nhật biểu đồ
-//        barChart.invalidate();
-    }
-    private List<BarEntry> getMonthlyRevenue(ArrayList<HoaDon> hoaDonList) {
-        List<BarEntry> entries = new ArrayList<>();
-        int[] monthlyRevenue = new int[12];
-
-        for (HoaDon hoaDon : hoaDonList) {
-            if (hoaDon.getTrangThai()==2){
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(hoaDon.getNgayTao());
-                int month = calendar.get(Calendar.MONTH);
-                monthlyRevenue[month] += hdDao.getTongTienDien(hoaDon.getMaHoaDon())
-                        + hdDao.getTongTienNuoc(hoaDon.getMaHoaDon())
-                        + hoaDon.getPhiDichVu() + hoaDon.getTienPhong();
+        tabLayout=findViewById(R.id.tablayout);
+        viewPager2=findViewById(R.id.viewpage2);
+        adapter=new viewpage_adapter(this);
+        viewPager2.setAdapter(adapter);
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position){
+                    case 0: tab.setText("Biểu đồ");break;
+                    case 1: tab.setText("Khoảng thời gian");break;
+                }
             }
+        }).attach();
 
-        }
 
-        for (int i = 0; i < monthlyRevenue.length; i++) {
-            entries.add(new BarEntry(i, monthlyRevenue[i]));
-        }
 
-        return entries;
+
+
+
+
     }
 
-    private void updateBarChart(BarChart barChart, List<BarEntry> entries) {
-        BarDataSet dataSet = new BarDataSet(entries, "Doanh thu theo tháng");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        dataSet.setValueTextColor(Color.WHITE);
-        dataSet.setValueTextSize(12f);
-
-        BarData barData = new BarData(dataSet);
-
-        // Cấu hình trục x
-        String[] months = new String[]{"T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"};
-        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-        barChart.getXAxis().setGranularity(1f);
-        barChart.getXAxis().setGranularityEnabled(true);
-        barChart.getXAxis().setLabelCount(months.length);
-        barChart.getXAxis().setTextColor(Color.WHITE);
-
-
-
-        // Cấu hình trục y
-        barChart.getAxisRight().setEnabled(false);
-        YAxis leftAxis = barChart.getAxisLeft();
-        leftAxis.setAxisMinimum(0f);
-        leftAxis.setTextColor(Color.WHITE);
-
-        // Đặt dữ liệu lên biểu đồ
-        barChart.setData(barData);
-        barChart.getDescription().setEnabled(false);
-        barChart.animateY(2000);
-        Legend legend = barChart.getLegend();
-        legend.setTextColor(Color.WHITE);
-
-        // Cập nhật biểu đồ
-        barChart.invalidate();
-    }
 }
