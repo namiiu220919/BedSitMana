@@ -66,7 +66,7 @@ public class Phong_Adapter extends ArrayAdapter<PhongTro> {
             loaiPhongDao=new LoaiPhongDao(context);
             LoaiPhong loaiPhong=loaiPhongDao.getID(String.valueOf(phongTro.getMaLoai()));
             txtCoSo_Phong.setText("Loại phòng: " + loaiPhong.getTenLoaiPhong());
-            txtXemHopDong.setPaintFlags(txtXemHopDong.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                txtXemHopDong.setPaintFlags(txtXemHopDong.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             if (phongTro.getTrangThai() == 1) {
                 txtXemHopDong.setText("Xem hợp đồng");
                 txtXemHopDong.setTextColor(Color.GREEN);
