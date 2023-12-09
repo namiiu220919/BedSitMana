@@ -89,6 +89,56 @@ public class DbHelper extends SQLiteOpenHelper {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] imageData = stream.toByteArray();
 
+        sqLiteDatabase.execSQL("insert into HoaDon(sdt,ngayTao,soDien,donGiaDien,soNguoi,donGiaNuoc,phiDichVu,ghiChu,tienPhong,anhThanhToan,trangThai,maPhong,maNguoiThue) values" +
+                "('0236475775','2023-08-03',5,3500,3,100000,100000,'Thu tiền tháng 8',3500000,'imageData',0,1,'quynh01')," +
+                "('0236475775','2023-09-03',5,3500,3,100000,100000,'Thu tiền tháng 8',3500000,'imageData',0,1,'quynh01')," +
+                "('0236475775','2023-10-03',5,3500,3,100000,100000,'Thu tiền tháng 8',3500000,'imageData',0,1,'quynh01')");
+
+
+//        String createTableCTHoaDon="create table CTHoaDon(" +
+//                "maCTHoaDon INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                "maPhong INTEGER REFERENCES PhongTro(maPhong)," +
+//                "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
+//                "soDien INTEGER NOT NULL," +
+//                "soNuoc INTEGER NOT NULL," +
+//                "phiDichVu INTEGER NOT NULL," +
+//                "tongTien INTEGER NOT NULL)";
+//        sqLiteDatabase.execSQL(createTableCTHoaDon);
+
+        //Tạo bảng NguoiThue
+        String createTableNguoiThue ="create table NguoiThue(" +
+                "maNguoiThue TEXT PRIMARY KEY," +
+                "matKhauNT TEXT NOT NULL," +
+                "tenNguoiThue TEXT NOT NULL," +
+                "thuongTru TEXT NOT NULL," +
+                "sdt TEXT NOT NULL," +
+                "CCCD TEXT NOT NULL," +
+                "namSinh date NOT NULL," +
+                "gioiTinh INTEGER NOT NULL," +
+                "maPhong INTEGER REFERENCES PhongTro(maPhong))";
+        sqLiteDatabase.execSQL(createTableNguoiThue);
+
+        sqLiteDatabase.execSQL("insert into NguoiThue values('quynh01','quynh','Lưu Tuấn Quỳnh','Bắc Giang','3456789987','847837487','03/08/2004',0,1)," +
+                "('huy','huy','Phạm Quang Huy','Hải Dương','123456789','123456789','03/09/2004',1,1),"+
+                "('nam','nam','Nguyễn Phương Nam','Hà Nội','3456789987','847837487','03/05/2004',1,2)");
+
+        //Tạo bảng HopDong
+        String createTableHopDong = "create table HopDong(" +
+                "maHopDong INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "sdt TEXT NOT NULL," +
+                "CCCD INTEGER NOT NULL," +
+                "thuongTru TEXT NOT NULL," +
+                "ngayKy DATE NOT NULL," +
+                "thoiHan INTEGER NOT NULL," +
+                "tienCoc INTEGER NOT NULL," +
+                "giaTien INTEGER NOT NULL," +
+                "soNguoi INTEGER NOT NULL," +
+                "soXe INTEGER NOT NULL," +
+                "ghiChu TEXT," +
+                "hinhAnh BLOB," +
+                "maNguoiThue TEXT REFERENCES NguoiThue(maNguoiThue)," +
+                "maPhong INTEGER REFERENCES PhongTro(maPhong))";
+        sqLiteDatabase.execSQL(createTableHopDong);
 
 
 
